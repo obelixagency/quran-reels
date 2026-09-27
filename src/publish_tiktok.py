@@ -25,18 +25,22 @@ def _check(r):
     return data
 
 
+def _env(name):
+    return os.environ[name].strip()  # يتجاهل أي مسافة أو سطر زيادة اتلزق مع الـ secret
+
+
 def access_token():
     r = requests.post(f"{API}/oauth/token/", timeout=60, data={
-        "client_key": os.environ["TIKTOK_CLIENT_KEY"],
-        "client_secret": os.environ["TIKTOK_CLIENT_SECRET"],
+        "client_key": _env("TIKTOK_CLIENT_KEY"),
+        "client_secret": _env("TIKTOK_CLIENT_SECRET"),
         "grant_type": "refresh_token",
-        "refresh_token": os.environ["TIKTOK_REFRESH_TOKEN"],
+        "refresh_token": _env("TIKTOK_REFRESH_TOKEN"),
     }, headers={"Content-Type": "application/x-www-form-urlencoded"})
     data = r.json()
     if "access_token" not in data:
         raise RuntimeError(f"TikTok token refresh failed: {data}")
     new_rt = data.get("refresh_token")
-    if new_rt and new_rt != os.environ["TIKTOK_REFRESH_TOKEN"]:
+    if new_rt and new_rt != _env("TIKTOK_REFRESH_TOKEN"):
         # the workflow picks this file up and updates the GitHub secret (if GH_PAT is configured)
         Path("out/.tiktok_refresh_token").write_text(new_rt)
     return data["access_token"]
