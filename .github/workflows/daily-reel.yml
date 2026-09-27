@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: quran-reel
@@ -72,6 +73,24 @@ jobs:
             out/caption_*.txt
             out/plan.json
           retention-days: 14
+
+      - name: TikTok caption (summary + GitHub notification)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          f=out/caption_tiktok.txt
+          [ -f "$f" ] || exit 0
+          { echo "## كابشن تيك توك"; echo '```'; cat "$f"; echo; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          P="${{ inputs.platforms }}"
+          if [ -z "$P" ] || echo "$P" | grep -q tiktok; then
+            gh label create tiktok-caption --color fe2c55 --repo "${{ github.repository }}" 2>/dev/null || true
+            for n in $(gh issue list --label tiktok-caption --state open --json number -q '.[].number' --repo "${{ github.repository }}"); do
+              gh issue close "$n" --repo "${{ github.repository }}" >/dev/null || true
+            done
+            gh issue create --repo "${{ github.repository }}" --label tiktok-caption \
+              --title "كابشن تيك توك – $(TZ=Africa/Cairo date +%Y-%m-%d)" --body-file "$f"
+          fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)
         if: always()
