@@ -23,16 +23,27 @@ HEAD = {"morning": ("أذكار الصباح", "morning sunrise"), "evening": ("
 
 
 def pick(session, history, n=3):
+    """كل جلسة: ذكر واحد من القرآن + أذكار من السنة، والأقدم ظهورًا الأول."""
     items = [i for i in load_json(DATA / "adhkar.json")["items"] if i["session"] in (session, "both")]
     last = {}
     for k, h in enumerate(history["sessions"]):
         for i in h["ids"]:
             last[i] = k
-    # الأقدم ظهورًا الأول، ونفضّل التنوع (ذكر + قرآن)
     items.sort(key=lambda i: last.get(i["id"], -1))
-    chosen = items[:n]
-    order = {"quran": 0, "dhikr": 1}
-    return sorted(chosen, key=lambda i: order[i["kind"]])
+    quran = [i for i in items if i["kind"] == "quran"][:1]
+    dhikr = [i for i in items if i["kind"] != "quran"][:max(0, n - len(quran))]
+    return quran + dhikr
+
+
+def quran_parts(item):
+    """نص الآيات + المصدر. المعوذات = ٣ سور في ستوري واحدة (كل سورة فقرة)."""
+    if "parts" not in item:
+        return quran_text(item)
+    texts = []
+    for s, a, b in item["parts"]:
+        t, _ = quran_text({"surah": s, "from": a, "to": b})
+        texts.append(t)
+    return "\n".join(texts), "سور الإخلاص والفلق والناس"
 
 
 def render(item, text, session, idx, total, bg_path, dest):
@@ -44,7 +55,9 @@ def render(item, text, session, idx, total, bg_path, dest):
     size = 74
     while True:
         f_body = _font(body_path, size)
-        lines = _wrap(text, f_body, max_w)
+        lines = []
+        for para in text.split("\n"):  # كل فقرة (سورة) تبدأ في سطر جديد
+            lines += _wrap(para, f_body, max_w)
         lh = int(size * (1.9 if is_quran else 1.7))
         if len(lines) * lh <= max_h or size <= 34:
             break
@@ -118,7 +131,7 @@ def main():
     frames = []
     for k, it in enumerate(items, 1):
         if it["kind"] == "quran":
-            text, src = quran_text(it)
+            text, src = quran_parts(it)
             it = {**it, "source_line": src}
         else:
             text = it["text"]
