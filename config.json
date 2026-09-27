@@ -46,5 +46,17 @@
       "category_id": "22"
     }
   },
-  "graph_api_version": "v23.0"
+  "graph_api_version": "v23.0",
+  "posts": {
+    "platforms": {
+      "facebook": {
+        "enabled": true,
+        "hashtags": 6
+      },
+      "instagram": {
+        "enabled": true,
+        "hashtags": 5
+      }
+    }
+  }
 }

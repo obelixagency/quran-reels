@@ -46,7 +46,7 @@ def _check_channel(h):
     return ch
 
 
-def publish_youtube(cfg, video_path, caption, title, tags):
+def publish_youtube(cfg, video_path, caption, title, tags, cover=None):
     ycfg = cfg["platforms"]["youtube"]
     h = {"Authorization": f"Bearer {access_token()}"}
     ch = _check_channel(h)
@@ -71,5 +71,13 @@ def publish_youtube(cfg, video_path, caption, title, tags):
     if up.status_code >= 400:
         raise RuntimeError(f"YouTube upload failed {up.status_code}: {up.text[:500]}")
     vid = up.json()
-    return {"video_id": vid["id"], "url": f"https://youtube.com/shorts/{vid['id']}",
+    thumb = None
+    if cover and Path(cover["path"]).exists():
+        # يوتيوب بيسمح بالكوفر المخصص بس للقنوات المتوثقة برقم تليفون – لو رفض، الفيديو نفسه اتنشر عادي
+        with open(cover["path"], "rb") as img:
+            t = requests.post("https://www.googleapis.com/upload/youtube/v3/thumbnails/set",
+                              params={"videoId": vid["id"]}, data=img, timeout=120,
+                              headers={**h, "Content-Type": "image/jpeg"})
+        thumb = "ok" if t.status_code < 300 else f"skipped ({t.status_code}): {t.text[:150]}"
+    return {"cover": thumb, "video_id": vid["id"], "url": f"https://youtube.com/shorts/{vid['id']}",
             "privacy": vid.get("status", {}).get("privacyStatus"), "channel": ch["snippet"]["title"]}

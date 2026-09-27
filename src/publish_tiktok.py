@@ -42,7 +42,7 @@ def access_token():
     return data["access_token"]
 
 
-def publish_tiktok(cfg, video_path, caption):
+def publish_tiktok(cfg, video_path, caption, cover=None):
     tcfg = cfg["platforms"]["tiktok"]
     token = access_token()
     h = {"Authorization": f"Bearer {token}", "Content-Type": "application/json; charset=UTF-8"}
@@ -55,7 +55,8 @@ def publish_tiktok(cfg, video_path, caption):
         options = info.get("privacy_level_options", [])
         privacy = wanted if wanted in options else ("SELF_ONLY" if "SELF_ONLY" in options else options[0])
         body = {"post_info": {"title": caption[:2200], "privacy_level": privacy,
-                              "disable_comment": False, "disable_duet": False, "disable_stitch": False},
+                              "disable_comment": False, "disable_duet": False, "disable_stitch": False,
+                              **({"video_cover_timestamp_ms": cover["ms"]} if cover else {})},
                 "source_info": source}
         init = _check(requests.post(f"{API}/post/publish/video/init/", headers=h, json=body, timeout=60))["data"]
     else:

@@ -1,0 +1,71 @@
+name: Daily Post – dua / hadith
+
+on:
+  schedule:
+    # 07:00 UTC = 10 صباحًا بتوقيت القاهرة (صيفي)
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish? (false = generate only)"
+        default: "true"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quran-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Arabic text shaping
+        run: sudo apt-get update && sudo apt-get install -y libraqm0 libfribidi0 libharfbuzz0b ffmpeg
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Generate & publish post
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.publish }}" != "true" ]; then
+            python -m src.posts
+          else
+            python -m src.posts --publish
+          fi
+
+      - name: Save post image & captions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-${{ github.run_number }}
+          path: |
+            out_post/post.jpg
+            out_post/caption_*.txt
+          retention-days: 14
+
+      - name: Save history
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain posts_history.json)" ]; then
+            git config user.name "quran-reels-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add posts_history.json
+            git commit -m "posts history: ${{ github.run_number }}"
+            git pull --rebase
+            git push
+          fi

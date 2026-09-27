@@ -16,7 +16,7 @@ import traceback
 
 from . import captions
 from .backgrounds import get_background
-from .common import DATA, OUT, ROOT, load_json, media_duration, save_json
+from .common import DATA, OUT, ROOT, load_json, media_duration, run, save_json
 from .quran_source import fetch_verse
 from .render import GAP, LEAD, TAIL, Timeline, build_audio, build_card, compose
 
@@ -137,15 +137,23 @@ def generate(cfg, args, history):
                    dest=OUT / "reel.mp4", W=v["width"], H=v["height"], fps=v["fps"],
                    darken=v["background_darken"])
 
+    # الكوفر: آخر مشهد الآية الأخيرة فيه مكتوبة كاملة (بعد ظهور رقم الآية وقبل الـ fade out)
+    last_word_end = cards[-1]["words"][-1][1] if cards[-1]["words"] else total - 1.5
+    cover_t = max(0.5, min(last_word_end + 0.6, cards[-1]["window"][1] - 0.5, total - 1.1))
+    run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{cover_t:.2f}", "-i", str(reel), "-frames:v", "1",
+         "-q:v", "2", str(OUT / "cover.jpg")])
+    print(f"🖼️  Cover frame at {cover_t:.2f}s")
+
     caps = {}
     for platform, pcfg in cfg["platforms"].items():
         caps[platform] = captions.build_caption(plan, platform, pcfg["hashtags"])
         (OUT / f"caption_{platform}.txt").write_text(caps[platform], encoding="utf-8")
     caps["_yt_title"] = captions.youtube_title(plan)
     caps["_yt_tags"] = captions.youtube_tags(plan)
+    caps["_cover"] = {"path": str(OUT / "cover.jpg"), "ms": int(cover_t * 1000)}
 
     plan_out = {**plan, "background": bg_id, "background_credit": credit, "duration": round(total, 2),
-                "reciter": reciter["key"], "reciter_name": reciter["name"]}
+                "reciter": reciter["key"], "reciter_name": reciter["name"], "cover_time": round(cover_t, 2)}
     plan_out["ayahs"] = [{"number": a["number"], "text": a["text"], "tafsir": a["tafsir"],
                           "timing_source": a["timing_source"]} for a in plan["ayahs"]]
     save_json(OUT / "plan.json", plan_out)
@@ -160,17 +168,17 @@ def publish(cfg, reel, caps, platforms):
         try:
             if name == "facebook":
                 from .publish_meta import publish_facebook
-                results[name] = {"ok": True, **publish_facebook(cfg, reel, caps[name])}
+                results[name] = {"ok": True, **publish_facebook(cfg, reel, caps[name], cover=caps["_cover"])}
             elif name == "instagram":
                 from .publish_meta import publish_instagram
-                results[name] = {"ok": True, **publish_instagram(cfg, reel, caps[name])}
+                results[name] = {"ok": True, **publish_instagram(cfg, reel, caps[name], cover=caps["_cover"])}
             elif name == "youtube":
                 from .publish_youtube import publish_youtube
                 results[name] = {"ok": True, **publish_youtube(cfg, reel, caps[name], caps["_yt_title"],
-                                                               caps["_yt_tags"])}
+                                                               caps["_yt_tags"], cover=caps["_cover"])}
             elif name == "tiktok":
                 from .publish_tiktok import publish_tiktok
-                results[name] = {"ok": True, **publish_tiktok(cfg, reel, caps[name])}
+                results[name] = {"ok": True, **publish_tiktok(cfg, reel, caps[name], cover=caps["_cover"])}
             print(f"   ✅ {results[name]}")
         except Exception as e:  # noqa: BLE001
             traceback.print_exc()
