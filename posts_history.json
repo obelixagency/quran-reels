@@ -16,6 +16,32 @@
           "media_id": "17954282592255606"
         }
       }
+    },
+    {
+      "date": "2026-09-27T16:56:27+00:00",
+      "id": "q3-8",
+      "type": "quran_dua",
+      "background": "pexels:12370081",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122097042843496080",
+          "post_id": "1397548336772319_122097042885496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18076291931719044"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1639609334241527",
+          "image_url": "https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/829196403_122097043041496080_731816898914660074_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=054031&_nc_ohc=kdqBlWz_IA4Q7kNvwG_11gc&_nc_oc=Adotd3eHVMFMjISZxDlvRoeMa1Tm2JTVQG4O-KlVNnbp70yk9xjjaeHfG96b_Z8R7C8&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&edm=AMAeTUEEAAAA&_nc_gid=AfJzTCN4mD-FyvqX7Vgxzw&_nc_tpa=Q5bMBQK6WP7YJOaO9m2tTzF3qp8R_FECOfxzm6FSdSyezl7CZlQgAWu4v9EjiAO0AdARra11C5vEXIAYaA&oh=00_AQKv8C65wyimxPzb04f5IQyWYl4w-_CTnRDzDtS4cfDb9A&oe=6ABF1553"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18112249220123588"
+        }
+      }
     }
   ]
 }
