@@ -139,3 +139,68 @@ def publish_instagram_image(cfg, image_path, caption, image_url=None):
     pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
                                data={"creation_id": cid, "access_token": token}))
     return {"media_id": pub.get("id")}
+
+
+# ------------------------------------------------------------------ stories
+def _wait_ig(g, cid, token, tries=40):
+    for _ in range(tries):
+        st = _check(requests.get(f"{g}/{cid}", params={"fields": "status_code", "access_token": token},
+                                 timeout=60))
+        if st.get("status_code") in (None, "FINISHED"):
+            return
+        if st.get("status_code") in ("ERROR", "EXPIRED"):
+            raise RuntimeError(f"Instagram story error: {st}")
+        time.sleep(8)
+    raise RuntimeError("Instagram story processing timed out")
+
+
+def story_facebook_video(cfg, video_path):
+    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    size = Path(video_path).stat().st_size
+    start = _check(requests.post(f"{g}/{page_id}/video_stories", timeout=60,
+                                 data={"upload_phase": "start", "access_token": token}))
+    with open(video_path, "rb") as f:
+        _check(requests.post(start["upload_url"], data=f, timeout=600, headers={
+            "Authorization": f"OAuth {token}", "offset": "0", "file_size": str(size)}))
+    time.sleep(5)
+    done = _check(requests.post(f"{g}/{page_id}/video_stories", timeout=120, data={
+        "upload_phase": "finish", "video_id": start["video_id"], "access_token": token}))
+    return {"story_id": done.get("post_id") or start["video_id"]}
+
+
+def story_facebook_photo(cfg, image_path):
+    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    photo = publish_facebook_photo(cfg, image_path, "", published=False)
+    done = _check(requests.post(f"{g}/{page_id}/photo_stories", timeout=60,
+                                data={"photo_id": photo["photo_id"], "access_token": token}))
+    return {"story_id": done.get("post_id"), "image_url": photo["image_url"]}
+
+
+def story_instagram_video(cfg, video_path):
+    ig_id, token = os.environ["IG_USER_ID"], os.environ.get("IG_TOKEN") or os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    version = cfg.get("graph_api_version", "v23.0")
+    size = Path(video_path).stat().st_size
+    cid = _check(requests.post(f"{g}/{ig_id}/media", timeout=60, data={
+        "media_type": "STORIES", "upload_type": "resumable", "access_token": token}))["id"]
+    with open(video_path, "rb") as f:
+        _check(requests.post(f"https://rupload.facebook.com/ig-api-upload/{version}/{cid}", data=f,
+                             timeout=600, headers={"Authorization": f"OAuth {token}",
+                                                   "offset": "0", "file_size": str(size)}))
+    _wait_ig(g, cid, token)
+    pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
+                               data={"creation_id": cid, "access_token": token}))
+    return {"story_id": pub.get("id")}
+
+
+def story_instagram_photo(cfg, image_url):
+    ig_id, token = os.environ["IG_USER_ID"], os.environ.get("IG_TOKEN") or os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    cid = _check(requests.post(f"{g}/{ig_id}/media", timeout=60, data={
+        "media_type": "STORIES", "image_url": image_url, "access_token": token}))["id"]
+    _wait_ig(g, cid, token, tries=15)
+    pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
+                               data={"creation_id": cid, "access_token": token}))
+    return {"story_id": pub.get("id")}

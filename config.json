@@ -58,5 +58,9 @@
         "hashtags": 5
       }
     }
+  },
+  "stories": {
+    "facebook": true,
+    "instagram": true
   }
 }

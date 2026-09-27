@@ -262,11 +262,28 @@ def main():
             results["instagram"] = {"ok": True, **publish_instagram_image(cfg, image, caps["instagram"], fb_url)}
         except Exception as e:  # noqa: BLE001
             results["instagram"] = {"ok": False, "error": str(e)[:400]}
+    # ستوري للبوست على فيسبوك وإنستجرام
+    st = cfg.get("stories", {})
+    from .publish_meta import story_facebook_photo, story_instagram_photo
+    story_url = fb_url
+    if st.get("facebook") and pc.get("facebook", {}).get("enabled"):
+        try:
+            r = story_facebook_photo(cfg, image)
+            story_url = story_url or r.pop("image_url", None)
+            results["facebook_story"] = {"ok": True, **r}
+        except Exception as e:  # noqa: BLE001
+            results["facebook_story"] = {"ok": False, "error": str(e)[:300]}
+    if st.get("instagram") and pc.get("instagram", {}).get("enabled") and story_url:
+        try:
+            results["instagram_story"] = {"ok": True, **story_instagram_photo(cfg, story_url)}
+        except Exception as e:  # noqa: BLE001
+            results["instagram_story"] = {"ok": False, "error": str(e)[:300]}
     print(results)
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                              "id": item["id"], "type": item["type"], "background": bg_id, "results": results})
     save_json(HISTORY, history)
-    if results and not any(r["ok"] for r in results.values()):
+    main_ok = [r["ok"] for k, r in results.items() if not k.endswith("_story")]
+    if main_ok and not any(main_ok):
         sys.exit(1)
 
 

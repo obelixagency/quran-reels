@@ -184,6 +184,16 @@ def publish(cfg, reel, caps, platforms):
             traceback.print_exc()
             results[name] = {"ok": False, "error": str(e)[:500]}
             print(f"   ❌ {name}: {e}")
+    # ستوري: نفس الريل بيتنشر ستوري على فيسبوك وإنستجرام (تيك توك مفيهوش API للستوري)
+    st = cfg.get("stories", {})
+    for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):
+        if st.get(name) and name in platforms:
+            try:
+                from . import publish_meta
+                results[f"{name}_story"] = {"ok": True, **getattr(publish_meta, fn)(cfg, reel)}
+            except Exception as e:  # noqa: BLE001
+                results[f"{name}_story"] = {"ok": False, "error": str(e)[:300]}
+            print(f"   📲 {name} story: {results[f'{name}_story']}")
     return results
 
 
@@ -216,7 +226,8 @@ def main():
     })
     save_json(HISTORY, history)
     print(json.dumps(results, ensure_ascii=False, indent=2))
-    if results and not any(r["ok"] for r in results.values()):
+    main_ok = [r["ok"] for k, r in results.items() if not k.endswith("_story")]
+    if main_ok and not any(main_ok):
         sys.exit(1)
 
 
