@@ -62,5 +62,9 @@
   "stories": {
     "facebook": true,
     "instagram": true
+  },
+  "hijri_offset": 0,
+  "adhkar": {
+    "per_session": 3
   }
 }
