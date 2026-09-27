@@ -1,0 +1,13 @@
+{
+  "_note": "everyayah = اسم مجلد الشيخ على everyayah.com ، qurancom_id = رقم التلاوة في Quran.com (احتياطي). enabled=true يعني الشيخ ده بيدخل في التناوب.",
+  "reciters": [
+    {"key": "husary", "name": "محمود خليل الحصري", "hashtag": "#الحصري", "everyayah": "Husary_128kbps", "qurancom_id": 6, "enabled": true},
+    {"key": "minshawi", "name": "محمد صديق المنشاوي", "hashtag": "#المنشاوي", "everyayah": "Minshawy_Murattal_128kbps", "qurancom_id": 9, "enabled": true},
+    {"key": "abdulbasit", "name": "عبد الباسط عبد الصمد", "hashtag": "#عبد_الباسط", "everyayah": "Abdul_Basit_Murattal_192kbps", "qurancom_id": 2, "enabled": true},
+    {"key": "tablawi", "name": "محمد الطبلاوي", "hashtag": "#الطبلاوي", "everyayah": "Mohammad_al_Tablaway_128kbps", "qurancom_id": 11, "enabled": true},
+    {"key": "alafasy", "name": "مشاري راشد العفاسي", "hashtag": "#العفاسي", "everyayah": "Alafasy_128kbps", "qurancom_id": 7, "enabled": false},
+    {"key": "sudais", "name": "عبد الرحمن السديس", "hashtag": "#السديس", "everyayah": "Abdurrahmaan_As-Sudais_192kbps", "qurancom_id": 3, "enabled": false},
+    {"key": "shuraim", "name": "سعود الشريم", "hashtag": "#الشريم", "everyayah": "Saood_ash-Shuraym_128kbps", "qurancom_id": 10, "enabled": false},
+    {"key": "maher", "name": "ماهر المعيقلي", "hashtag": "#ماهر_المعيقلي", "everyayah": "MaherAlMuaiqly128kbps", "qurancom_id": null, "enabled": false}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "max_seconds": 30,
+  "selection_mode": "curated",
+  "avoid_repeat_last": 40,
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "text_style": "write",
+    "background_darken": 0.3,
+    "watermark": "",
+    "pexels_queries": [
+      "waterfall",
+      "waterfall nature",
+      "river stream forest",
+      "mountain river",
+      "ocean waves aerial",
+      "calm lake mountains",
+      "forest mist",
+      "rain leaves",
+      "clouds sky timelapse",
+      "sunset clouds",
+      "snow mountains",
+      "green valley"
+    ]
+  },
+  "platforms": {
+    "facebook": {
+      "enabled": true,
+      "hashtags": 6
+    },
+    "instagram": {
+      "enabled": true,
+      "hashtags": 5
+    },
+    "tiktok": {
+      "enabled": true,
+      "hashtags": 6,
+      "mode": "draft",
+      "privacy_level": "PUBLIC_TO_EVERYONE"
+    },
+    "youtube": {
+      "enabled": true,
+      "hashtags": 5,
+      "privacy": "public",
+      "category_id": "22"
+    }
+  },
+  "graph_api_version": "v23.0"
+}
