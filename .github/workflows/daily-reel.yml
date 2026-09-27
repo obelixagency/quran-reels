@@ -1,0 +1,95 @@
+name: Quran Reel – daily
+
+on:
+  schedule:
+    # المواعيد بتوقيت UTC. مصر = UTC+3 صيفًا / UTC+2 شتاءً
+    # 16:00 UTC = 7 مساءً بتوقيت القاهرة (صيفي)
+    - cron: "0 16 * * *"
+    # لو عايز ريل تاني في اليوم فعّل السطر ده (9 صباحًا القاهرة صيفي):
+    # - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish to platforms? (false = generate only)"
+        default: "true"
+      platforms:
+        description: "Comma separated (empty = all enabled in config.json)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quran-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install FFmpeg & Arabic text shaping
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg libraqm0 libfribidi0 libharfbuzz0b
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Generate & publish reel
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.publish }}" != "true" ]; then
+            python -m src.main
+          else
+            python -m src.main --publish --platforms "${{ inputs.platforms }}"
+          fi
+
+      - name: Save reel & captions (downloadable from the run page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reel-${{ github.run_number }}
+          path: |
+            out/reel.mp4
+            out/caption_*.txt
+            out/plan.json
+          retention-days: 14
+
+      - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -f out/.tiktok_refresh_token ] && [ -n "$GH_TOKEN" ]; then
+            gh secret set TIKTOK_REFRESH_TOKEN --body "$(cat out/.tiktok_refresh_token)" --repo "${{ github.repository }}"
+            echo "TikTok refresh token updated"
+          fi
+
+      - name: Save history (so آيات/خلفيات don't repeat)
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain history.json)" ]; then
+            git config user.name "quran-reels-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add history.json
+            git commit -m "history: reel ${{ github.run_number }}"
+            git push
+          fi
