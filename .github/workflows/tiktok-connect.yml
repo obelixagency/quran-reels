@@ -1,0 +1,39 @@
+name: Connect TikTok (one time)
+
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: "الكود من صفحة callback"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exchange code for refresh token
+        env:
+          KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          CODE: ${{ inputs.code }}
+        run: |
+          RES=$(curl -s -X POST https://open.tiktokapis.com/v2/oauth/token/ \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            --data-urlencode "client_key=$KEY" --data-urlencode "client_secret=$SECRET" \
+            --data-urlencode "code=$CODE" --data-urlencode "grant_type=authorization_code" \
+            --data-urlencode "redirect_uri=https://obelixagency.github.io/daily-sakina/callback.html")
+          RT=$(echo "$RES" | jq -r '.refresh_token // empty')
+          if [ -z "$RT" ]; then
+            echo "❌ فشل:"; echo "$RES" | jq 'del(.access_token)'; exit 1
+          fi
+          {
+            echo "## ✅ تم ربط تيك توك"
+            echo "انسخ السطر ده وحطه في GitHub Secret باسم **TIKTOK_REFRESH_TOKEN** — وبعدها امسح الـ run ده."
+            echo '```'
+            echo "$RT"
+            echo '```'
+            echo "scopes: $(echo "$RES" | jq -r .scope)"
+          } >> "$GITHUB_STEP_SUMMARY"
