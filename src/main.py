@@ -38,9 +38,16 @@ def pick_reciter(reciters, history, forced=None):
     return enabled[0]
 
 
-def candidate_passages(cfg, passages, surahs, history, forced=None):
+def candidate_passages(cfg, passages, surahs, history, forced=None, occ=None):
     if forced:
         return [next(p for p in passages if p["id"] == forced)]
+    recent_occ = {p["passage_id"] for p in history["posts"][-10:]}
+    special = []
+    if occ and occ.get("reels"):  # مناسبة / جمعة: آيات المناسبة الأول (لو ما اتكررتش في آخر ١٠ ريلز)
+        by_id = {p["id"]: p for p in passages}
+        special = [by_id[i] for i in occ["reels"] if i in by_id and i not in recent_occ]
+        random.shuffle(special)
+    passages = [p for p in passages if not p.get("occasion_only")]
     if cfg.get("selection_mode") == "random":
         out = []
         weights = [s["ayahs"] for s in surahs]
@@ -53,7 +60,7 @@ def candidate_passages(cfg, passages, surahs, history, forced=None):
     recent = {p["passage_id"] for p in history["posts"][-cfg.get("avoid_repeat_last", 40):]}
     fresh = [p for p in passages if p["id"] not in recent] or passages
     random.shuffle(fresh)
-    return fresh
+    return special + [p for p in fresh if p not in special]
 
 
 def build_plan(cfg, passage, reciter, surahs):
@@ -91,8 +98,17 @@ def generate(cfg, args, history):
     reciter = pick_reciter(reciters, history, args.reciter)
     print(f"🎙️  Reciter: {reciter['name']}")
 
+    occ = None
+    try:
+        from . import occasions
+        ctx = occasions.today(cfg)
+        occ = ctx["occasion"] if ctx["occasion"] and ctx["occasion"].get("reels") else None
+        print(f"📅 {ctx['hijri_text']} | occasion: {occ['id'] if occ else '-'}")
+    except Exception as e:  # noqa: BLE001
+        print(f"  occasion check failed: {e}")
+
     plan = None
-    for p in candidate_passages(cfg, passages, surahs, history, args.passage)[:12]:
+    for p in candidate_passages(cfg, passages, surahs, history, args.passage, occ)[:12]:
         print(f"📖 Trying {p['id']} ({p['surah']}:{p['from']}-{p['to']})")
         try:
             plan = build_plan(cfg, p, reciter, surahs)
@@ -100,6 +116,8 @@ def generate(cfg, args, history):
             print(f"   failed: {e}")
             plan = None
         if plan:
+            if occ and p["id"] in occ.get("reels", []):
+                plan["occasion"] = {"id": occ["id"], "opener": occ["opener"], "hashtags": occ.get("hashtags", [])}
             break
         print("   too long for the time limit – next")
     if not plan:

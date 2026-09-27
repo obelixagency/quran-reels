@@ -5,6 +5,7 @@
   FB_PAGE_TOKEN         Page Access Token (مش بينتهي لو اتعمل بالطريقة اللي في tools/setup_meta.py)
   IG_USER_ID            رقم حساب إنستجرام البيزنس المربوط بالصفحة
 """
+import json
 import os
 import time
 from pathlib import Path
@@ -139,6 +140,39 @@ def publish_instagram_image(cfg, image_path, caption, image_url=None):
     pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
                                data={"creation_id": cid, "access_token": token}))
     return {"media_id": pub.get("id")}
+
+
+# ------------------------------------------------------------------ carousel (عدة صور في منشور واحد)
+def publish_facebook_carousel(cfg, image_paths, caption):
+    """فيسبوك: بنرفع الصور غير منشورة وبعدين منشور واحد فيه كلهم (attached_media)."""
+    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    photos = [publish_facebook_photo(cfg, pth, "", published=False) for pth in image_paths]
+    data = {"message": caption, "access_token": token}
+    for i, ph in enumerate(photos):
+        data[f"attached_media[{i}]"] = json.dumps({"media_fbid": ph["photo_id"]})
+    r = _check(requests.post(f"{g}/{page_id}/feed", data=data, timeout=120))
+    return {"post_id": r.get("id"), "image_urls": [ph["image_url"] for ph in photos]}
+
+
+def publish_instagram_carousel(cfg, image_paths, caption, image_urls=None):
+    ig_id, token = os.environ["IG_USER_ID"], os.environ.get("IG_TOKEN") or os.environ["FB_PAGE_TOKEN"]
+    g = _graph(cfg)
+    if not image_urls or not all(image_urls):
+        image_urls = [publish_facebook_photo(cfg, pth, "", published=False)["image_url"] for pth in image_paths]
+    children = []
+    for url in image_urls[:10]:
+        cid = _check(requests.post(f"{g}/{ig_id}/media", timeout=60, data={
+            "image_url": url, "is_carousel_item": "true", "access_token": token}))["id"]
+        _wait_ig(g, cid, token, tries=15)
+        children.append(cid)
+    parent = _check(requests.post(f"{g}/{ig_id}/media", timeout=60, data={
+        "media_type": "CAROUSEL", "children": ",".join(children), "caption": caption,
+        "access_token": token}))["id"]
+    _wait_ig(g, parent, token, tries=20)
+    pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
+                               data={"creation_id": parent, "access_token": token}))
+    return {"media_id": pub.get("id"), "slides": len(children)}
 
 
 # ------------------------------------------------------------------ stories

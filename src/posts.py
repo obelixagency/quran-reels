@@ -24,11 +24,14 @@ HISTORY = ROOT / "posts_history.json"
 W, H = 1080, 1440
 GOLD = (236, 214, 160)
 
-TITLES = {"hadith": "حديث شريف", "dua": "دعاء", "quran_dua": "دعاء من القرآن الكريم"}
+TITLES = {"hadith": "حديث شريف", "dua": "دعاء", "quran_dua": "دعاء من القرآن الكريم", "quran": "من القرآن الكريم",
+          "athar": "من هدي النبي ﷺ"}
 OPENERS = {
     "hadith": ["من هدي النبي ﷺ 🤍", "حديث شريف يستحق التأمل 🤍", "من كنوز السنة النبوية 🤍", "سنّة تحييها اليوم 🤍"],
     "dua": ["ردّد هذا الدعاء 🤲", "دعاء من السنة النبوية 🤲", "من أدعية النبي ﷺ 🤲", "لا تنسَ هذا الدعاء اليوم 🤲"],
     "quran_dua": ["دعاء من القرآن الكريم 🤲", "ادعُ بها من قلبك 🤲", "من أدعية الأنبياء في القرآن 🤲"],
+    "quran": ["آية تستحق التأمل 🤍", "من نور القرآن الكريم 🤍"],
+    "athar": ["من هدي النبي ﷺ 🤍", "سنّة تحييها 🤍"],
 }
 CTAS = ["شاركها… لعلها تكون صدقة جارية لك 🤍", "انشرها فالدال على الخير كفاعله 🤍",
         "لا تمرّ دون أن تصلي على النبي ﷺ"]
@@ -37,7 +40,15 @@ HASHTAGS = {
     "hadith": ["#حديث_شريف", "#السنة_النبوية", "#سكينة_يومية", "#اسلاميات", "#حديث_صحيح"],
     "dua": ["#دعاء", "#أدعية", "#سكينة_يومية", "#أذكار", "#اسلاميات"],
     "quran_dua": ["#دعاء", "#أدعية_من_القرآن", "#سكينة_يومية", "#قرآن_كريم", "#اسلاميات"],
+    "quran": ["#قرآن_كريم", "#تدبر", "#سكينة_يومية", "#اسلاميات", "#آيات"],
+    "athar": ["#السنة_النبوية", "#هدي_النبي", "#سكينة_يومية", "#اسلاميات", "#حديث_صحيح"],
 }
+# كاروسيل الأيام العادية: مجموعة من نفس النوع
+CAROUSEL_SETS = [
+    {"type": "quran_dua", "title": "أدعية من القرآن الكريم", "sub": "ادعُ بها في يومك", "n": 4},
+    {"type": "hadith", "title": "من كنوز السنة النبوية", "sub": "أحاديث صحيحة من البخاري ومسلم", "n": 4},
+    {"type": "dua", "title": "أدعية نبوية", "sub": "من دعاء النبي ﷺ", "n": 4},
+]
 PHOTO_QUERIES = ["waterfall", "misty mountains", "mountain lake", "forest sunlight", "ocean sunset",
                  "calm sea", "green valley", "desert dunes", "flower field", "clouds sky", "autumn forest",
                  "river landscape"]
@@ -51,6 +62,8 @@ def _font(path, size):
 
 # ------------------------------------------------------------------ content
 def source_line(item):
+    if item.get("source"):
+        return item["source"]
     b, m = item.get("bukhari"), item.get("muslim")
     if b and m:
         return f"متفق عليه — البخاري ({ar_num(b)}) ومسلم ({ar_num(m)})"
@@ -127,19 +140,27 @@ def _wrap(text, font, max_w):
     return lines + ([cur] if cur else [])
 
 
-def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية"):
+def _bg(bg_path, w, h, bright=0.62):
     if bg_path:
         bg = Image.open(bg_path).convert("RGB")
-        s = max(W / bg.width, H / bg.height)
+        s = max(w / bg.width, h / bg.height)
         bg = bg.resize((int(bg.width * s) + 1, int(bg.height * s) + 1), Image.LANCZOS)
-        l, t = (bg.width - W) // 2, (bg.height - H) // 2
-        bg = bg.crop((l, t, l + W, t + H))
-        bg = ImageEnhance.Brightness(bg).enhance(0.62)
-    else:
-        bg = Image.new("RGB", (W, H), (22, 60, 50))
-    img = bg.convert("RGBA")
+        l, t = (bg.width - w) // 2, (bg.height - h) // 2
+        return ImageEnhance.Brightness(bg.crop((l, t, l + w, t + h))).enhance(bright)
+    return Image.new("RGB", (w, h), (22, 60, 50))
 
-    is_quran = item["type"] == "quran_dua"
+
+def item_text(item):
+    """(النص، المصدر) لأي عنصر: quran/quran_dua بيتجاب من Quran.com، الباقي من الملف."""
+    if item["type"] in ("quran", "quran_dua"):
+        return quran_text(item)
+    return item["text"], source_line(item)
+
+
+def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية", title=None, page=None):
+    img = _bg(bg_path, W, H).convert("RGBA")
+
+    is_quran = item["type"] in ("quran_dua", "quran")
     body_font_path = QURAN_FONT if is_quran else UI_BOLD
     max_w, max_h = W - 200, 760
     size = 70
@@ -155,7 +176,8 @@ def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية"
     f_pre = _font(UI_FONT, 42)
     f_src = _font(UI_FONT, 38)
     f_handle = _font(UI_BOLD, 36)
-    pre = "قال رسول الله ﷺ:" if item["type"] == "hadith" else ""
+    pre = item.get("pre") or ("قال رسول الله ﷺ:" if item["type"] in ("hadith",) else "")
+    title = title or item.get("title") or TITLES[item["type"]]
 
     block = 96 + (70 if pre else 0) + len(lines) * lh + 40 + 60
     top = (H - block) // 2 - 10
@@ -171,7 +193,7 @@ def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية"
     d = ImageDraw.Draw(img)
 
     y = top
-    d.text((cx, y + 30), TITLES[item["type"]], font=f_title, fill=GOLD + (255,), anchor="mm", direction="rtl")
+    d.text((cx, y + 30), title, font=f_title, fill=GOLD + (255,), anchor="mm", direction="rtl")
     y += 72
     d.line((cx - 120, y, cx + 120, y), fill=GOLD + (160,), width=2)
     y += 24
@@ -193,6 +215,36 @@ def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية"
     d.text((cx + sw / 2, y + 25), src, font=f_src, fill=GOLD + (255,), anchor="rm")
 
     d.text((cx, H - 70), handle, font=f_handle, fill=(255, 255, 255, 170), anchor="mm", direction="rtl")
+    if page:
+        d.text((W - 90, 80), page, font=_font(UI_FONT, 34), fill=(255, 255, 255, 190), anchor="mm")
+    img.convert("RGB").save(dest, "JPEG", quality=92, optimize=True)
+    return dest
+
+
+def render_cover(title, sub, bg_path, dest, badge="", handle="سَكينة يومية", hint="اسحب للمزيد"):
+    """أول سلايد في الكاروسيل / بوست المناسبة: عنوان كبير في النص."""
+    img = _bg(bg_path, W, H, 0.55).convert("RGBA")
+    panel = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(panel).rounded_rectangle((80, H // 2 - 300, W - 80, H // 2 + 300), radius=48, fill=(0, 0, 0, 140))
+    img = Image.alpha_composite(img, panel.filter(ImageFilter.GaussianBlur(18)))
+    d = ImageDraw.Draw(img)
+    cx = W // 2
+    size = 110
+    while _font(UI_BOLD, size).getlength(title, direction="rtl") > W - 240 and size > 60:
+        size -= 4
+    if badge:
+        d.text((cx, H // 2 - 210), badge, font=_font(UI_FONT, 40), fill=GOLD + (255,), anchor="mm", direction="rtl")
+    d.text((cx, H // 2 - 50), title, font=_font(UI_BOLD, size), fill=(255, 255, 255, 255), anchor="mm",
+           direction="rtl")
+    d.line((cx - 150, H // 2 + 50, cx + 150, H // 2 + 50), fill=GOLD + (200,), width=3)
+    if sub:
+        f_sub = _font(UI_FONT, 46)
+        for i, ln in enumerate(_wrap(sub, f_sub, W - 280)[:2]):
+            d.text((cx, H // 2 + 125 + i * 70), ln, font=f_sub, fill=(255, 255, 255, 230), anchor="mm",
+                   direction="rtl")
+    if hint:
+        d.text((cx, H - 150), hint, font=_font(UI_FONT, 36), fill=(255, 255, 255, 170), anchor="mm", direction="rtl")
+    d.text((cx, H - 70), handle, font=_font(UI_BOLD, 36), fill=(255, 255, 255, 170), anchor="mm", direction="rtl")
     img.convert("RGB").save(dest, "JPEG", quality=92, optimize=True)
     return dest
 
@@ -226,38 +278,110 @@ def render_story(post_path, bg_path, dest, label="منشور جديد على ا�
     return dest
 
 
-def build_caption(item, text, src, n_tags=5):
-    opener = random.choice(OPENERS[item["type"]])
+def _body(item, text, src):
     if item["type"] == "hadith":
-        body = f"قال رسول الله ﷺ:\n«{text}»\n\n📚 {src}"
-    elif item["type"] == "dua":
-        body = f"«{text}»\n\n📚 {src}"
-    else:
-        body = f"﴿ {text} ﴾\n\n📖 {src}"
-    tags = HASHTAGS[item["type"]][:]
-    if item.get("bukhari"):
-        tags.insert(2, "#صحيح_البخاري")
-    elif item.get("muslim"):
-        tags.insert(2, "#صحيح_مسلم")
-    cta = random.choice(DUA_CTAS if item["type"] != "hadith" else CTAS)
-    return "\n\n".join([opener, body, cta, " ".join(tags[:n_tags])])
+        return f"{item.get('pre') or 'قال رسول الله ﷺ:'}\n«{text}»\n\n📚 {src}"
+    if item["type"] == "athar":
+        return f"{item['pre']}\n«{text}»\n\n📚 {src}"
+    if item["type"] == "dua":
+        return f"«{text}»\n\n📚 {src}"
+    return f"﴿ {text} ﴾\n\n📖 {src}"
+
+
+def _tags(types, items, extra, n):
+    tags = list(extra or [])
+    for t in types:
+        tags += HASHTAGS[t]
+    if any(i.get("bukhari") for i in items):
+        tags.insert(min(2, len(tags)), "#صحيح_البخاري")
+    elif any(i.get("muslim") for i in items):
+        tags.insert(min(2, len(tags)), "#صحيح_مسلم")
+    if "#سكينة_يومية" not in tags[:n]:
+        tags.insert(n - 1, "#سكينة_يومية")
+    return " ".join(list(dict.fromkeys(tags))[:n])
+
+
+def build_caption(item, text, src, n_tags=5, occ=None):
+    opener = occ["opener"] if occ else random.choice(OPENERS[item["type"]])
+    cta = random.choice(CTAS if item["type"] in ("hadith", "athar") else DUA_CTAS)
+    tags = _tags([item["type"]], [item], occ.get("hashtags") if occ else None, n_tags)
+    return "\n\n".join([opener, _body(item, text, src), cta, tags])
+
+
+def build_carousel_caption(slides, n_tags=5, occ=None, title=""):
+    opener = occ["opener"] if occ else f"{title} 🤍 اسحب للنهاية"
+    parts = [opener]
+    for it, text, src in slides:
+        parts.append(_body(it, text, src))
+    parts.append(random.choice(["احفظها وشاركها… لعلها تكون صدقة جارية لك 🤍", "شاركها مع من تحب 🤍",
+                                "اكتب «آمين» وشاركها 🤲"]))
+    parts.append(_tags(list(dict.fromkeys(i["type"] for i, _, _ in slides)), [i for i, _, _ in slides],
+                       occ.get("hashtags") if occ else None, n_tags))
+    cap = "\n\n".join(parts)
+    while len(cap) > 2150 and len(parts) > 4:  # حد إنستجرام ٢٢٠٠ حرف
+        parts.pop(-3)
+        cap = "\n\n".join(parts)
+    return cap
+
+
+# ------------------------------------------------------------------ what to publish today
+def recent_ids(history, n=40):
+    out = set()
+    for p in history["posts"][-n:]:
+        out.update(p.get("ids") or [p.get("id")])
+    return out
+
+
+def plan_today(cfg, history, force_kind=None, date=None):
+    """يقرر منشور الصبح: مناسبة/جمعة، وإلا بالتناوب صورة ↔ كاروسيل."""
+    from . import occasions
+    ctx = occasions.today(cfg, date)
+    occ = ctx["occasion"]
+    items = load_json(DATA / "posts.json")["items"]
+    recent = recent_ids(history)
+    print(f"📅 {ctx['date']} | {ctx['hijri_text']} | occasion: {occ['id'] if occ else '-'}")
+
+    if occ and not force_kind:
+        lib = [occasions.item(k) for k in occ["items"]]
+        if occ["morning"] == "carousel":
+            return {"kind": "carousel", "occ": occ, "items": lib, "title": occ.get("cover", occ["name"]),
+                    "sub": occ.get("cover_sub", ""), "ctx": ctx}
+        fresh = [i for i in lib if i["id"] not in recent] or lib
+        # نلف على القائمة بالترتيب عشان كل يوم في رمضان مثلًا يطلع حديث مختلف
+        return {"kind": "post", "occ": occ, "items": [fresh[0]], "title": occ["name"], "ctx": ctx}
+
+    normal = [p for p in history["posts"] if not p.get("occasion")]
+    last_kind = normal[-1].get("kind", "post") if normal else "carousel"
+    kind = force_kind or ("carousel" if last_kind == "post" else "post")
+    if kind == "carousel":
+        last_sets = [p.get("set") for p in history["posts"] if p.get("kind") == "carousel"]
+        sets = sorted(CAROUSEL_SETS, key=lambda cs: (cs["type"] in last_sets[-2:], random.random()))
+        cs = sets[0]
+        pool = [i for i in items if i["type"] == cs["type"] and i["id"] not in recent] or \
+               [i for i in items if i["type"] == cs["type"]]
+        chosen = random.sample(pool, min(cs["n"], len(pool)))
+        return {"kind": "carousel", "occ": None, "items": chosen, "title": cs["title"], "sub": cs["sub"],
+                "set": cs["type"], "ctx": ctx}
+    return {"kind": "post", "occ": None, "items": [pick_item(history)], "title": None, "ctx": ctx}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--publish", action="store_true")
     ap.add_argument("--id")
+    ap.add_argument("--kind", choices=["post", "carousel"])
+    ap.add_argument("--date", help="YYYY-MM-DD لتجربة مناسبة معينة")
     args = ap.parse_args()
     cfg = load_json(ROOT / "config.json")
     history = load_json(HISTORY) if HISTORY.exists() else {"posts": []}
+    date = dt.date.fromisoformat(args.date) if args.date else None
 
-    items = load_json(DATA / "posts.json")["items"]
-    item = next(i for i in items if i["id"] == args.id) if args.id else pick_item(history)
-    if item["type"] == "quran_dua":
-        text, src = quran_text(item)
+    if args.id:
+        items = load_json(DATA / "posts.json")["items"]
+        plan = {"kind": "post", "occ": None, "items": [next(i for i in items if i["id"] == args.id)], "title": None}
     else:
-        text, src = item["text"], source_line(item)
-    print(f"📝 {item['id']} ({item['type']}): {src}")
+        plan = plan_today(cfg, history, args.kind, date)
+    occ = plan["occ"]
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -265,37 +389,64 @@ def main():
     used = {p.get("background") for p in history["posts"][-60:]}
     bg, bg_id = background_photo(used)
     print(f"🌄 Background: {bg_id}")
-    image = render_post(item, text, src, bg, OUT / "post.jpg")
-    story_img = render_story(image, bg, OUT / "story.jpg")
-    caps = {p: build_caption(item, text, src, cfg["posts"]["platforms"][p]["hashtags"])
-            for p in cfg["posts"]["platforms"]}
+
+    slides = []
+    for it in plan["items"]:
+        text, src = item_text(it)
+        slides.append((it, text, src))
+        print(f"📝 {it['id']} ({it['type']}): {src}")
+    pc = cfg["posts"]["platforms"]
+
+    if plan["kind"] == "carousel":
+        n = len(slides) + 1
+        images = [render_cover(plan["title"], plan.get("sub", ""), bg, OUT / "slide_00.jpg",
+                               badge=(plan["ctx"]["hijri_text"] if occ else ""), hint="اسحب للمزيد")]
+        for k, (it, text, src) in enumerate(slides, 1):
+            images.append(render_post(it, text, src, bg, OUT / f"slide_{k:02d}.jpg", page=f"{k + 1}/{n}"))
+        image = images[0]
+        caps = {p: build_carousel_caption(slides, pc[p]["hashtags"], occ, plan["title"]) for p in pc}
+    else:
+        it, text, src = slides[0]
+        image = render_post(it, text, src, bg, OUT / "post.jpg", title=plan.get("title"))
+        images = [image]
+        caps = {p: build_caption(it, text, src, pc[p]["hashtags"], occ) for p in pc}
+    if images[0] != OUT / "post.jpg":
+        shutil.copy(images[0], OUT / "post.jpg")
+    story_img = render_story(images[0], bg, OUT / "story.jpg")
     for p, c in caps.items():
         (OUT / f"caption_{p}.txt").write_text(c, encoding="utf-8")
-    print("🖼️  Post ready:", image)
+    print(f"🖼️  {plan['kind']} ready: {len(images)} image(s)")
 
     if not args.publish:
         print("\n--- caption ---\n" + caps["instagram"])
         return
 
-    from .publish_meta import publish_facebook_photo, publish_instagram_image
-    results, fb_url = {}, None
-    pc = cfg["posts"]["platforms"]
+    from .publish_meta import (publish_facebook_carousel, publish_facebook_photo, publish_instagram_carousel,
+                               publish_instagram_image, story_facebook_photo, story_instagram_photo)
+    results, fb_urls = {}, None
     if pc.get("facebook", {}).get("enabled"):
         try:
-            r = publish_facebook_photo(cfg, image, caps["facebook"])
-            fb_url = r.pop("image_url", None)
+            if plan["kind"] == "carousel":
+                r = publish_facebook_carousel(cfg, images, caps["facebook"])
+                fb_urls = r.pop("image_urls", None)
+            else:
+                r = publish_facebook_photo(cfg, image, caps["facebook"])
+                fb_urls = [r.pop("image_url", None)]
             results["facebook"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
             results["facebook"] = {"ok": False, "error": str(e)[:400]}
     if pc.get("instagram", {}).get("enabled"):
         try:
-            results["instagram"] = {"ok": True, **publish_instagram_image(cfg, image, caps["instagram"], fb_url)}
+            if plan["kind"] == "carousel":
+                results["instagram"] = {"ok": True, **publish_instagram_carousel(cfg, images, caps["instagram"], fb_urls)}
+            else:
+                results["instagram"] = {"ok": True, **publish_instagram_image(cfg, image, caps["instagram"],
+                                                                             (fb_urls or [None])[0])}
         except Exception as e:  # noqa: BLE001
             results["instagram"] = {"ok": False, "error": str(e)[:400]}
-    # ستوري للبوست على فيسبوك وإنستجرام
+    # ستوري للمنشور على فيسبوك وإنستجرام (١٠٨٠×١٩٢٠)
     st = cfg.get("stories", {})
-    from .publish_meta import story_facebook_photo, story_instagram_photo
-    story_url = None  # رابط صورة الستوري (1080×1920) – بيطلع من رفعها على فيسبوك
+    story_url = None
     if st.get("facebook") and pc.get("facebook", {}).get("enabled"):
         try:
             r = story_facebook_photo(cfg, story_img)
@@ -306,14 +457,16 @@ def main():
     if st.get("instagram") and pc.get("instagram", {}).get("enabled"):
         try:
             if not story_url:
-                from .publish_meta import publish_facebook_photo
                 story_url = publish_facebook_photo(cfg, story_img, "", published=False)["image_url"]
             results["instagram_story"] = {"ok": True, **story_instagram_photo(cfg, story_url)}
         except Exception as e:  # noqa: BLE001
             results["instagram_story"] = {"ok": False, "error": str(e)[:300]}
     print(results)
+    ids = [it["id"] for it, _, _ in slides]
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-                             "id": item["id"], "type": item["type"], "background": bg_id, "results": results})
+                             "kind": plan["kind"], "id": ids[0], "ids": ids, "type": slides[0][0]["type"],
+                             "set": plan.get("set"), "occasion": occ["id"] if occ else None,
+                             "background": bg_id, "results": results})
     save_json(HISTORY, history)
     main_ok = [r["ok"] for k, r in results.items() if not k.endswith("_story")]
     if main_ok and not any(main_ok):

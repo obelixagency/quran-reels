@@ -40,11 +40,12 @@ def hashtags(plan, count):
     ordered.append(plan["reciter"]["hashtag"])
     ordered += THEMES["general_hashtags"]
 
+    occ_tags = (plan.get("occasion") or {}).get("hashtags", [])[:2]
     out = []
     # always keep: surah, main theme, reciter, general #قرآن_كريم
     must = [ordered[0], THEMES["themes"][themes[0]]["hashtags"][0] if themes else None,
             plan["reciter"]["hashtag"], THEMES["general_hashtags"][0]]
-    for tag in [m for m in must if m] + ordered:
+    for tag in [must[0]] + occ_tags + [m for m in must[1:] if m] + ordered:
         if tag not in out:
             out.append(tag)
     return out[:count]
@@ -68,6 +69,9 @@ def build_caption(plan, platform, n_hashtags, rng=random):
     themes = detect_themes(plan)
     t0 = THEMES["themes"].get(themes[0]) if themes else None
     opener = rng.choice(t0["openers"]) if t0 else "تلاوة تريح القلب 🤍"
+    occ = plan.get("occasion")
+    if occ:
+        opener = occ["opener"]
 
     basmala = next((a["text"] for a in plan["ayahs"] if not a["number"]), "")
     ayat = " ".join(f"{a['text']} ({ar_num(a['number'])})" for a in plan["ayahs"] if a["number"])
