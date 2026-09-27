@@ -197,6 +197,35 @@ def render_post(item, text, src, bg_path, dest, handle="سَكينة يومية"
     return dest
 
 
+def render_story(post_path, bg_path, dest, label="منشور جديد على الصفحة"):
+    """ستوري 1080×1920: نفس البوست في النص فوق نسخة مغبّشة من نفس الخلفية."""
+    SW, SH = 1080, 1920
+    post = Image.open(post_path).convert("RGB")
+    base = Image.open(bg_path).convert("RGB") if bg_path else post.copy()
+    s = max(SW / base.width, SH / base.height)
+    base = base.resize((int(base.width * s) + 1, int(base.height * s) + 1), Image.LANCZOS)
+    l, t = (base.width - SW) // 2, (base.height - SH) // 2
+    base = base.crop((l, t, l + SW, t + SH)).filter(ImageFilter.GaussianBlur(28))
+    base = ImageEnhance.Brightness(base).enhance(0.55).convert("RGBA")
+
+    pw = 960
+    ph = int(post.height * pw / post.width)
+    card = post.resize((pw, ph), Image.LANCZOS)
+    mask = Image.new("L", (pw, ph), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, pw, ph), radius=36, fill=255)
+    x, y = (SW - pw) // 2, (SH - ph) // 2 + 20
+    shadow = Image.new("RGBA", (SW, SH), (0, 0, 0, 0))
+    ImageDraw.Draw(shadow).rounded_rectangle((x + 6, y + 14, x + pw + 6, y + ph + 14), radius=36,
+                                             fill=(0, 0, 0, 150))
+    base = Image.alpha_composite(base, shadow.filter(ImageFilter.GaussianBlur(18)))
+    base.paste(card, (x, y), mask)
+    d = ImageDraw.Draw(base)
+    d.text((SW // 2, y - 70), label, font=_font(UI_BOLD, 46), fill=(255, 255, 255, 235), anchor="mm",
+           direction="rtl")
+    base.convert("RGB").save(dest, "JPEG", quality=92, optimize=True)
+    return dest
+
+
 def build_caption(item, text, src, n_tags=5):
     opener = random.choice(OPENERS[item["type"]])
     if item["type"] == "hadith":
@@ -237,6 +266,7 @@ def main():
     bg, bg_id = background_photo(used)
     print(f"🌄 Background: {bg_id}")
     image = render_post(item, text, src, bg, OUT / "post.jpg")
+    story_img = render_story(image, bg, OUT / "story.jpg")
     caps = {p: build_caption(item, text, src, cfg["posts"]["platforms"][p]["hashtags"])
             for p in cfg["posts"]["platforms"]}
     for p, c in caps.items():
@@ -265,16 +295,19 @@ def main():
     # ستوري للبوست على فيسبوك وإنستجرام
     st = cfg.get("stories", {})
     from .publish_meta import story_facebook_photo, story_instagram_photo
-    story_url = fb_url
+    story_url = None  # رابط صورة الستوري (1080×1920) – بيطلع من رفعها على فيسبوك
     if st.get("facebook") and pc.get("facebook", {}).get("enabled"):
         try:
-            r = story_facebook_photo(cfg, image)
-            story_url = story_url or r.pop("image_url", None)
+            r = story_facebook_photo(cfg, story_img)
+            story_url = r.pop("image_url", None)
             results["facebook_story"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
             results["facebook_story"] = {"ok": False, "error": str(e)[:300]}
-    if st.get("instagram") and pc.get("instagram", {}).get("enabled") and story_url:
+    if st.get("instagram") and pc.get("instagram", {}).get("enabled"):
         try:
+            if not story_url:
+                from .publish_meta import publish_facebook_photo
+                story_url = publish_facebook_photo(cfg, story_img, "", published=False)["image_url"]
             results["instagram_story"] = {"ok": True, **story_instagram_photo(cfg, story_url)}
         except Exception as e:  # noqa: BLE001
             results["instagram_story"] = {"ok": False, "error": str(e)[:300]}
