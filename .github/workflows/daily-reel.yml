@@ -7,8 +7,10 @@ on:
     - cron: "47 15 * * *"   # ~18:47–19:15 Cairo (دقيقة غير رند عشان GitHub ميتأخرش)
     - cron: "17 16 * * *"   # backup
     - cron: "47 16 * * *"   # backup
-    # لو عايز ريل تاني في اليوم فعّل السطر ده (9 صباحًا القاهرة صيفي):
-    # - cron: "0 6 * * *"
+    # ريل تلاوة تاني لتيك توك ويوتيوب بس ≈ 11:17 مساءً بتوقيت القاهرة (صيفي)
+    - cron: "17 20 * * *"
+    - cron: "47 20 * * *"   # backup
+    - cron: "17 21 * * *"   # backup
   workflow_dispatch:
     inputs:
       publish:
@@ -99,7 +101,11 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.publish }}" != "true" ]; then
             python -m src.main $X
           else
-            python -m src.main --publish --platforms "${{ inputs.platforms }}" $X
+            P="${{ inputs.platforms }}"
+            H=$((10#$(date -u +%H)))
+            # الميعاد التاني بالليل: تيك توك ويوتيوب بس (فيسبوك وإنستجرام عندهم ريل واحد في اليوم)
+            if [ "${{ github.event_name }}" = "schedule" ] && [ $H -ge 20 ]; then P="tiktok,youtube"; fi
+            python -m src.main --publish --platforms "$P" $X
           fi
 
       - name: Save reel & captions (downloadable from the run page)
