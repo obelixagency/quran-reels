@@ -19,6 +19,24 @@
           "media_id": "18566225797074697"
         }
       }
+    },
+    {
+      "date": "2026-09-28T03:49:54+00:00",
+      "id": "d12",
+      "kind": "dua",
+      "hook": "Say this today",
+      "cta": "Follow for a daily reminder 🌙",
+      "background": "pexels:13516810",
+      "results": {
+        "youtube": {
+          "ok": true,
+          "cover": "skipped (403): {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"The authenticated user doesn't have permissions to upload and set custom video thumbnails.\",\n    \"erro",
+          "video_id": "vTXizt-sFpQ",
+          "url": "https://youtube.com/shorts/vTXizt-sFpQ",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        }
+      }
     }
   ]
 }
