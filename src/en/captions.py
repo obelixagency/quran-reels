@@ -29,8 +29,13 @@ CREDIT = {"quran": "Translation: Marmaduke Pickthall (public domain)",
           "hadith": "Translation: Daily Serenity", "dua": "Translation: Daily Serenity"}
 
 
+def _base(kind):
+    return "quran" if kind == "recited" else kind
+
+
 def pick_hook_cta(kind, history, rng=random):
     """No hook twice in a row; no hook+CTA combination repeated within 7 days."""
+    kind = _base(kind)
     now = dt.datetime.now(dt.timezone.utc)
     recent = [h for h in history if h.get("hook")]
     last_hook = recent[-1]["hook"] if recent else None
@@ -43,6 +48,7 @@ def pick_hook_cta(kind, history, rng=random):
 
 
 def body(kind, v):
+    kind = _base(kind)
     if kind == "quran":
         return (f"\"{v['verse_text']}\"\n\n📖 Quran {v['surah_number']}:{v['ayah_ref']} | "
                 f"Surah {v['surah_name']} ({v['surah_meaning']})")
@@ -55,9 +61,13 @@ def body(kind, v):
 
 
 def build(kind, v, hook, cta):
+    recited = kind == "recited"
+    kind = _base(kind)
     b = body(kind, v)
     tags = HASHTAGS[kind]
-    credit = CREDIT[kind]
+    if recited:
+        tags = tags[:1] + ["#QuranRecitation"] + tags[1:]
+    credit = v.get("credit") or CREDIT[kind]
     if kind == "quran":
         yt_title = f"{hook} | Quran {v['surah_number']}:{v['ayah_ref']} #shorts"
     elif kind == "hadith":
@@ -71,5 +81,7 @@ def build(kind, v, hook, cta):
     meta = f"{hook} 🤍\n\n{b}\n\n{cta}\n\n{credit}\n\n{' '.join(tags)}"
     tiktok = f"{hook} 🌿 {b} {cta}\n{' '.join(tags[:4] + ['#fyp'])}"
     yt_tags = [t.format(surah_name=v.get("surah_name", ""), collection=v.get("collection", "")) for t in YT_TAGS[kind]]
+    if recited:
+        yt_tags.insert(1, "Quran Recitation")
     return {"facebook": meta, "instagram": meta, "tiktok": tiktok[:2200], "youtube": yt_desc,
             "_yt_title": yt_title, "_yt_tags": yt_tags}

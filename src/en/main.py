@@ -15,7 +15,7 @@ import sys
 import traceback
 
 from ..backgrounds import get_background
-from ..common import DATA, ROOT, load_json, media_duration, save_json
+from ..common import DATA, ROOT, load_json, media_duration, run, save_json
 from . import captions, librivox, video
 
 EN = DATA / "en"
@@ -28,10 +28,16 @@ def load_history():
     return load_json(HISTORY) if HISTORY.exists() else {"posts": []}
 
 
-def _recent_ids(history, days=90):
+def _recent_ids(history, days=90, kinds=None):
     now = dt.datetime.now(dt.timezone.utc)
     return {p["id"] for p in history["posts"]
-            if now - dt.datetime.fromisoformat(p["date"]) < dt.timedelta(days=days)}
+            if now - dt.datetime.fromisoformat(p["date"]) < dt.timedelta(days=days)
+            and (kinds is None or p.get("kind") in kinds)}
+
+
+def quran_recent(history, kind):
+    """A passage never repeats in the same format within 90 days, nor in the other format within 14 days."""
+    return _recent_ids(history, 90, {kind}) | _recent_ids(history, 14, {"quran", "recited"})
 
 
 def _used_backgrounds(history):
@@ -48,7 +54,7 @@ def quran_item(history, force=None):
     passages = load_json(EN / "passages.json")["items"]
     verses = load_json(EN / "pickthall.json")["verses"]
     chapters = load_json(EN / "chapters.json")
-    recent = _recent_ids(history)
+    recent = quran_recent(history, "quran")
     pool = [p for p in passages if p["id"] == force] if force else [p for p in passages if p["id"] not in recent]
     random.shuffle(pool)
     for p in pool:
@@ -92,6 +98,15 @@ def make_quran(cfg, history, force=None):
                      credit="Translation: Marmaduke Pickthall · Recitation: LibriVox (public domain)",
                      times=times, duration=total)
     return p["id"], "quran", v, tl, audio, total
+
+
+# ------------------------------------------------------------------ Quran, Arabic recitation
+def make_recited(cfg, history, force=None, reciter=None):
+    from . import recited
+    OUT.mkdir(exist_ok=True)
+    item_id, v, tl, audio, total, rkey = recited.make(cfg, history, quran_recent(history, "recited"),
+                                                      force, reciter, OUT)
+    return item_id, "recited", v, tl, audio, total, rkey
 
 
 # ------------------------------------------------------------------ hadith / dua
@@ -162,10 +177,11 @@ def publish(cfg_en, reel, caps, cover, platforms):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--kind", choices=["quran", "sunnah", "hadith", "dua"], default="quran")
+    ap.add_argument("--kind", choices=["quran", "recited", "sunnah", "hadith", "dua"], default="quran")
     ap.add_argument("--publish", action="store_true")
     ap.add_argument("--platforms", default="")
     ap.add_argument("--id")
+    ap.add_argument("--reciter")
     args = ap.parse_args()
 
     cfg = load_json(ROOT / "config.json")
@@ -175,14 +191,22 @@ def main():
     history = load_history()
 
     kind = args.kind if args.kind != "sunnah" else sunnah_kind(history)
-    if kind == "quran":
+    reciter = None
+    if kind == "recited":
+        item_id, kind, v, tl, audio, total, reciter = make_recited(cfg_en, history, args.id, args.reciter)
+    elif kind == "quran":
         item_id, kind, v, tl, audio, total = make_quran(cfg_en, history, args.id)
     else:
         item_id, kind, v, tl, audio, total = make_sunnah(cfg_en, history, kind, args.id)
 
     bg_path, bg_id, credit = get_background(cfg_en, total, _used_backgrounds(history))
     reel = video.render(background=bg_path, timeline=tl, audio=audio, total=total, dest=OUT / "reel.mp4", cfg=cfg_en)
-    cov = video.cover(bg_path, tl, OUT / "cover.jpg")
+    if hasattr(tl, "still"):
+        cov = video.cover(bg_path, tl, OUT / "cover.jpg")
+    else:  # Arabic-recitation reel: a frame near the end, when the last ayah is fully written
+        cov = OUT / "cover.jpg"
+        run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{max(0.5, total - 1.5):.2f}", "-i", str(reel),
+             "-frames:v", "1", "-q:v", "2", str(cov)])
     hook, cta = captions.pick_hook_cta(kind, history["posts"])
     caps = captions.build(kind, v, hook, cta)
     for k, c in caps.items():
@@ -198,7 +222,7 @@ def main():
     cover = {"path": str(cov), "ms": int(max(1.0, total - 1.5) * 1000)}
     results = publish(cfg_en, reel, caps, cover, platforms) if platforms else {}
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-                             "id": item_id, "kind": kind, "hook": hook, "cta": cta, "background": bg_id,
+                             "id": item_id, "kind": kind, "hook": hook, "cta": cta, "background": bg_id, "reciter": reciter,
                              "results": results})
     save_json(HISTORY, history)
     print(json.dumps(results, ensure_ascii=False, indent=2))
