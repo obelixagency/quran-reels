@@ -150,6 +150,50 @@
           "mode": "draft"
         }
       }
+    },
+    {
+      "date": "2026-09-28T17:32:56+00:00",
+      "passage_id": "q48-4",
+      "surah": 48,
+      "ayahs": [
+        4
+      ],
+      "reciter": "minshawi",
+      "background": "pexels:38157590",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1909026793838714",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18635457181007624"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7690639861363017746",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "ATrrBtQI9SE",
+          "url": "https://youtube.com/shorts/ATrrBtQI9SE",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "962967713522880"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17957165316014098"
+        }
+      }
     }
   ]
 }
