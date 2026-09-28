@@ -1,0 +1,75 @@
+{
+ "_note": "Morning/evening adhkar for Daily Serenity stories – Sahih al-Bukhari / Sahih Muslim only, plus Ayat al-Kursi (Pickthall).",
+ "items": [
+  {
+   "id": "ayat-al-kursi",
+   "session": "both",
+   "kind": "quran",
+   "title": "Ayat al-Kursi",
+   "count": "Once",
+   "source": "Quran 2:255",
+   "credit": "Translation: Marmaduke Pickthall",
+   "en": "Allah! There is no deity save Him, the Alive, the Eternal. Neither slumber nor sleep overtaketh Him. Unto Him belongeth whatsoever is in the heavens and whatsoever is in the earth. Who is he that intercedeth with Him save by His leave? He knoweth that which is in front of them and that which is behind them, while they encompass nothing of His knowledge save what He will. His throne includeth the heavens and the earth, and He is never weary of preserving them. He is the Sublime, the Tremendous."
+  },
+  {
+   "id": "sayyid-al-istighfar",
+   "session": "both",
+   "kind": "dhikr",
+   "title": "Sayyid al-Istighfar",
+   "count": "Once",
+   "source": "Sahih al-Bukhari 6306",
+   "credit": "Translation: Daily Serenity",
+   "en": "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant, and I hold to Your covenant and promise as much as I can. I seek refuge in You from the evil of what I have done. I acknowledge Your favour upon me and I acknowledge my sin, so forgive me, for none forgives sins except You."
+  },
+  {
+   "id": "morning-2723",
+   "session": "morning",
+   "kind": "dhikr",
+   "title": "Morning remembrance",
+   "count": "Once",
+   "source": "Sahih Muslim 2723",
+   "credit": "Translation: Daily Serenity",
+   "en": "We have entered the morning and the whole kingdom belongs to Allah. Praise is for Allah. None has the right to be worshipped but Allah alone, without partner; His is the dominion and His is the praise, and He is able to do all things. My Lord, I ask You for the good of this day and the good of what follows it, and I seek refuge in You from the evil of this day and the evil of what follows it. My Lord, I seek refuge in You from laziness and the misery of old age. My Lord, I seek refuge in You from punishment in the Fire and punishment in the grave."
+  },
+  {
+   "id": "evening-2723",
+   "session": "evening",
+   "kind": "dhikr",
+   "title": "Evening remembrance",
+   "count": "Once",
+   "source": "Sahih Muslim 2723",
+   "credit": "Translation: Daily Serenity",
+   "en": "We have entered the evening and the whole kingdom belongs to Allah. Praise is for Allah. None has the right to be worshipped but Allah alone, without partner; His is the dominion and His is the praise, and He is able to do all things. My Lord, I ask You for the good of this night and the good of what follows it, and I seek refuge in You from the evil of this night and the evil of what follows it. My Lord, I seek refuge in You from laziness and the misery of old age. My Lord, I seek refuge in You from punishment in the Fire and punishment in the grave."
+  },
+  {
+   "id": "subhanallah-100",
+   "session": "both",
+   "kind": "dhikr",
+   "title": "Glorification",
+   "count": "100 times",
+   "source": "Sahih Muslim 2692",
+   "credit": "Translation: Daily Serenity",
+   "en": "Glory be to Allah and praise be to Him."
+  },
+  {
+   "id": "tahlil-100",
+   "session": "morning",
+   "kind": "dhikr",
+   "title": "Tahlil",
+   "count": "100 times a day",
+   "source": "Sahih al-Bukhari 6403 & Sahih Muslim 2691",
+   "credit": "Translation: Daily Serenity",
+   "en": "None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He is able to do all things."
+  },
+  {
+   "id": "evening-2709",
+   "session": "evening",
+   "kind": "dhikr",
+   "title": "Evening remembrance",
+   "count": "",
+   "source": "Sahih Muslim 2709",
+   "credit": "Translation: Daily Serenity",
+   "en": "I seek refuge in the perfect words of Allah from the evil of what He has created."
+  }
+ ]
+}

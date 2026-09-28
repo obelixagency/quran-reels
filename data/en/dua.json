@@ -1,48 +1,323 @@
-{"_note": "Daily Serenity – prophetic dua pool. Sahih al-Bukhari / Sahih Muslim only; numbers verified automatically against the Arabic text. English: our own translation (Translation: Daily Serenity).",
-"items": [
-{"id":"d1","collection":"Sahih al-Bukhari","number":2893,"occasion":"when worried or overwhelmed","en":"O Allah, I seek refuge in You from worry and grief, from helplessness and laziness, from miserliness and cowardice, from the burden of debt and from being overpowered by others."},
-{"id":"d2","collection":"Sahih Muslim","number":2688,"occasion":"","en":"O Allah, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire."},
-{"id":"d3","collection":"Sahih Muslim","number":2655,"occasion":"","en":"O Allah, Turner of hearts, turn our hearts toward obeying You."},
-{"id":"d4","collection":"Sahih Muslim","number":2721,"occasion":"","en":"O Allah, I ask You for guidance, piety, chastity, and self-sufficiency."},
-{"id":"d5","collection":"Sahih Muslim","number":2720,"occasion":"","en":"O Allah, set right for me my religion, which is the safeguard of my affairs; set right for me my worldly life, in which is my livelihood; and set right for me my Hereafter, to which is my return."},
-{"id":"d6","collection":"Sahih al-Bukhari","number":6326,"occasion":"in prayer","en":"O Allah, I have wronged myself greatly, and no one forgives sins except You. So forgive me with forgiveness from You, and have mercy on me. Indeed, You are the Most Forgiving, the Most Merciful."},
-{"id":"d7","collection":"Sahih al-Bukhari","number":6306,"occasion":"for seeking forgiveness, morning and evening","en":"O Allah, You are my Lord; there is no god but You. You created me and I am Your servant, and I hold to Your covenant and promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your blessings upon me, and I acknowledge my sins, so forgive me, for no one forgives sins except You."},
-{"id":"d9","collection":"Sahih Muslim","number":2739,"occasion":"","en":"O Allah, I seek refuge in You from the loss of Your blessings, from the change of the well-being You have given, from Your sudden punishment, and from all of Your displeasure."},
-{"id":"d11","collection":"Sahih Muslim","number":2722,"occasion":"","en":"O Allah, I seek refuge in You from knowledge that does not benefit, from a heart that is not humble, from a soul that is never satisfied, and from a supplication that is not answered."},
-{"id":"d12","collection":"Sahih Muslim","number":2706,"occasion":"","en":"O Allah, I seek refuge in You from helplessness, laziness, cowardice, the frailty of old age, and miserliness."},
-{"id":"d13","collection":"Sahih Muslim","number":483,"occasion":"in prostration","en":"O Allah, forgive me all of my sins: the small and the great, the first and the last, the open and the hidden."},
-{"id":"d18","collection":"Sahih Muslim","number":2725,"occasion":"","en":"O Allah, guide me and keep me on the right course."},
-{"id":"ph1","collection":"Sahih al-Bukhari","number":6312,"occasion":"when waking up","en":"All praise is for Allah, who gave us life after He had caused us to die, and to Him is the return."},
-{"id":"ph13","collection":"Sahih Muslim","number":234,"occasion":"after making wudu (ablution)","en":"I bear witness that there is no god but Allah alone, with no partner, and I bear witness that Muhammad is His servant and His Messenger."},
-{"id":"ph25","collection":"Sahih al-Bukhari","number":614,"occasion":"after hearing the call to prayer","en":"O Allah, Lord of this perfect call and of the prayer about to be established, grant Muhammad the place of intercession and distinction, and raise him to the praised station that You have promised him."},
-{"id":"ph53","collection":"Sahih al-Bukhari","number":3370,"occasion":"for sending blessings upon him","en":"O Allah, send prayers upon Muhammad and the family of Muhammad, as You sent prayers upon Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious."},
-{"id":"ph55","collection":"Sahih Muslim","number":588,"occasion":"at the end of prayer","en":"O Allah, I seek refuge in You from the punishment of the grave, from the punishment of Hell, from the trials of life and death, and from the evil of the trial of the False Messiah."},
-{"id":"ph58","collection":"Sahih Muslim","number":771,"occasion":"at the end of prayer","en":"O Allah, forgive me for what I have done before and what I will do after, what I have hidden and what I have made public, what I have exceeded in, and what You know better than I. You are the One who brings forward and the One who holds back. There is no god but You."},
-{"id":"ph60","collection":"Sahih al-Bukhari","number":6374,"occasion":"","en":"O Allah, I seek refuge in You from miserliness, I seek refuge in You from cowardice, I seek refuge in You from being returned to the most feeble stage of life, and I seek refuge in You from the trials of this world and the punishment of the grave."},
-{"id":"ph94","collection":"Sahih Muslim","number":2726,"occasion":"in the morning","en":"Glory be to Allah and praise be to Him, as many times as the number of His creation, as much as pleases Him, as much as the weight of His Throne, and as much as the ink of His words."},
-{"id":"ph97","collection":"Sahih Muslim","number":2708,"occasion":"for protection","en":"I seek refuge in the perfect words of Allah from the evil of what He has created."},
-{"id":"ph103","collection":"Sahih Muslim","number":2712,"occasion":"before sleeping","en":"O Allah, You created my soul and You will take it. Its death and its life belong to You. If You keep it alive, protect it, and if You cause it to die, forgive it. O Allah, I ask You for well-being."},
-{"id":"ph105","collection":"Sahih al-Bukhari","number":6324,"occasion":"before sleeping","en":"In Your name, O Allah, I die and I live."},
-{"id":"ph108","collection":"Sahih Muslim","number":2715,"occasion":"before sleeping","en":"All praise is for Allah, who fed us, gave us drink, sufficed us, and gave us shelter. How many there are who have no one to suffice them and no one to shelter them."},
-{"id":"ph111","collection":"Sahih al-Bukhari","number":6313,"occasion":"before sleeping","en":"O Allah, I have submitted myself to You, entrusted my affairs to You, turned my face to You, and relied completely on You, out of hope in You and awe of You. There is no refuge and no escape from You except to You. I believe in Your Book that You revealed and in Your Prophet whom You sent."},
-{"id":"ph122","collection":"Sahih al-Bukhari","number":6346,"occasion":"in times of distress","en":"There is no god but Allah, the Most Great, the Most Forbearing. There is no god but Allah, Lord of the Mighty Throne. There is no god but Allah, Lord of the heavens, Lord of the earth, and Lord of the Noble Throne."},
-{"id":"ph128","collection":"Sahih al-Bukhari","number":4563,"occasion":"in times of fear","intro":"Words said by the Prophet Ibrahim and the Prophet Muhammad ﷺ in times of fear:","en":"Allah is sufficient for us, and He is the best Disposer of affairs."},
-{"id":"ph147","collection":"Sahih al-Bukhari","number":3616,"occasion":"when visiting the sick","en":"No harm; it is a purification, if Allah wills."},
-{"id":"ph154","collection":"Sahih Muslim","number":918,"occasion":"when struck by a hardship","en":"Indeed, we belong to Allah, and to Him we shall return. O Allah, reward me in my hardship and replace it for me with something better."},
-{"id":"ph166","collection":"Sahih Muslim","number":899,"occasion":"when the wind blows strongly","en":"O Allah, I ask You for its good, and I seek refuge in You from its evil."},
-{"id":"ph181","collection":"Sahih al-Bukhari","number":5458,"occasion":"after eating","en":"All praise is for Allah, abundant, good, and blessed praise. Our Lord, it can never be enough, never be abandoned, and we can never do without it."},
-{"id":"ph193","collection":"Sahih al-Bukhari","number":6115,"occasion":"when angry","en":"I seek refuge in Allah from Satan, the accursed."},
-{"id":"ph243","collection":"Sahih Muslim","number":2202,"occasion":"when feeling pain in the body","intro":"The Prophet ﷺ taught: place your hand on the part of your body that hurts and say 'Bismillah' (In the name of Allah) three times, then say seven times:","en":"I seek refuge in Allah and His power from the evil of what I feel and what I fear."},
-{"id":"x1","collection":"Sahih al-Bukhari","number":6398,"occasion":"","en":"My Lord, forgive me my mistakes, my ignorance, and my excess in all my affairs, and what You know better than I. O Allah, forgive me my errors, what I did deliberately, my ignorance, and my jesting, for all of that is in me."},
-{"id":"x2","collection":"Sahih al-Bukhari","number":744,"occasion":"at the beginning of prayer","en":"O Allah, put a distance between me and my sins as You have put distance between the East and the West. O Allah, cleanse me of my sins as a white garment is cleansed of dirt. O Allah, wash away my sins with water, snow, and hail."},
-{"id":"x3","collection":"Sahih Muslim","number":2697,"occasion":"","en":"O Allah, forgive me, have mercy on me, guide me, grant me well-being, and provide for me."},
-{"id":"x4","collection":"Sahih Muslim","number":591,"occasion":"after prayer","en":"O Allah, You are Peace, and from You comes peace. Blessed are You, Owner of majesty and honor."},
-{"id":"x5","collection":"Sahih al-Bukhari","number":844,"occasion":"after prayer","en":"There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He has power over all things. O Allah, no one can withhold what You give, no one can give what You withhold, and no wealth can benefit its owner against You."},
-{"id":"y1","collection":"Sahih al-Bukhari","number":5675,"occasion":"for someone who is sick","en":"O Allah, Lord of mankind, remove the harm. Heal, for You are the Healer. There is no healing except Your healing, a healing that leaves no illness behind."},
-{"id":"y3","collection":"Sahih Muslim","number":486,"occasion":"in prostration","en":"I seek refuge in Your pleasure from Your anger, in Your pardon from Your punishment, and I seek refuge in You from You. I cannot praise You enough; You are as You have praised Yourself."},
-{"id":"y4","collection":"Sahih al-Bukhari","number":6316,"occasion":"","en":"O Allah, place light in my heart, light in my sight, and light in my hearing; light on my right and light on my left; light above me and light below me; light in front of me and light behind me; and grant me light."},
-{"id":"y5","collection":"Sahih Muslim","number":2716,"occasion":"","en":"O Allah, I seek refuge in You from the evil of what I have done and from the evil of what I have not done."},
-{"id":"y7","collection":"Sahih al-Bukhari","number":142,"occasion":"before entering the restroom","en":"O Allah, I seek refuge in You from all evil and evil-doers."},
-{"id":"y8","collection":"Sahih Muslim","number":713,"occasion":"when entering and leaving the mosque","intro":"The Prophet ﷺ taught that when entering the mosque one should say:","en":"O Allah, open for me the gates of Your mercy. (And when leaving:) O Allah, I ask You of Your bounty."},
-{"id":"y9","collection":"Sahih Muslim","number":476,"occasion":"","en":"O Allah, purify me with snow, hail, and cold water. O Allah, purify me from sins and cleanse me of them as a white garment is cleansed of dirt."}
-]}
+{
+ "_note": "Daily Serenity – prophetic dua pool. Sahih al-Bukhari / Sahih Muslim only; numbers verified automatically against the Arabic text. English: our own translation (Translation: Daily Serenity).",
+ "items": [
+  {
+   "id": "d1",
+   "collection": "Sahih al-Bukhari",
+   "number": 2893,
+   "occasion": "when worried or overwhelmed",
+   "en": "O Allah, I seek refuge in You from worry and grief, from helplessness and laziness, from miserliness and cowardice, from the burden of debt and from being overpowered by others."
+  },
+  {
+   "id": "d2",
+   "collection": "Sahih Muslim",
+   "number": 2688,
+   "occasion": "",
+   "en": "O Allah, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire."
+  },
+  {
+   "id": "d3",
+   "collection": "Sahih Muslim",
+   "number": 2655,
+   "occasion": "",
+   "en": "O Allah, Turner of hearts, turn our hearts toward obeying You."
+  },
+  {
+   "id": "d4",
+   "collection": "Sahih Muslim",
+   "number": 2721,
+   "occasion": "",
+   "en": "O Allah, I ask You for guidance, piety, chastity, and self-sufficiency."
+  },
+  {
+   "id": "d5",
+   "collection": "Sahih Muslim",
+   "number": 2720,
+   "occasion": "",
+   "en": "O Allah, set right for me my religion, which is the safeguard of my affairs; set right for me my worldly life, in which is my livelihood; and set right for me my Hereafter, to which is my return."
+  },
+  {
+   "id": "d6",
+   "collection": "Sahih al-Bukhari",
+   "number": 6326,
+   "occasion": "in prayer",
+   "en": "O Allah, I have wronged myself greatly, and no one forgives sins except You. So forgive me with forgiveness from You, and have mercy on me. Indeed, You are the Most Forgiving, the Most Merciful."
+  },
+  {
+   "id": "d7",
+   "collection": "Sahih al-Bukhari",
+   "number": 6306,
+   "occasion": "for seeking forgiveness, morning and evening",
+   "en": "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant, and I hold to Your covenant and promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your blessings upon me, and I acknowledge my sins, so forgive me, for no one forgives sins except You."
+  },
+  {
+   "id": "d9",
+   "collection": "Sahih Muslim",
+   "number": 2739,
+   "occasion": "",
+   "en": "O Allah, I seek refuge in You from the loss of Your blessings, from the change of the well-being You have given, from Your sudden punishment, and from all of Your displeasure."
+  },
+  {
+   "id": "d11",
+   "collection": "Sahih Muslim",
+   "number": 2722,
+   "occasion": "",
+   "en": "O Allah, I seek refuge in You from knowledge that does not benefit, from a heart that is not humble, from a soul that is never satisfied, and from a supplication that is not answered."
+  },
+  {
+   "id": "d12",
+   "collection": "Sahih Muslim",
+   "number": 2706,
+   "occasion": "",
+   "en": "O Allah, I seek refuge in You from helplessness, laziness, cowardice, the frailty of old age, and miserliness."
+  },
+  {
+   "id": "d13",
+   "collection": "Sahih Muslim",
+   "number": 483,
+   "occasion": "in prostration",
+   "en": "O Allah, forgive me all of my sins: the small and the great, the first and the last, the open and the hidden."
+  },
+  {
+   "id": "d18",
+   "collection": "Sahih Muslim",
+   "number": 2725,
+   "occasion": "",
+   "en": "O Allah, guide me and keep me on the right course."
+  },
+  {
+   "id": "ph1",
+   "collection": "Sahih al-Bukhari",
+   "number": 6312,
+   "occasion": "when waking up",
+   "en": "All praise is for Allah, who gave us life after He had caused us to die, and to Him is the return."
+  },
+  {
+   "id": "ph13",
+   "collection": "Sahih Muslim",
+   "number": 234,
+   "occasion": "after making wudu (ablution)",
+   "en": "I bear witness that there is no god but Allah alone, with no partner, and I bear witness that Muhammad is His servant and His Messenger."
+  },
+  {
+   "id": "ph25",
+   "collection": "Sahih al-Bukhari",
+   "number": 614,
+   "occasion": "after hearing the call to prayer",
+   "en": "O Allah, Lord of this perfect call and of the prayer about to be established, grant Muhammad the place of intercession and distinction, and raise him to the praised station that You have promised him."
+  },
+  {
+   "id": "ph53",
+   "collection": "Sahih al-Bukhari",
+   "number": 3370,
+   "occasion": "for sending blessings upon him",
+   "en": "O Allah, send prayers upon Muhammad and the family of Muhammad, as You sent prayers upon Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim; You are Praiseworthy, Glorious."
+  },
+  {
+   "id": "ph55",
+   "collection": "Sahih Muslim",
+   "number": 588,
+   "occasion": "at the end of prayer",
+   "en": "O Allah, I seek refuge in You from the punishment of the grave, from the punishment of Hell, from the trials of life and death, and from the evil of the trial of the False Messiah."
+  },
+  {
+   "id": "ph58",
+   "collection": "Sahih Muslim",
+   "number": 771,
+   "occasion": "at the end of prayer",
+   "en": "O Allah, forgive me for what I have done before and what I will do after, what I have hidden and what I have made public, what I have exceeded in, and what You know better than I. You are the One who brings forward and the One who holds back. There is no god but You."
+  },
+  {
+   "id": "ph60",
+   "collection": "Sahih al-Bukhari",
+   "number": 6374,
+   "occasion": "",
+   "en": "O Allah, I seek refuge in You from miserliness, I seek refuge in You from cowardice, I seek refuge in You from being returned to the most feeble stage of life, and I seek refuge in You from the trials of this world and the punishment of the grave."
+  },
+  {
+   "id": "ph94",
+   "collection": "Sahih Muslim",
+   "number": 2726,
+   "occasion": "in the morning",
+   "en": "Glory be to Allah and praise be to Him, as many times as the number of His creation, as much as pleases Him, as much as the weight of His Throne, and as much as the ink of His words."
+  },
+  {
+   "id": "ph97",
+   "collection": "Sahih Muslim",
+   "number": 2708,
+   "occasion": "for protection",
+   "en": "I seek refuge in the perfect words of Allah from the evil of what He has created."
+  },
+  {
+   "id": "ph103",
+   "collection": "Sahih Muslim",
+   "number": 2712,
+   "occasion": "before sleeping",
+   "en": "O Allah, You created my soul and You will take it. Its death and its life belong to You. If You keep it alive, protect it, and if You cause it to die, forgive it. O Allah, I ask You for well-being."
+  },
+  {
+   "id": "ph105",
+   "collection": "Sahih al-Bukhari",
+   "number": 6324,
+   "occasion": "before sleeping",
+   "en": "In Your name, O Allah, I die and I live."
+  },
+  {
+   "id": "ph108",
+   "collection": "Sahih Muslim",
+   "number": 2715,
+   "occasion": "before sleeping",
+   "en": "All praise is for Allah, who fed us, gave us drink, sufficed us, and gave us shelter. How many there are who have no one to suffice them and no one to shelter them."
+  },
+  {
+   "id": "ph111",
+   "collection": "Sahih al-Bukhari",
+   "number": 6313,
+   "occasion": "before sleeping",
+   "en": "O Allah, I have submitted myself to You, entrusted my affairs to You, turned my face to You, and relied completely on You, out of hope in You and awe of You. There is no refuge and no escape from You except to You. I believe in Your Book that You revealed and in Your Prophet whom You sent."
+  },
+  {
+   "id": "ph122",
+   "collection": "Sahih al-Bukhari",
+   "number": 6346,
+   "occasion": "in times of distress",
+   "en": "There is no god but Allah, the Most Great, the Most Forbearing. There is no god but Allah, Lord of the Mighty Throne. There is no god but Allah, Lord of the heavens, Lord of the earth, and Lord of the Noble Throne."
+  },
+  {
+   "id": "ph128",
+   "collection": "Sahih al-Bukhari",
+   "number": 4563,
+   "occasion": "in times of fear",
+   "intro": "Words said by the Prophet Ibrahim and the Prophet Muhammad ﷺ in times of fear:",
+   "en": "Allah is sufficient for us, and He is the best Disposer of affairs."
+  },
+  {
+   "id": "ph147",
+   "collection": "Sahih al-Bukhari",
+   "number": 3616,
+   "occasion": "when visiting the sick",
+   "en": "No harm; it is a purification, if Allah wills."
+  },
+  {
+   "id": "ph154",
+   "collection": "Sahih Muslim",
+   "number": 918,
+   "occasion": "when struck by a hardship",
+   "en": "Indeed, we belong to Allah, and to Him we shall return. O Allah, reward me in my hardship and replace it for me with something better."
+  },
+  {
+   "id": "ph166",
+   "collection": "Sahih Muslim",
+   "number": 899,
+   "occasion": "when the wind blows strongly",
+   "en": "O Allah, I ask You for its good, and I seek refuge in You from its evil."
+  },
+  {
+   "id": "ph181",
+   "collection": "Sahih al-Bukhari",
+   "number": 5458,
+   "occasion": "after eating",
+   "en": "All praise is for Allah, abundant, good, and blessed praise. Our Lord, it can never be enough, never be abandoned, and we can never do without it."
+  },
+  {
+   "id": "ph193",
+   "collection": "Sahih al-Bukhari",
+   "number": 6115,
+   "occasion": "when angry",
+   "en": "I seek refuge in Allah from Satan, the accursed."
+  },
+  {
+   "id": "ph243",
+   "collection": "Sahih Muslim",
+   "number": 2202,
+   "occasion": "when feeling pain in the body",
+   "intro": "The Prophet ﷺ taught: place your hand on the part of your body that hurts and say 'Bismillah' (In the name of Allah) three times, then say seven times:",
+   "en": "I seek refuge in Allah and His power from the evil of what I feel and what I fear."
+  },
+  {
+   "id": "x1",
+   "collection": "Sahih al-Bukhari",
+   "number": 6398,
+   "occasion": "",
+   "en": "My Lord, forgive me my mistakes, my ignorance, and my excess in all my affairs, and what You know better than I. O Allah, forgive me my errors, what I did deliberately, my ignorance, and my jesting, for all of that is in me."
+  },
+  {
+   "id": "x2",
+   "collection": "Sahih al-Bukhari",
+   "number": 744,
+   "occasion": "at the beginning of prayer",
+   "en": "O Allah, put a distance between me and my sins as You have put distance between the East and the West. O Allah, cleanse me of my sins as a white garment is cleansed of dirt. O Allah, wash away my sins with water, snow, and hail."
+  },
+  {
+   "id": "x3",
+   "collection": "Sahih Muslim",
+   "number": 2697,
+   "occasion": "",
+   "en": "O Allah, forgive me, have mercy on me, guide me, grant me well-being, and provide for me."
+  },
+  {
+   "id": "x4",
+   "collection": "Sahih Muslim",
+   "number": 591,
+   "occasion": "after prayer",
+   "en": "O Allah, You are Peace, and from You comes peace. Blessed are You, Owner of majesty and honor."
+  },
+  {
+   "id": "x5",
+   "collection": "Sahih al-Bukhari",
+   "number": 844,
+   "occasion": "after prayer",
+   "en": "There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He has power over all things. O Allah, no one can withhold what You give, no one can give what You withhold, and no wealth can benefit its owner against You."
+  },
+  {
+   "id": "y1",
+   "collection": "Sahih al-Bukhari",
+   "number": 5675,
+   "occasion": "for someone who is sick",
+   "en": "Remove the harm, O Lord of mankind. Heal, for You are the Healer; there is no healing except Your healing, a healing that leaves no illness behind."
+  },
+  {
+   "id": "y3",
+   "collection": "Sahih Muslim",
+   "number": 486,
+   "occasion": "in prostration",
+   "en": "I seek refuge in Your pleasure from Your anger, in Your pardon from Your punishment, and I seek refuge in You from You. I cannot praise You enough; You are as You have praised Yourself."
+  },
+  {
+   "id": "y4",
+   "collection": "Sahih al-Bukhari",
+   "number": 6316,
+   "occasion": "",
+   "en": "O Allah, place light in my heart, light in my sight, and light in my hearing; light on my right and light on my left; light above me and light below me; light in front of me and light behind me; and grant me light."
+  },
+  {
+   "id": "y5",
+   "collection": "Sahih Muslim",
+   "number": 2716,
+   "occasion": "",
+   "en": "O Allah, I seek refuge in You from the evil of what I have done and from the evil of what I have not done."
+  },
+  {
+   "id": "y7",
+   "collection": "Sahih al-Bukhari",
+   "number": 142,
+   "occasion": "before entering the restroom",
+   "en": "O Allah, I seek refuge in You from all evil and evil-doers."
+  },
+  {
+   "id": "y8",
+   "collection": "Sahih Muslim",
+   "number": 713,
+   "occasion": "when entering and leaving the mosque",
+   "intro": "The Prophet ﷺ taught that when entering the mosque one should say:",
+   "en": "O Allah, open for me the gates of Your mercy. (And when leaving:) O Allah, I ask You of Your bounty."
+  },
+  {
+   "id": "y9",
+   "collection": "Sahih Muslim",
+   "number": 476,
+   "occasion": "",
+   "en": "O Allah, purify me with snow, hail, and cold water. O Allah, purify me from sins and cleanse me of them as a white garment is cleansed of dirt."
+  }
+ ]
+}
