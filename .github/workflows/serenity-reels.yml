@@ -1,0 +1,129 @@
+name: Daily Serenity – English reels
+
+on:
+  schedule:
+    # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 7:30pm New York.
+    - cron: "7 17 * * *"
+    - cron: "37 23 * * *"
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "quran / sunnah (hadith-dua alternating) / hadith / dua"
+        default: "quran"
+      publish:
+        description: "Publish? (false = preview only, download from the run page)"
+        default: "false"
+      platforms:
+        description: "Comma separated (empty = all enabled)"
+        default: ""
+      id:
+        description: "Force an item id (optional)"
+        default: ""
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: serenity-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide what to run
+        id: plan
+        run: |
+          EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
+            if [ "${{ github.event.schedule }}" = "7 17 * * *" ]; then K=quran; else K=sunnah; fi
+            echo "args=--kind $K --publish" >> $GITHUB_OUTPUT
+          else
+            A="--kind ${{ inputs.kind }}"
+            [ -n "${{ inputs.id }}" ] && A="$A --id ${{ inputs.id }}"
+            [ "${{ inputs.publish }}" = "true" ] && A="$A --publish --platforms '${{ inputs.platforms }}'"
+            echo "args=$A" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.plan.outputs.skip != '1'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - if: steps.plan.outputs.skip != '1'
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg && pip install -r requirements.txt -r requirements-en.txt
+
+      - name: Generate (and publish)
+        if: steps.plan.outputs.skip != '1'
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.EN_IG_USER_ID }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.EN_TIKTOK_REFRESH_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.EN_YT_REFRESH_TOKEN }}
+          YT_CHANNEL_ID: ${{ secrets.EN_YT_CHANNEL_ID }}
+        run: |
+          mkdir -p out out_en
+          [ -f data/en/pickthall.json ] || python -m src.en.setup_data
+          eval python -m src.en.main ${{ steps.plan.outputs.args }}
+
+      - name: Save reel & captions (download from the run page)
+        if: always() && steps.plan.outputs.skip != '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-${{ github.run_number }}
+          path: |
+            out_en/reel.mp4
+            out_en/cover.jpg
+            out_en/caption_*.txt
+            out_en/plan.json
+          retention-days: 14
+
+      - name: TikTok caption (summary + GitHub notification)
+        if: always() && steps.plan.outputs.skip != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          f=out_en/caption_tiktok.txt
+          [ -f "$f" ] || exit 0
+          { echo "## TikTok caption (Daily Serenity)"; echo '```'; cat "$f"; echo; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          if echo "${{ steps.plan.outputs.args }}" | grep -q -- "--publish"; then
+            gh label create serenity-tiktok --color 5E6E55 --repo "${{ github.repository }}" 2>/dev/null || true
+            for n in $(gh issue list --label serenity-tiktok --state open --json number -q '.[].number' --repo "${{ github.repository }}"); do
+              gh issue close "$n" --repo "${{ github.repository }}" >/dev/null || true
+            done
+            gh issue create --repo "${{ github.repository }}" --label serenity-tiktok \
+              --title "TikTok caption (EN) – $(date -u +%Y-%m-%d)" --body-file "$f"
+          fi
+
+      - name: Rotate TikTok refresh token (optional, needs GH_PAT)
+        if: always() && steps.plan.outputs.skip != '1'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -f out/.tiktok_refresh_token ] && [ -n "$GH_TOKEN" ]; then
+            gh secret set EN_TIKTOK_REFRESH_TOKEN --body "$(cat out/.tiktok_refresh_token)" --repo "${{ github.repository }}"
+          fi
+
+      - name: Save history & audio timings
+        if: always() && steps.plan.outputs.skip != '1'
+        run: |
+          git config user.name "quran-reels-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add history_en.json data/en assets/fonts/en 2>/dev/null || true
+          if [ -n "$(git status --porcelain history_en.json data/en assets/fonts/en)" ]; then
+            git commit -m "Daily Serenity: ${{ github.run_number }}"
+            git pull --rebase
+            git push
+          fi

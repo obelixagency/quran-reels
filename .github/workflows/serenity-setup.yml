@@ -1,0 +1,40 @@
+name: Daily Serenity – setup (run once)
+
+on:
+  workflow_dispatch:
+    inputs:
+      prepare_audio:
+        description: "Also match every Quran passage to the LibriVox recording (≈1 hour, run once)"
+        default: "true"
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: pip install -r requirements.txt -r requirements-en.txt
+      - name: Pickthall text, surah names, fonts
+        run: python -m src.en.setup_data
+      - name: Match passages to the LibriVox recording
+        if: inputs.prepare_audio == 'true'
+        run: python -m src.en.prepare
+      - name: Save to the repo
+        if: always()
+        run: |
+          git config user.name "quran-reels-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/en assets/fonts/en || true
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Daily Serenity: setup data"
+            git pull --rebase
+            git push
+          fi
