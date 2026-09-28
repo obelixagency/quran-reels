@@ -2,6 +2,10 @@ name: Daily Serenity – English reels
 
 on:
   schedule:
+    # Arabic recitation + English translation reel ≈ 3:37pm Cairo / 6pm India / 8:37am New York
+    - cron: "37 12 * * *"
+    - cron: "7 13 * * *"   # backup
+    - cron: "37 13 * * *"   # backup
     # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 7:30pm New York.
     - cron: "7 17 * * *"
     - cron: "37 17 * * *"   # backup
@@ -12,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       kind:
-        description: "quran / sunnah (hadith-dua alternating) / hadith / dua"
+        description: "quran / recited (Arabic recitation) / sunnah (hadith-dua alternating) / hadith / dua"
         default: "quran"
       publish:
         description: "Publish? (false = preview only, download from the run page)"
@@ -66,7 +70,7 @@ jobs:
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
           if [ "${{ github.event_name }}" = "schedule" ]; then
             if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
-            H=$((10#$(date -u +%H))); if [ $H -ge 15 ] && [ $H -le 20 ]; then K=quran; else K=sunnah; fi
+            H=$((10#$(date -u +%H))); if [ $H -ge 12 ] && [ $H -le 14 ]; then K=recited; elif [ $H -ge 15 ] && [ $H -le 20 ]; then K=quran; else K=sunnah; fi
             echo "args=--kind $K --publish" >> $GITHUB_OUTPUT
           else
             A="--kind ${{ inputs.kind }}"
@@ -81,7 +85,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - if: steps.plan.outputs.skip != '1'
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg && pip install -r requirements.txt -r requirements-en.txt
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg libraqm0 libfribidi0 libharfbuzz0b && pip install -r requirements.txt -r requirements-en.txt
 
       - name: Generate (and publish)
         if: steps.plan.outputs.skip != '1'
