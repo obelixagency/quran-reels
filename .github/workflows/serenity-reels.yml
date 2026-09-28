@@ -82,7 +82,8 @@ jobs:
           else
             A="--kind ${{ inputs.kind }}"
             [ -n "${{ inputs.id }}" ] && A="$A --id ${{ inputs.id }}"
-            [ "${{ inputs.publish }}" = "true" ] && A="$A --publish --platforms '${{ inputs.platforms }}'"
+            if [ "${{ inputs.publish }}" = "true" ]; then A="$A --publish"; fi
+            if [ -n "${{ inputs.platforms }}" ]; then A="$A --platforms ${{ inputs.platforms }}"; fi
             echo "args=$A" >> $GITHUB_OUTPUT
           fi
 
