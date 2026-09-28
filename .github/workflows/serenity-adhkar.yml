@@ -4,7 +4,11 @@ on:
   schedule:
     # UTC. Morning ≈ 6am New York / 11am London; evening ≈ 5pm New York / 10pm London.
     - cron: "13 10 * * *"
+    - cron: "43 10 * * *"   # backup
+    - cron: "13 11 * * *"   # backup
     - cron: "13 21 * * *"
+    - cron: "43 21 * * *"   # backup
+    - cron: "13 22 * * *"   # backup
   workflow_dispatch:
     inputs:
       session:
@@ -15,6 +19,7 @@ on:
         default: "false"
 
 permissions:
+  actions: read
   contents: write
 
 concurrency:
@@ -22,7 +27,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  guard:
+    # GitHub sometimes skips or delays scheduled runs, so every time slot has 3 cron times
+    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "skip=0" >> $GITHUB_OUTPUT; exit 0; fi
+          WF=$(basename "${GITHUB_WORKFLOW_REF%@*}")
+          SINCE=$(date -u -d '-150 min' +%Y-%m-%dT%H:%M:%SZ)
+          N=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$WF/runs?event=schedule&status=success&created=>=$SINCE" --jq '.total_count' || echo 0)
+          echo "successful scheduled runs since $SINCE: $N"
+          if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
+
   adhkar:
+    needs: guard
+    if: needs.guard.outputs.skip != '1'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -34,7 +59,7 @@ jobs:
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
           if [ "${{ github.event_name }}" = "schedule" ]; then
             if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
-            if [ "${{ github.event.schedule }}" = "13 10 * * *" ]; then S=morning; else S=evening; fi
+            H=$((10#$(date -u +%H))); if [ $H -lt 16 ]; then S=morning; else S=evening; fi
             echo "args=--session $S --publish" >> $GITHUB_OUTPUT
           else
             A="--session ${{ inputs.session }}"

@@ -4,7 +4,11 @@ on:
   schedule:
     # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 7:30pm New York.
     - cron: "7 17 * * *"
+    - cron: "37 17 * * *"   # backup
+    - cron: "7 18 * * *"   # backup
     - cron: "37 23 * * *"
+    - cron: "7 0 * * *"   # backup
+    - cron: "37 0 * * *"   # backup
   workflow_dispatch:
     inputs:
       kind:
@@ -21,6 +25,7 @@ on:
         default: ""
 
 permissions:
+  actions: read
   contents: write
   issues: write
 
@@ -29,7 +34,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  guard:
+    # GitHub sometimes skips or delays scheduled runs, so every time slot has 3 cron times
+    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "skip=0" >> $GITHUB_OUTPUT; exit 0; fi
+          WF=$(basename "${GITHUB_WORKFLOW_REF%@*}")
+          SINCE=$(date -u -d '-150 min' +%Y-%m-%dT%H:%M:%SZ)
+          N=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$WF/runs?event=schedule&status=success&created=>=$SINCE" --jq '.total_count' || echo 0)
+          echo "successful scheduled runs since $SINCE: $N"
+          if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
+
   reel:
+    needs: guard
+    if: needs.guard.outputs.skip != '1'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -41,7 +66,7 @@ jobs:
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
           if [ "${{ github.event_name }}" = "schedule" ]; then
             if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
-            if [ "${{ github.event.schedule }}" = "7 17 * * *" ]; then K=quran; else K=sunnah; fi
+            H=$((10#$(date -u +%H))); if [ $H -ge 15 ] && [ $H -le 20 ]; then K=quran; else K=sunnah; fi
             echo "args=--kind $K --publish" >> $GITHUB_OUTPUT
           else
             A="--kind ${{ inputs.kind }}"
