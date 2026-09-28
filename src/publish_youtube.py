@@ -54,8 +54,8 @@ def publish_youtube(cfg, video_path, caption, title, tags, cover=None):
 
     body = {
         "snippet": {"title": title[:100], "description": caption[:4900], "tags": tags[:15],
-                    "categoryId": str(ycfg.get("category_id", "22")), "defaultLanguage": "ar",
-                    "defaultAudioLanguage": "ar"},
+                    "categoryId": str(ycfg.get("category_id", "22")), "defaultLanguage": ycfg.get("language", "ar"),
+                    "defaultAudioLanguage": ycfg.get("language", "ar")},
         "status": {"privacyStatus": ycfg.get("privacy", "public"), "selfDeclaredMadeForKids": False,
                    "embeddable": True},
     }
