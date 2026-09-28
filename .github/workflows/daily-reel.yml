@@ -134,7 +134,7 @@ jobs:
               gh issue close "$n" --repo "${{ github.repository }}" >/dev/null || true
             done
             gh issue create --repo "${{ github.repository }}" --label tiktok-caption \
-              --title "كابشن تيك توك – $(TZ=Africa/Cairo date +%Y-%m-%d)" --body-file "$f"
+              --title "📱 انشر على تيك توك (عربي – تلاوة) – $(TZ=Africa/Cairo date +'%Y-%m-%d %H:%M')" --body-file "$f"
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)

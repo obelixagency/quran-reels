@@ -140,7 +140,7 @@ jobs:
               gh issue close "$n" --repo "${{ github.repository }}" >/dev/null || true
             done
             gh issue create --repo "${{ github.repository }}" --label serenity-tiktok \
-              --title "TikTok caption (EN) – $(date -u +%Y-%m-%d)" --body-file "$f"
+              --title "📱 Post on TikTok (EN) – $(TZ=Africa/Cairo date +'%Y-%m-%d %H:%M')" --body-file "$f"
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT)
