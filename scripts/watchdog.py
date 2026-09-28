@@ -45,8 +45,10 @@ WORKFLOWS = {
     "daily-reel.yml": lambda h: ({"publish": "true"}, "ريل التلاوة (عربي)"),
     "serenity-adhkar.yml": lambda h: ({"session": "morning" if h < 16 else "evening", "publish": "true"},
                                       "Adhkar " + ("morning" if h < 16 else "evening") + " (EN)"),
-    "serenity-reels.yml": lambda h: ({"kind": "quran" if 15 <= h <= 20 else "sunnah", "publish": "true"},
-                                     ("Quran reel" if 15 <= h <= 20 else "Hadith/dua reel") + " (EN)"),
+    "serenity-reels.yml": lambda h: ({"kind": "recited" if 12 <= h <= 14 else "quran" if 15 <= h <= 20 else "sunnah",
+                                      "publish": "true"},
+                                     ("Recited Quran reel" if 12 <= h <= 14 else "Quran reel" if 15 <= h <= 20
+                                      else "Hadith/dua reel") + " (EN)"),
 }
 
 
