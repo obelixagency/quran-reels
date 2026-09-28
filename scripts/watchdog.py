@@ -1,7 +1,7 @@
 """Watchdog: makes sure every scheduled post actually went out.
 
-Runs every 30 minutes. For each publishing workflow it reads the main cron times (the lines
-without "# backup"), and for every time slot that started 75 min – 6 h ago it checks the
+Runs every 15–30 minutes (GitHub schedule + an external trigger). For each publishing workflow it reads the main cron times (the lines
+without "# backup"), and for every time slot that started 20 min – 6 h ago it checks the
 workflow's runs since that slot:
   * a successful or still running/queued run  -> fine
   * nothing at all (GitHub skipped every cron) -> starts the workflow itself (workflow_dispatch)
@@ -89,7 +89,7 @@ def check(wf, hour, minute):
     inputs, label = WORKFLOWS[wf](hour)
     slot = last_slot(hour, minute)
     age = (NOW - slot).total_seconds() / 60
-    if not 75 <= age <= 360:
+    if not 20 <= age <= 360:
         return
     runs = runs_since(wf, slot - dt.timedelta(minutes=15))
     ok = [r for r in runs if r["conclusion"] == "success" or r["status"] in ("queued", "in_progress", "waiting", "pending", "requested")]
