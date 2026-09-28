@@ -147,6 +147,16 @@ def publish(cfg_en, reel, caps, cover, platforms):
         except Exception as e:  # noqa: BLE001
             traceback.print_exc()
             results[name] = {"ok": False, "error": str(e)[:500]}
+    # the same reel is also shared as a Facebook / Instagram story (like the Arabic channels)
+    st = cfg_en.get("stories", {"facebook": True, "instagram": True})
+    for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):
+        if st.get(name) and name in platforms:
+            try:
+                from .. import publish_meta
+                results[f"{name}_story"] = {"ok": True, **getattr(publish_meta, fn)(cfg_en, reel)}
+            except Exception as e:  # noqa: BLE001
+                results[f"{name}_story"] = {"ok": False, "error": str(e)[:300]}
+            print(f"   📲 {name} story: {results[f'{name}_story']}")
     return results
 
 
@@ -160,7 +170,8 @@ def main():
 
     cfg = load_json(ROOT / "config.json")
     en = cfg.get("en", {})
-    cfg_en = {**cfg, "platforms": en.get("platforms", {}), "video": {**cfg["video"], **en.get("video", {})}}
+    cfg_en = {**cfg, "platforms": en.get("platforms", {}), "video": {**cfg["video"], **en.get("video", {})},
+              "stories": en.get("stories", {"facebook": True, "instagram": True})}
     history = load_history()
 
     kind = args.kind if args.kind != "sunnah" else sunnah_kind(history)
@@ -191,7 +202,8 @@ def main():
                              "results": results})
     save_json(HISTORY, history)
     print(json.dumps(results, ensure_ascii=False, indent=2))
-    if results and not any(r["ok"] for r in results.values()):
+    main_ok = [r["ok"] for k, r in results.items() if not k.endswith("_story")]
+    if main_ok and not any(main_ok):
         sys.exit(1)
 
 
