@@ -66,5 +66,28 @@
   "hijri_offset": 0,
   "adhkar": {
     "per_session": 3
+  },
+  "en": {
+    "_note": "Daily Serenity (English). enabled=false: scheduled runs do nothing until the accounts are connected. Manual runs always work (preview).",
+    "enabled": false,
+    "platforms": {
+      "facebook": {
+        "enabled": true
+      },
+      "instagram": {
+        "enabled": true
+      },
+      "tiktok": {
+        "enabled": true,
+        "mode": "draft",
+        "privacy_level": "PUBLIC_TO_EVERYONE"
+      },
+      "youtube": {
+        "enabled": true,
+        "privacy": "public",
+        "category_id": "22",
+        "language": "en"
+      }
+    }
   }
 }
