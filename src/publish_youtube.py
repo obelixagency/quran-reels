@@ -72,7 +72,8 @@ def publish_youtube(cfg, video_path, caption, title, tags, cover=None):
         raise RuntimeError(f"YouTube upload failed {up.status_code}: {up.text[:500]}")
     vid = up.json()
     thumb = None
-    if cover and Path(cover["path"]).exists():
+    # Shorts don't show custom thumbnails in the feed, and each one costs API quota → off unless "thumbnail": true
+    if cover and ycfg.get("thumbnail", False) and Path(cover["path"]).exists():
         # يوتيوب بيسمح بالكوفر المخصص بس للقنوات المتوثقة برقم تليفون – لو رفض، الفيديو نفسه اتنشر عادي
         with open(cover["path"], "rb") as img:
             t = requests.post("https://www.googleapis.com/upload/youtube/v3/thumbnails/set",
