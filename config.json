@@ -69,7 +69,7 @@
   },
   "en": {
     "_note": "Daily Serenity (English). enabled=false: scheduled runs do nothing until the accounts are connected. Manual runs always work (preview).",
-    "enabled": false,
+    "enabled": true,
     "platforms": {
       "facebook": {
         "enabled": true
