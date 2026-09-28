@@ -15,6 +15,12 @@ on:
       platforms:
         description: "Comma separated (empty = all enabled in config.json)"
         default: ""
+      passage:
+        description: "آيات معينة (مثال imran-8) – فاضي = اختيار تلقائي"
+        default: ""
+      reciter:
+        description: "قارئ معين (husary / minshawi / abdulbasit / tablawi) – فاضي = تلقائي"
+        default: ""
 
 permissions:
   contents: write
@@ -57,10 +63,13 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
         run: |
+          X=""
+          if [ -n "${{ inputs.passage }}" ]; then X="$X --passage ${{ inputs.passage }}"; fi
+          if [ -n "${{ inputs.reciter }}" ]; then X="$X --reciter ${{ inputs.reciter }}"; fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.publish }}" != "true" ]; then
-            python -m src.main
+            python -m src.main $X
           else
-            python -m src.main --publish --platforms "${{ inputs.platforms }}"
+            python -m src.main --publish --platforms "${{ inputs.platforms }}" $X
           fi
 
       - name: Save reel & captions (downloadable from the run page)
