@@ -42,7 +42,9 @@ WORKFLOWS = {
     "daily-adhkar.yml": lambda h: ({"session": "morning" if h < 9 else "evening", "publish": "true"},
                                    "أذكار " + ("الصباح" if h < 9 else "المساء") + " (عربي)"),
     "daily-post.yml": lambda h: ({"publish": "true"}, "بوست دعاء/حديث (عربي)"),
-    "daily-reel.yml": lambda h: ({"publish": "true"}, "ريل التلاوة (عربي)"),
+    "daily-reel.yml": lambda h: (({"publish": "true", "platforms": "tiktok,youtube"}, "ريل التلاوة التاني – تيك توك ويوتيوب (عربي)")
+                                 if h >= 20 else ({"publish": "true"}, "ريل التلاوة (عربي)")),
+    "daily-short.yml": lambda h: ({"publish": "true"}, "فيديو دعاء/حديث – تيك توك ويوتيوب (عربي)"),
     "serenity-adhkar.yml": lambda h: ({"session": "morning" if h < 16 else "evening", "publish": "true"},
                                       "Adhkar " + ("morning" if h < 16 else "evening") + " (EN)"),
     "serenity-reels.yml": lambda h: ({"kind": "recited" if 12 <= h <= 14 else "quran" if 15 <= h <= 20 else "sunnah",
