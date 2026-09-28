@@ -1,511 +1,147 @@
 [
- {
-  "id": "fatiha",
-  "surah": 1,
-  "from": 1,
-  "to": 7,
-  "theme": "dua"
- },
- {
-  "id": "baqara-45",
-  "surah": 2,
-  "from": 45,
-  "to": 46,
-  "theme": "sabr"
- },
- {
-  "id": "baqara-152",
-  "surah": 2,
-  "from": 152,
-  "to": 153,
-  "theme": "dhikr"
- },
- {
-  "id": "baqara-155",
-  "surah": 2,
-  "from": 155,
-  "to": 157,
-  "theme": "sabr"
- },
- {
-  "id": "baqara-186",
-  "surah": 2,
-  "from": 186,
-  "to": 186,
-  "theme": "dua"
- },
- {
-  "id": "baqara-201",
-  "surah": 2,
-  "from": 201,
-  "to": 201,
-  "theme": "dua"
- },
- {
-  "id": "imran-8",
-  "surah": 3,
-  "from": 8,
-  "to": 9,
-  "theme": "dua"
- },
- {
-  "id": "imran-139",
-  "surah": 3,
-  "from": 139,
-  "to": 139,
-  "theme": "hope"
- },
- {
-  "id": "imran-173",
-  "surah": 3,
-  "from": 173,
-  "to": 174,
-  "theme": "tawakkul"
- },
- {
-  "id": "imran-190",
-  "surah": 3,
-  "from": 190,
-  "to": 191,
-  "theme": "reflection"
- },
- {
-  "id": "araf-23",
-  "surah": 7,
-  "from": 23,
-  "to": 23,
-  "theme": "tawba"
- },
- {
-  "id": "araf-55",
-  "surah": 7,
-  "from": 55,
-  "to": 56,
-  "theme": "mercy"
- },
- {
-  "id": "tawba-51",
-  "surah": 9,
-  "from": 51,
-  "to": 51,
-  "theme": "tawakkul"
- },
- {
-  "id": "yunus-62",
-  "surah": 10,
-  "from": 62,
-  "to": 64,
-  "theme": "hope"
- },
- {
-  "id": "hud-6",
-  "surah": 11,
-  "from": 6,
-  "to": 6,
-  "theme": "rizq"
- },
- {
-  "id": "yusuf-86",
-  "surah": 12,
-  "from": 86,
-  "to": 87,
-  "theme": "hope"
- },
- {
-  "id": "raad-28",
-  "surah": 13,
-  "from": 28,
-  "to": 29,
-  "theme": "peace"
- },
- {
-  "id": "ibrahim-7",
-  "surah": 14,
-  "from": 7,
-  "to": 7,
-  "theme": "shukr"
- },
- {
-  "id": "ibrahim-40",
-  "surah": 14,
-  "from": 40,
-  "to": 41,
-  "theme": "dua"
- },
- {
-  "id": "hijr-97",
-  "surah": 15,
-  "from": 97,
-  "to": 99,
-  "theme": "peace"
- },
- {
-  "id": "nahl-97",
-  "surah": 16,
-  "from": 97,
-  "to": 97,
-  "theme": "hope"
- },
- {
-  "id": "isra-24",
-  "surah": 17,
-  "from": 23,
-  "to": 24,
-  "theme": "parents"
- },
- {
-  "id": "kahf-10",
-  "surah": 18,
-  "from": 10,
-  "to": 10,
-  "theme": "dua"
- },
- {
-  "id": "kahf-46",
-  "surah": 18,
-  "from": 46,
-  "to": 46,
-  "theme": "reflection"
- },
- {
-  "id": "taha-25",
-  "surah": 20,
-  "from": 25,
-  "to": 28,
-  "theme": "dua"
- },
- {
-  "id": "taha-46",
-  "surah": 20,
-  "from": 46,
-  "to": 46,
-  "theme": "tawakkul"
- },
- {
-  "id": "anbiya-83",
-  "surah": 21,
-  "from": 83,
-  "to": 84,
-  "theme": "dua"
- },
- {
-  "id": "anbiya-87",
-  "surah": 21,
-  "from": 87,
-  "to": 88,
-  "theme": "dua"
- },
- {
-  "id": "muminun-118",
-  "surah": 23,
-  "from": 118,
-  "to": 118,
-  "theme": "istighfar"
- },
- {
-  "id": "furqan-74",
-  "surah": 25,
-  "from": 74,
-  "to": 74,
-  "theme": "dua"
- },
- {
-  "id": "shuara-62",
-  "surah": 26,
-  "from": 61,
-  "to": 62,
-  "theme": "tawakkul"
- },
- {
-  "id": "shuara-78",
-  "surah": 26,
-  "from": 78,
-  "to": 82,
-  "theme": "tawakkul"
- },
- {
-  "id": "naml-62",
-  "surah": 27,
-  "from": 62,
-  "to": 62,
-  "theme": "dua"
- },
- {
-  "id": "qasas-24",
-  "surah": 28,
-  "from": 24,
-  "to": 24,
-  "theme": "dua"
- },
- {
-  "id": "ankabut-57",
-  "surah": 29,
-  "from": 57,
-  "to": 58,
-  "theme": "reflection"
- },
- {
-  "id": "ankabut-69",
-  "surah": 29,
-  "from": 69,
-  "to": 69,
-  "theme": "hope"
- },
- {
-  "id": "rum-21",
-  "surah": 30,
-  "from": 21,
-  "to": 21,
-  "theme": "reflection"
- },
- {
-  "id": "sajda-16",
-  "surah": 32,
-  "from": 16,
-  "to": 17,
-  "theme": "jannah"
- },
- {
-  "id": "ahzab-41",
-  "surah": 33,
-  "from": 41,
-  "to": 43,
-  "theme": "dhikr"
- },
- {
-  "id": "yasin-82",
-  "surah": 36,
-  "from": 82,
-  "to": 83,
-  "theme": "reflection"
- },
- {
-  "id": "zumar-53",
-  "surah": 39,
-  "from": 53,
-  "to": 53,
-  "theme": "mercy"
- },
- {
-  "id": "ghafir-60",
-  "surah": 40,
-  "from": 60,
-  "to": 60,
-  "theme": "dua"
- },
- {
-  "id": "ghafir-44",
-  "surah": 40,
-  "from": 44,
-  "to": 44,
-  "theme": "tawakkul"
- },
- {
-  "id": "shura-19",
-  "surah": 42,
-  "from": 19,
-  "to": 19,
-  "theme": "rizq"
- },
- {
-  "id": "rahman-1",
-  "surah": 55,
-  "from": 1,
-  "to": 13,
-  "theme": "reflection"
- },
- {
-  "id": "talaq-3",
-  "surah": 65,
-  "from": 3,
-  "to": 3,
-  "theme": "tawakkul"
- },
- {
-  "id": "mulk-1",
-  "surah": 67,
-  "from": 1,
-  "to": 4,
-  "theme": "reflection"
- },
- {
-  "id": "nuh-10",
-  "surah": 71,
-  "from": 10,
-  "to": 12,
-  "theme": "istighfar"
- },
- {
-  "id": "fajr-27",
-  "surah": 89,
-  "from": 27,
-  "to": 30,
-  "theme": "jannah"
- },
- {
-  "id": "duha",
-  "surah": 93,
-  "from": 1,
-  "to": 11,
-  "theme": "hope"
- },
- {
-  "id": "sharh",
-  "surah": 94,
-  "from": 1,
-  "to": 8,
-  "theme": "hope"
- },
- {
-  "id": "qadr",
-  "surah": 97,
-  "from": 1,
-  "to": 5,
-  "theme": "reflection"
- },
- {
-  "id": "asr",
-  "surah": 103,
-  "from": 1,
-  "to": 3,
-  "theme": "reflection"
- },
- {
-  "id": "ikhlas",
-  "surah": 112,
-  "from": 1,
-  "to": 4,
-  "theme": "tawheed"
- },
- {
-  "id": "falaq",
-  "surah": 113,
-  "from": 1,
-  "to": 5,
-  "theme": "protection"
- },
- {
-  "id": "nas",
-  "surah": 114,
-  "from": 1,
-  "to": 6,
-  "theme": "protection"
- },
- {
-  "id": "baqara-183",
-  "surah": 2,
-  "from": 183,
-  "to": 183,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "ramadan"
- },
- {
-  "id": "baqara-185",
-  "surah": 2,
-  "from": 185,
-  "to": 185,
-  "theme": "shukr",
-  "occasion_only": true,
-  "tag": "ramadan"
- },
- {
-  "id": "hajj-27",
-  "surah": 22,
-  "from": 27,
-  "to": 28,
-  "theme": "dhikr",
-  "occasion_only": true,
-  "tag": "hajj"
- },
- {
-  "id": "fajr-1",
-  "surah": 89,
-  "from": 1,
-  "to": 5,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "hajj"
- },
- {
-  "id": "kawthar",
-  "surah": 108,
-  "from": 1,
-  "to": 3,
-  "theme": "shukr",
-  "occasion_only": true,
-  "tag": "eid"
- },
- {
-  "id": "hajj-37",
-  "surah": 22,
-  "from": 37,
-  "to": 37,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "eid"
- },
- {
-  "id": "isra-1",
-  "surah": 17,
-  "from": 1,
-  "to": 1,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "isra"
- },
- {
-  "id": "ahzab-56",
-  "surah": 33,
-  "from": 56,
-  "to": 56,
-  "theme": "dhikr",
-  "occasion_only": true,
-  "tag": "prophet"
- },
- {
-  "id": "qalam-4",
-  "surah": 68,
-  "from": 4,
-  "to": 4,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "prophet"
- },
- {
-  "id": "kahf-1",
-  "surah": 18,
-  "from": 1,
-  "to": 3,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "friday"
- },
- {
-  "id": "kahf-109",
-  "surah": 18,
-  "from": 109,
-  "to": 109,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "friday"
- },
- {
-  "id": "jumua-9",
-  "surah": 62,
-  "from": 9,
-  "to": 10,
-  "theme": "dhikr",
-  "occasion_only": true,
-  "tag": "friday"
- },
- {
-  "id": "baqara-197",
-  "surah": 2,
-  "from": 197,
-  "to": 197,
-  "theme": "reflection",
-  "occasion_only": true,
-  "tag": "hajj"
- }
+  {"id":"fatiha","surah":1,"from":1,"to":7,"theme":"dua"},
+  {"id":"baqara-45","surah":2,"from":45,"to":46,"theme":"sabr"},
+  {"id":"baqara-152","surah":2,"from":152,"to":153,"theme":"dhikr"},
+  {"id":"baqara-155","surah":2,"from":155,"to":157,"theme":"sabr"},
+  {"id":"baqara-186","surah":2,"from":186,"to":186,"theme":"dua"},
+  {"id":"baqara-201","surah":2,"from":201,"to":201,"theme":"dua"},
+  {"id":"imran-8","surah":3,"from":8,"to":9,"theme":"dua"},
+  {"id":"imran-139","surah":3,"from":139,"to":139,"theme":"hope"},
+  {"id":"imran-173","surah":3,"from":173,"to":174,"theme":"tawakkul"},
+  {"id":"imran-190","surah":3,"from":190,"to":191,"theme":"reflection"},
+  {"id":"araf-23","surah":7,"from":23,"to":23,"theme":"tawba"},
+  {"id":"araf-55","surah":7,"from":55,"to":56,"theme":"mercy"},
+  {"id":"tawba-51","surah":9,"from":51,"to":51,"theme":"tawakkul"},
+  {"id":"yunus-62","surah":10,"from":62,"to":64,"theme":"hope"},
+  {"id":"hud-6","surah":11,"from":6,"to":6,"theme":"rizq"},
+  {"id":"yusuf-86","surah":12,"from":86,"to":87,"theme":"hope"},
+  {"id":"raad-28","surah":13,"from":28,"to":29,"theme":"peace"},
+  {"id":"ibrahim-7","surah":14,"from":7,"to":7,"theme":"shukr"},
+  {"id":"ibrahim-40","surah":14,"from":40,"to":41,"theme":"dua"},
+  {"id":"hijr-97","surah":15,"from":97,"to":99,"theme":"peace"},
+  {"id":"nahl-97","surah":16,"from":97,"to":97,"theme":"hope"},
+  {"id":"isra-24","surah":17,"from":23,"to":24,"theme":"parents"},
+  {"id":"kahf-10","surah":18,"from":10,"to":10,"theme":"dua"},
+  {"id":"kahf-46","surah":18,"from":46,"to":46,"theme":"reflection"},
+  {"id":"taha-25","surah":20,"from":25,"to":28,"theme":"dua"},
+  {"id":"taha-46","surah":20,"from":46,"to":46,"theme":"tawakkul"},
+  {"id":"anbiya-83","surah":21,"from":83,"to":84,"theme":"dua"},
+  {"id":"anbiya-87","surah":21,"from":87,"to":88,"theme":"dua"},
+  {"id":"muminun-118","surah":23,"from":118,"to":118,"theme":"istighfar"},
+  {"id":"furqan-74","surah":25,"from":74,"to":74,"theme":"dua"},
+  {"id":"shuara-62","surah":26,"from":61,"to":62,"theme":"tawakkul"},
+  {"id":"shuara-78","surah":26,"from":78,"to":82,"theme":"tawakkul"},
+  {"id":"naml-62","surah":27,"from":62,"to":62,"theme":"dua"},
+  {"id":"qasas-24","surah":28,"from":24,"to":24,"theme":"dua"},
+  {"id":"ankabut-57","surah":29,"from":57,"to":58,"theme":"reflection"},
+  {"id":"ankabut-69","surah":29,"from":69,"to":69,"theme":"hope"},
+  {"id":"rum-21","surah":30,"from":21,"to":21,"theme":"reflection"},
+  {"id":"sajda-16","surah":32,"from":16,"to":17,"theme":"jannah"},
+  {"id":"ahzab-41","surah":33,"from":41,"to":43,"theme":"dhikr"},
+  {"id":"yasin-82","surah":36,"from":82,"to":83,"theme":"reflection"},
+  {"id":"zumar-53","surah":39,"from":53,"to":53,"theme":"mercy"},
+  {"id":"ghafir-60","surah":40,"from":60,"to":60,"theme":"dua"},
+  {"id":"ghafir-44","surah":40,"from":44,"to":44,"theme":"tawakkul"},
+  {"id":"shura-19","surah":42,"from":19,"to":19,"theme":"rizq"},
+  {"id":"rahman-1","surah":55,"from":1,"to":13,"theme":"reflection"},
+  {"id":"talaq-3","surah":65,"from":3,"to":3,"theme":"tawakkul"},
+  {"id":"mulk-1","surah":67,"from":1,"to":4,"theme":"reflection"},
+  {"id":"nuh-10","surah":71,"from":10,"to":12,"theme":"istighfar"},
+  {"id":"fajr-27","surah":89,"from":27,"to":30,"theme":"jannah"},
+  {"id":"duha","surah":93,"from":1,"to":11,"theme":"hope"},
+  {"id":"sharh","surah":94,"from":1,"to":8,"theme":"hope"},
+  {"id":"qadr","surah":97,"from":1,"to":5,"theme":"reflection"},
+  {"id":"asr","surah":103,"from":1,"to":3,"theme":"reflection"},
+  {"id":"ikhlas","surah":112,"from":1,"to":4,"theme":"tawheed"},
+  {"id":"falaq","surah":113,"from":1,"to":5,"theme":"protection"},
+  {"id":"nas","surah":114,"from":1,"to":6,"theme":"protection"},
+  {"id":"baqara-183","surah":2,"from":183,"to":183,"theme":"reflection","occasion_only":true,"tag":"ramadan"},
+  {"id":"baqara-185","surah":2,"from":185,"to":185,"theme":"shukr","occasion_only":true,"tag":"ramadan"},
+  {"id":"hajj-27","surah":22,"from":27,"to":28,"theme":"dhikr","occasion_only":true,"tag":"hajj"},
+  {"id":"fajr-1","surah":89,"from":1,"to":5,"theme":"reflection","occasion_only":true,"tag":"hajj"},
+  {"id":"kawthar","surah":108,"from":1,"to":3,"theme":"shukr","occasion_only":true,"tag":"eid"},
+  {"id":"hajj-37","surah":22,"from":37,"to":37,"theme":"reflection","occasion_only":true,"tag":"eid"},
+  {"id":"isra-1","surah":17,"from":1,"to":1,"theme":"reflection","occasion_only":true,"tag":"isra"},
+  {"id":"ahzab-56","surah":33,"from":56,"to":56,"theme":"dhikr","occasion_only":true,"tag":"prophet"},
+  {"id":"qalam-4","surah":68,"from":4,"to":4,"theme":"reflection","occasion_only":true,"tag":"prophet"},
+  {"id":"kahf-1","surah":18,"from":1,"to":3,"theme":"reflection","occasion_only":true,"tag":"friday"},
+  {"id":"kahf-109","surah":18,"from":109,"to":109,"theme":"reflection","occasion_only":true,"tag":"friday"},
+  {"id":"jumua-9","surah":62,"from":9,"to":10,"theme":"dhikr","occasion_only":true,"tag":"friday"},
+  {"id":"baqara-197","surah":2,"from":197,"to":197,"theme":"reflection","occasion_only":true,"tag":"hajj"},
+  {"id":"q2-153","surah":2,"from":153,"to":153},
+  {"id":"q2-255","surah":2,"from":255,"to":255},
+  {"id":"q2-286","surah":2,"from":286,"to":286},
+  {"id":"q3-26","surah":3,"from":26,"to":26},
+  {"id":"q3-31","surah":3,"from":31,"to":31},
+  {"id":"q3-92","surah":3,"from":92,"to":92},
+  {"id":"q3-134","surah":3,"from":134,"to":134},
+  {"id":"q3-159","surah":3,"from":159,"to":159},
+  {"id":"q3-185","surah":3,"from":185,"to":185},
+  {"id":"q4-28","surah":4,"from":28,"to":28},
+  {"id":"q4-110","surah":4,"from":110,"to":110},
+  {"id":"q5-8","surah":5,"from":8,"to":8},
+  {"id":"q6-59","surah":6,"from":59,"to":59},
+  {"id":"q6-162","surah":6,"from":162,"to":162},
+  {"id":"q7-56","surah":7,"from":56,"to":56},
+  {"id":"q7-199","surah":7,"from":199,"to":199},
+  {"id":"q8-46","surah":8,"from":46,"to":46},
+  {"id":"q10-57","surah":10,"from":57,"to":57},
+  {"id":"q10-107","surah":10,"from":107,"to":107},
+  {"id":"q11-88","surah":11,"from":88,"to":88},
+  {"id":"q11-115","surah":11,"from":115,"to":115},
+  {"id":"q12-87","surah":12,"from":87,"to":87},
+  {"id":"q13-24","surah":13,"from":24,"to":24},
+  {"id":"q14-34","surah":14,"from":34,"to":34},
+  {"id":"q16-18","surah":16,"from":18,"to":18},
+  {"id":"q16-53","surah":16,"from":53,"to":53},
+  {"id":"q16-90","surah":16,"from":90,"to":90},
+  {"id":"q16-128","surah":16,"from":128,"to":128},
+  {"id":"q17-44","surah":17,"from":44,"to":44},
+  {"id":"q17-80","surah":17,"from":80,"to":80},
+  {"id":"q17-82","surah":17,"from":82,"to":82},
+  {"id":"q19-96","surah":19,"from":96,"to":96},
+  {"id":"q20-114","surah":20,"from":114,"to":114},
+  {"id":"q20-130","surah":20,"from":130,"to":130},
+  {"id":"q21-35","surah":21,"from":35,"to":35},
+  {"id":"q23-1","surah":23,"from":1,"to":2},
+  {"id":"q24-22","surah":24,"from":22,"to":22},
+  {"id":"q24-35","surah":24,"from":35,"to":35},
+  {"id":"q25-63","surah":25,"from":63,"to":63},
+  {"id":"q28-77","surah":28,"from":77,"to":77},
+  {"id":"q29-45","surah":29,"from":45,"to":45},
+  {"id":"q31-18","surah":31,"from":18,"to":19},
+  {"id":"q33-70","surah":33,"from":70,"to":71},
+  {"id":"q35-34","surah":35,"from":34,"to":34},
+  {"id":"q39-10","surah":39,"from":10,"to":10},
+  {"id":"q39-36","surah":39,"from":36,"to":36},
+  {"id":"q41-34","surah":41,"from":34,"to":34},
+  {"id":"q45-13","surah":45,"from":13,"to":13},
+  {"id":"q47-7","surah":47,"from":7,"to":7},
+  {"id":"q48-4","surah":48,"from":4,"to":4},
+  {"id":"q49-10","surah":49,"from":10,"to":10},
+  {"id":"q49-13","surah":49,"from":13,"to":13},
+  {"id":"q50-16","surah":50,"from":16,"to":16},
+  {"id":"q51-56","surah":51,"from":56,"to":56},
+  {"id":"q52-48","surah":52,"from":48,"to":48},
+  {"id":"q53-39","surah":53,"from":39,"to":40},
+  {"id":"q54-17","surah":54,"from":17,"to":17},
+  {"id":"q55-13","surah":55,"from":13,"to":13},
+  {"id":"q55-26","surah":55,"from":26,"to":27},
+  {"id":"q57-4","surah":57,"from":4,"to":4},
+  {"id":"q57-22","surah":57,"from":22,"to":23},
+  {"id":"q58-11","surah":58,"from":11,"to":11},
+  {"id":"q59-22","surah":59,"from":22,"to":22},
+  {"id":"q64-11","surah":64,"from":11,"to":11},
+  {"id":"q64-16","surah":64,"from":16,"to":16},
+  {"id":"q65-2","surah":65,"from":2,"to":3},
+  {"id":"q65-7","surah":65,"from":7,"to":7},
+  {"id":"q70-5","surah":70,"from":5,"to":5},
+  {"id":"q73-8","surah":73,"from":8,"to":8},
+  {"id":"q76-8","surah":76,"from":8,"to":9},
+  {"id":"q84-6","surah":84,"from":6,"to":6},
+  {"id":"q93-3","surah":93,"from":3,"to":5},
+  {"id":"q94-5","surah":94,"from":5,"to":6},
+  {"id":"q94-7","surah":94,"from":7,"to":8},
+  {"id":"q95-4","surah":95,"from":4,"to":4},
+  {"id":"q99-7","surah":99,"from":7,"to":8}
 ]
