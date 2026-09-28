@@ -29,11 +29,11 @@ jobs:
           # percent-encode every character so GitHub's secret masking doesn't hide the (non-secret) client ids
           enc() { printf '%s' "$1" | od -An -tx1 | tr -d ' \n' | sed 's/\(..\)/%\1/g'; }
           YT_ID=$(enc "$YT_ID"); TT_KEY=$(enc "$TT_KEY")
-          YT="https://accounts.google.com/o/oauth2/v2/auth?client_id=${YT_ID}&redirect_uri=http%3A%2F%2F127.0.0.1%3A8765%2F&response_type=code&access_type=offline&prompt=consent%20select_account&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.upload%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly"
+          YT="https://accounts.google.com/o/oauth2/v2/auth?client_id=${YT_ID}&redirect_uri=https%3A%2F%2Fobelixagency.github.io%2Fdaily-sakina%2Fcallback.html&response_type=code&access_type=offline&prompt=consent%20select_account&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.upload%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly"
           TT="https://www.tiktok.com/v2/auth/authorize/?client_key=${TT_KEY}&scope=user.info.basic,video.upload&response_type=code&redirect_uri=https%3A%2F%2Fobelixagency.github.io%2Fdaily-sakina%2Fcallback.html&state=serenity"
           {
             echo "## Daily Serenity – sign-in links"
-            echo "**YouTube** (choose the Daily Serenity channel; the last page won't load — copy the \`code=\` value from the address bar):"
+            echo "**YouTube** (choose the Daily Serenity channel; then copy the code shown on the Daily Sakina page):"
             echo "$YT"
             echo
             echo "**TikTok** (sign in with @dailyserenityQSD):"
@@ -49,7 +49,7 @@ jobs:
         run: |
           RES=$(curl -s -X POST https://oauth2.googleapis.com/token \
             --data-urlencode "code=$CODE" --data-urlencode "client_id=$YT_ID" --data-urlencode "client_secret=$YT_SECRET" \
-            --data-urlencode "redirect_uri=http://127.0.0.1:8765/" --data-urlencode "grant_type=authorization_code")
+            --data-urlencode "redirect_uri=https://obelixagency.github.io/daily-sakina/callback.html" --data-urlencode "grant_type=authorization_code")
           RT=$(echo "$RES" | jq -r '.refresh_token // empty'); AT=$(echo "$RES" | jq -r '.access_token // empty')
           [ -n "$RT" ] || { echo "$RES" | jq 'del(.access_token)'; exit 1; }
           CH=$(curl -s -H "Authorization: Bearer $AT" "https://www.googleapis.com/youtube/v3/channels?part=id,snippet&mine=true")
