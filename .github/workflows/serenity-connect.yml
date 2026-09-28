@@ -23,7 +23,7 @@ jobs:
       - name: Sign-in links
         if: inputs.action == 'links'
         env:
-          YT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
           TT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
         run: |
           # percent-encode every character so GitHub's secret masking doesn't hide the (non-secret) client ids
@@ -43,8 +43,8 @@ jobs:
       - name: YouTube code → refresh token
         if: inputs.action == 'youtube'
         env:
-          YT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
+          YT_SECRET: ${{ secrets.EN_YT_CLIENT_SECRET || secrets.YT_CLIENT_SECRET }}
           CODE: ${{ inputs.value }}
         run: |
           RES=$(curl -s -X POST https://oauth2.googleapis.com/token \

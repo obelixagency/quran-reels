@@ -105,8 +105,8 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN: ${{ secrets.EN_TIKTOK_REFRESH_TOKEN }}
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.EN_YT_CLIENT_SECRET || secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.EN_YT_REFRESH_TOKEN }}
           YT_CHANNEL_ID: ${{ secrets.EN_YT_CHANNEL_ID }}
         run: |
