@@ -22,14 +22,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  guard:
-    # GitHub sometimes skips or delays scheduled runs, so the time slot has 3 cron times
-    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+  post:
     runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.check.outputs.skip }}
+    timeout-minutes: 15
     steps:
-      - id: check
+      - name: Guard (skip if this time slot already went out)
+        id: guard
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -45,15 +43,11 @@ jobs:
           echo "successful scheduled runs since $SINCE: $N"
           if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
 
-  post:
-    needs: guard
-    if: needs.guard.outputs.skip != '1'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
       - uses: actions/checkout@v4
+        if: steps.guard.outputs.skip != '1'
 
       - name: Decide what to run
+        if: steps.guard.outputs.skip != '1'
         id: plan
         run: |
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
@@ -68,17 +62,17 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
-        if: steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         with:
           python-version: "3.12"
           cache: pip
 
       - name: Install
-        if: steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         run: pip install -r requirements.txt && python -m src.en.setup_data
 
       - name: Generate & publish post
-        if: steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
@@ -87,7 +81,7 @@ jobs:
         run: python -m src.en.posts ${{ steps.plan.outputs.args }}
 
       - name: Save images & caption
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         uses: actions/upload-artifact@v4
         with:
           name: serenity-post-${{ github.run_number }}
@@ -97,7 +91,7 @@ jobs:
           retention-days: 7
 
       - name: Save history
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         run: |
           if [ -n "$(git status --porcelain posts_history_en.json)" ]; then
             git config user.name "quran-reels-bot"

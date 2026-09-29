@@ -32,14 +32,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  guard:
-    # GitHub sometimes skips or delays scheduled runs, so every time slot has 3 cron times
-    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+  reel:
     runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.check.outputs.skip }}
+    timeout-minutes: 60
     steps:
-      - id: check
+      - name: Guard (skip if this time slot already went out)
+        id: guard
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -57,15 +55,11 @@ jobs:
           echo "successful scheduled runs since $SINCE: $N"
           if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
 
-  reel:
-    needs: guard
-    if: needs.guard.outputs.skip != '1'
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
       - uses: actions/checkout@v4
+        if: steps.guard.outputs.skip != '1'
 
       - name: Decide what to run
+        if: steps.guard.outputs.skip != '1'
         id: plan
         run: |
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
@@ -82,15 +76,15 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
-        if: steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         with:
           python-version: "3.12"
           cache: pip
-      - if: steps.plan.outputs.skip != '1'
+      - if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         run: sudo apt-get update && sudo apt-get install -y ffmpeg libraqm0 libfribidi0 libharfbuzz0b && pip install -r requirements.txt -r requirements-en.txt
 
       - name: Generate (and publish)
-        if: steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (steps.plan.outputs.skip != '1')
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
@@ -110,7 +104,7 @@ jobs:
           eval python -m src.en.main ${{ steps.plan.outputs.args }}
 
       - name: Save reel & captions (download from the run page)
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         uses: actions/upload-artifact@v4
         with:
           name: serenity-${{ github.run_number }}
@@ -122,7 +116,7 @@ jobs:
           retention-days: 14
 
       - name: TikTok caption (summary + GitHub notification)
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -139,7 +133,7 @@ jobs:
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT)
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
@@ -148,7 +142,7 @@ jobs:
           fi
 
       - name: Save history & audio timings
-        if: always() && steps.plan.outputs.skip != '1'
+        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         run: |
           git config user.name "quran-reels-bot"
           git config user.email "actions@users.noreply.github.com"

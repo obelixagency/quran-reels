@@ -23,14 +23,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  guard:
-    # GitHub sometimes skips or delays scheduled runs, so every time slot has 3 cron times
-    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+  short:
     runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.check.outputs.skip }}
+    timeout-minutes: 20
     steps:
-      - id: check
+      - name: Guard (skip if this time slot already went out)
+        id: guard
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -48,26 +46,25 @@ jobs:
           echo "successful scheduled runs since $SINCE: $N"
           if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
 
-  short:
-    needs: guard
-    if: needs.guard.outputs.skip != '1'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
       - uses: actions/checkout@v4
+        if: steps.guard.outputs.skip != '1'
 
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != '1'
         with:
           python-version: "3.12"
           cache: pip
 
       - name: Install FFmpeg & Arabic text shaping
+        if: steps.guard.outputs.skip != '1'
         run: sudo apt-get update && sudo apt-get install -y ffmpeg libraqm0 libfribidi0 libharfbuzz0b
 
       - name: Install Python packages
+        if: steps.guard.outputs.skip != '1'
         run: pip install -r requirements.txt
 
       - name: Generate & publish short
+        if: steps.guard.outputs.skip != '1'
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
@@ -87,7 +84,7 @@ jobs:
           fi
 
       - name: Save video & captions
-        if: always()
+        if: steps.guard.outputs.skip != '1' && (always())
         uses: actions/upload-artifact@v4
         with:
           name: short-${{ github.run_number }}
@@ -97,7 +94,7 @@ jobs:
           retention-days: 7
 
       - name: TikTok reminder (GitHub notification with the caption)
-        if: always()
+        if: steps.guard.outputs.skip != '1' && (always())
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -116,7 +113,7 @@ jobs:
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)
-        if: always()
+        if: steps.guard.outputs.skip != '1' && (always())
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
@@ -125,7 +122,7 @@ jobs:
           fi
 
       - name: Save history
-        if: always()
+        if: steps.guard.outputs.skip != '1' && (always())
         run: |
           if [ -n "$(git status --porcelain shorts_history.json)" ]; then
             git config user.name "quran-reels-bot"
