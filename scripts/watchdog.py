@@ -47,6 +47,7 @@ WORKFLOWS = {
     "daily-short.yml": lambda h: ({"publish": "true"}, "فيديو دعاء/حديث – تيك توك ويوتيوب (عربي)"),
     "serenity-adhkar.yml": lambda h: ({"session": "morning" if h < 16 else "evening", "publish": "true"},
                                       "Adhkar " + ("morning" if h < 16 else "evening") + " (EN)"),
+    "serenity-post.yml": lambda h: ({"publish": "true"}, "Daily post / carousel (EN)"),
     "serenity-reels.yml": lambda h: ({"kind": "recited" if 12 <= h <= 14 else "quran" if 15 <= h <= 20 else "sunnah",
                                       "publish": "true"},
                                      ("Recited Quran reel" if 12 <= h <= 14 else "Quran reel" if 15 <= h <= 20
