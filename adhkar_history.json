@@ -167,6 +167,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-09-29T13:47:03+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "kalimat",
+        "sayyid"
+      ],
+      "background": "pexels:38152723",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2647579942357684"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18113991938105528"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1706932281060559"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18091354217195184"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1134360812361545"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17864514153678309"
+          }
+        }
+      ]
     }
   ]
 }
