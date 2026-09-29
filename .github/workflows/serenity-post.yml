@@ -1,0 +1,111 @@
+name: Daily Serenity – daily post / carousel
+
+on:
+  schedule:
+    # 15:07 UTC ≈ 11am New York / 4pm London / 8:30pm India. Alternates: image post <-> carousel.
+    - cron: "7 15 * * *"
+    - cron: "37 15 * * *"   # backup
+    - cron: "7 16 * * *"    # backup
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish? (false = images only, download from the run page)"
+        default: "false"
+      kind:
+        description: "post / carousel (empty = alternate automatically)"
+        default: ""
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: serenity-post
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    # GitHub sometimes skips or delays scheduled runs, so the time slot has 3 cron times
+    # (+0 / +30 / +60 min). The first one that succeeds posts; the others stop here.
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "skip=0" >> $GITHUB_OUTPUT; exit 0; fi
+          CRON='${{ github.event.schedule }}'
+          EXP=$(date -u -d "$(date -u +%F) $(echo "$CRON" | awk '{printf "%02d:%02d", $2, $1}')" +%s); NOW=$(date -u +%s)
+          if [ "$EXP" -gt "$NOW" ]; then EXP=$((EXP - 86400)); fi
+          LATE=$(( (NOW - EXP) / 60 )); echo "cron $CRON started $LATE min late"
+          if [ "$LATE" -gt 90 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Too late for this time slot - skipping."; exit 0; fi
+          WF=$(basename "${GITHUB_WORKFLOW_REF%@*}")
+          SINCE=$(date -u -d '-150 min' +%Y-%m-%dT%H:%M:%SZ)
+          N=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$WF/runs?status=success&created=>=$SINCE" --jq '[.workflow_runs[] | select(.event=="schedule" or .triggering_actor.login=="github-actions[bot]")] | length' || echo 0)
+          echo "successful scheduled runs since $SINCE: $N"
+          if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
+
+  post:
+    needs: guard
+    if: needs.guard.outputs.skip != '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide what to run
+        id: plan
+        run: |
+          EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
+            echo "args=--publish" >> $GITHUB_OUTPUT
+          else
+            A=""
+            if [ "${{ inputs.publish }}" = "true" ]; then A="$A --publish"; fi
+            if [ -n "${{ inputs.kind }}" ]; then A="$A --kind ${{ inputs.kind }}"; fi
+            echo "args=$A" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.plan.outputs.skip != '1'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        if: steps.plan.outputs.skip != '1'
+        run: pip install -r requirements.txt && python -m src.en.setup_data
+
+      - name: Generate & publish post
+        if: steps.plan.outputs.skip != '1'
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.EN_IG_USER_ID }}
+        run: python -m src.en.posts ${{ steps.plan.outputs.args }}
+
+      - name: Save images & caption
+        if: always() && steps.plan.outputs.skip != '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-post-${{ github.run_number }}
+          path: |
+            out_en_post/*.jpg
+            out_en_post/caption.txt
+          retention-days: 7
+
+      - name: Save history
+        if: always() && steps.plan.outputs.skip != '1'
+        run: |
+          if [ -n "$(git status --porcelain posts_history_en.json)" ]; then
+            git config user.name "quran-reels-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add posts_history_en.json
+            git commit -m "serenity post history: ${{ github.run_number }}"
+            git pull --rebase
+            git push
+          fi
