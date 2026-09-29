@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "date": "2026-09-29T15:28:32+00:00",
+      "kind": "post",
+      "id": "ph25",
+      "ids": [
+        "ph25"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Say this today",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:39708803",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122105245983487311",
+          "post_id": "1361268837065768_122105246019487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18061734785623932"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1610842440577848"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18131101921706728"
+        }
+      }
+    }
+  ]
+}
