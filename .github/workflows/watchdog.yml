@@ -1,8 +1,6 @@
 name: Watchdog – make sure every post went out
 
 on:
-  schedule:
-    - cron: "5,35 * * * *"
   workflow_dispatch:
 
 permissions:

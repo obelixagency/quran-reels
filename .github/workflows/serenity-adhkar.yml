@@ -4,11 +4,7 @@ on:
   schedule:
     # UTC. Morning ≈ 6am New York / 11am London; evening ≈ 5pm New York / 10pm London.
     - cron: "13 10 * * *"
-    - cron: "43 10 * * *"   # backup
-    - cron: "13 11 * * *"   # backup
     - cron: "13 21 * * *"
-    - cron: "43 21 * * *"   # backup
-    - cron: "13 22 * * *"   # backup
   workflow_dispatch:
     inputs:
       session:

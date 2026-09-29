@@ -4,15 +4,9 @@ on:
   schedule:
     # Arabic recitation + English translation reel ≈ 3:37pm Cairo / 6pm India / 8:37am New York
     - cron: "37 12 * * *"
-    - cron: "7 13 * * *"   # backup
-    - cron: "37 13 * * *"   # backup
     # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 7:30pm New York.
     - cron: "7 17 * * *"
-    - cron: "37 17 * * *"   # backup
-    - cron: "7 18 * * *"   # backup
     - cron: "37 23 * * *"
-    - cron: "7 0 * * *"   # backup
-    - cron: "37 0 * * *"   # backup
   workflow_dispatch:
     inputs:
       kind:

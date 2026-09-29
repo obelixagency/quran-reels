@@ -4,11 +4,7 @@ on:
   schedule:
     # أذكار الصباح ~06:23 القاهرة | أذكار المساء ~16:23 القاهرة (بعد العصر)
     - cron: "23 3 * * *"
-    - cron: "53 3 * * *"   # backup
-    - cron: "23 4 * * *"   # backup
     - cron: "23 13 * * *"
-    - cron: "53 13 * * *"   # backup
-    - cron: "23 14 * * *"   # backup
   workflow_dispatch:
     inputs:
       session:

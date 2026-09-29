@@ -4,8 +4,6 @@ on:
   schedule:
     # 09:37 UTC ≈ 12:37 Cairo (summer)
     - cron: "37 9 * * *"
-    - cron: "7 10 * * *"   # backup
-    - cron: "37 10 * * *"   # backup
   workflow_dispatch:
     inputs:
       publish:
