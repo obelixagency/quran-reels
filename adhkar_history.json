@@ -125,6 +125,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-09-29T06:59:22+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "bika_m",
+        "subhan100"
+      ],
+      "background": "pexels:35011986",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1608104690769917"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17993679200844309"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1437279271685760"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18464772139138947"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1650185616439355"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18109311320268672"
+          }
+        }
+      ]
     }
   ]
 }
