@@ -31,6 +31,40 @@
           "story_id": "18131101921706728"
         }
       }
+    },
+    {
+      "date": "2026-09-30T16:11:18+00:00",
+      "kind": "carousel",
+      "id": "n22",
+      "ids": [
+        "n22",
+        "n7",
+        "h2",
+        "h14"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:37682745",
+      "results": {
+        "facebook": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'A7i02qIbiEFB2hE9FLRzdZq'}}"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Ags0Db949Rsrmg577osUj_r'}}"
+        },
+        "facebook_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'A5iWnM9N-Xj41qE"
+        },
+        "instagram_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Aiw0h7Vhc7jAMad"
+        }
+      }
     }
   ]
 }
