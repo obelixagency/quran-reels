@@ -86,18 +86,37 @@ def open_issue(title, body):
                   json={"title": title, "body": body, "labels": ["watchdog"]}).raise_for_status()
 
 
+# the file each workflow saves after it really published something
+HIST = {"daily-adhkar.yml": "adhkar_history.json", "daily-post.yml": "posts_history.json",
+        "daily-reel.yml": "history.json", "daily-short.yml": "shorts_history.json",
+        "serenity-adhkar.yml": "adhkar_history_en.json", "serenity-post.yml": "posts_history_en.json",
+        "serenity-reels.yml": "history_en.json"}
+
+
+def posted_since(path, since):
+    r = requests.get(f"{API}/commits", headers=H, timeout=30,
+                     params={"path": path, "since": since.strftime("%Y-%m-%dT%H:%M:%SZ"), "per_page": 5})
+    r.raise_for_status()
+    return len(r.json()) > 0
+
+
 def check(wf, hour, minute):
     inputs, label = WORKFLOWS[wf](hour)
     slot = last_slot(hour, minute)
     age = (NOW - slot).total_seconds() / 60
     if not 20 <= age <= 360:
         return
-    runs = runs_since(wf, slot - dt.timedelta(minutes=15))
-    ok = [r for r in runs if r["conclusion"] == "success" or r["status"] in ("queued", "in_progress", "waiting", "pending", "requested")]
-    if ok:
-        log(f"✅ {label} {slot:%H:%M} UTC – ok ({ok[0]['event']})")
+    since = slot - dt.timedelta(minutes=15)
+    if posted_since(HIST[wf], since):
+        log(f"✅ {label} {slot:%H:%M} UTC – posted")
         return
-    mine = [r for r in runs if r["event"] == "workflow_dispatch" and (r.get("triggering_actor") or {}).get("login") == "github-actions[bot]"]
+    runs = runs_since(wf, since)
+    active = [r for r in runs if r["status"] in ("queued", "in_progress", "waiting", "pending", "requested")]
+    if active:
+        log(f"⏳ {label} {slot:%H:%M} UTC – running now")
+        return
+    mine = [r for r in runs if r["event"] == "workflow_dispatch" and r["status"] == "completed"
+            and (r.get("triggering_actor") or {}).get("login") == "github-actions[bot]"]
     if mine:
         log(f"❌ {label} {slot:%H:%M} UTC – retry by the watchdog failed: {mine[0]['html_url']}")
         open_issue(f"⚠️ لم يُنشر: {label} – {slot:%Y-%m-%d}",
