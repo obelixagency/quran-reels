@@ -65,6 +65,41 @@
           "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Aiw0h7Vhc7jAMad"
         }
       }
+    },
+    {
+      "date": "2026-09-30T19:26:14+00:00",
+      "kind": "carousel",
+      "id": "d18",
+      "ids": [
+        "d18",
+        "ph55",
+        "y1",
+        "ph128"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:18822381",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122106286383487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18464302027187936",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1744692940121085"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17983194147081137"
+        }
+      }
     }
   ]
 }
