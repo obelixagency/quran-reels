@@ -130,6 +130,7 @@ jobs:
             done
             gh issue create --repo "${{ github.repository }}" --label serenity-tiktok \
               --title "📱 Post on TikTok (EN) – $(TZ=Africa/Cairo date +'%Y-%m-%d %H:%M')" --body-file "$f"
+            curl -s -m 20 -H "Title: TikTok - English reel" -H "Tags: iphone" --data-binary @"$f" "https://ntfy.sh/sakina-tiktok-oaalds6eun" >/dev/null || true
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT)

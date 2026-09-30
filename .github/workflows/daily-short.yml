@@ -110,6 +110,7 @@ jobs:
             done
             gh issue create --repo "${{ github.repository }}" --label tiktok-short \
               --title "📱 انشر على تيك توك (عربي – دعاء/حديث) – $(TZ=Africa/Cairo date +'%Y-%m-%d %H:%M')" --body-file "$f"
+            curl -s -m 20 -H "Title: TikTok - Arabic short" -H "Tags: iphone" --data-binary @"$f" "https://ntfy.sh/sakina-tiktok-oaalds6eun" >/dev/null || true
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)
