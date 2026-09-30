@@ -267,6 +267,51 @@
           "story_id": "17972441078947668"
         }
       }
+    },
+    {
+      "date": "2026-09-30T16:14:41+00:00",
+      "passage_id": "taha-25",
+      "surah": 20,
+      "ayahs": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "reciter": "abdulbasit",
+      "background": "pexels:28074394",
+      "results": {
+        "facebook": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'AIQLZDynhIQf4E6ufX4nblL'}}"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Ac8MFqSQ8m9txl17x6owPeO'}}"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7691362079246010388",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "WBFKj6Sjus0",
+          "url": "https://youtube.com/shorts/WBFKj6Sjus0",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        },
+        "facebook_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'AqUEPM1T4ZBDyQm"
+        },
+        "instagram_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'A9wGuOoBdRTCTl1"
+        }
+      }
     }
   ]
 }
