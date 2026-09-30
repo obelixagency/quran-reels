@@ -41,9 +41,9 @@ jobs:
           LATE=$(( (NOW - EXP) / 60 )); echo "cron $CRON started $LATE min late"
           if [ "$LATE" -gt 90 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Too late for this time slot - skipping."; exit 0; fi
           WF=$(basename "${GITHUB_WORKFLOW_REF%@*}")
-          SINCE=$(date -u -d '-150 min' +%Y-%m-%dT%H:%M:%SZ)
-          N=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$WF/runs?status=success&created=>=$SINCE" --jq '[.workflow_runs[] | select(.event=="schedule" or .triggering_actor.login=="github-actions[bot]")] | length' || echo 0)
-          echo "successful scheduled runs since $SINCE: $N"
+          SINCE=$(date -u -d "@$((EXP - 600))" +%Y-%m-%dT%H:%M:%SZ)
+          N=$(gh api "repos/$GITHUB_REPOSITORY/commits?path=adhkar_history.json&since=$SINCE" --jq length || echo 0)
+          echo "posts saved for this time slot (since $SINCE): $N"
           if [ "$N" -gt 0 ]; then echo "skip=1" >> $GITHUB_OUTPUT; echo "Already posted for this time slot - skipping."; else echo "skip=0" >> $GITHUB_OUTPUT; fi
 
       - uses: actions/checkout@v4
