@@ -100,6 +100,38 @@
           "story_id": "17983194147081137"
         }
       }
+    },
+    {
+      "date": "2026-10-01T16:11:55+00:00",
+      "kind": "post",
+      "id": "h16",
+      "ids": [
+        "h16"
+      ],
+      "type": "hadith",
+      "set": null,
+      "hook": "Words of the Prophet ﷺ for your day",
+      "cta": "Follow for a daily reminder 🌙",
+      "background": "pexels:17092847",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122107075647487311",
+          "post_id": "1361268837065768_122107075671487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18093852554405302"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1092828189897672"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18096308477562306"
+        }
+      }
     }
   ]
 }
