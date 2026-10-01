@@ -1,0 +1,36 @@
+name: Send a video to the phone (ntfy)
+
+# Re-sends the newest video of a workflow (or of a given run) to the ntfy topic, with its TikTok caption.
+on:
+  workflow_dispatch:
+    inputs:
+      workflow:
+        description: "daily-reel / daily-short / serenity-reels"
+        default: "daily-short"
+      run_id:
+        description: "Run id (empty = the newest successful run of that workflow)"
+        default: ""
+
+permissions:
+  actions: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          R: ${{ github.repository }}
+          W: ${{ inputs.workflow }}
+        run: |
+          ID="${{ inputs.run_id }}"
+          [ -n "$ID" ] || ID=$(gh run list -R "$R" -w "$W.yml" --status success -L 1 --json databaseId -q '.[0].databaseId')
+          echo "run $ID"
+          mkdir a && gh run download "$ID" -R "$R" -D a
+          v=$(find a -name reel.mp4 | head -1); c=$(find a -name caption_tiktok.txt | head -1)
+          [ -n "$v" ] || { echo "no video in that run"; exit 1; }
+          case "$W" in daily-reel) T="Arabic reel"; N=sakina-reel;; daily-short) T="Arabic short"; N=sakina-short;; *) T="English reel"; N=serenity-reel;; esac
+          [ -n "$c" ] && curl -s -m 20 -H "Title: TikTok - $T" -H "Tags: iphone" --data-binary @"$c" "https://ntfy.sh/sakina-tiktok-oaalds6eun" >/dev/null
+          ls -la "$v"
+          if [ "$(stat -c%s "$v")" -gt 14500000 ]; then sudo apt-get install -y -q ffmpeg >/dev/null && ffmpeg -y -loglevel error -i "$v" -c:v libx264 -crf 27 -preset veryfast -c:a aac -b:a 96k -movflags +faststart small.mp4 && v=small.mp4; fi
+          curl -sS -m 180 -T "$v" -H "Filename: $N-$(TZ=Africa/Cairo date +%m%d-%H%M).mp4" -H "Title: Video - $T" -H "Tags: movie_camera" "https://ntfy.sh/sakina-tiktok-oaalds6eun"
