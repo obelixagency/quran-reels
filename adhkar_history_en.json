@@ -293,6 +293,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-01T22:12:16+00:00",
+      "session": "evening",
+      "ids": [
+        "ayat-al-kursi",
+        "evening-2709",
+        "subhanallah-100"
+      ],
+      "background": "pexels:27243769",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1357619362842709"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18084679118701672"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1487850346511245"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "Meta API error 400: {'error': {'message': 'Media ID is not available', 'type': 'OAuthException', 'code': 9007, 'error_subcode': 2207027, 'is_transient': False, 'error_user_title': 'Cannot Publish', 'error_user_msg': 'The media is not ready for publishing, please wait for a moment', 'fbtrace_id': 'Ag"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1059867140006966"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18090287726202607"
+          }
+        }
+      ]
     }
   ]
 }
