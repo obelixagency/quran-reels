@@ -6,7 +6,7 @@ on:
 permissions:
   actions: write
   issues: write
-  contents: read
+  contents: write
 
 concurrency:
   group: watchdog
@@ -22,3 +22,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: pip install requests >/dev/null && python scripts/watchdog.py
+
+      - name: Share new long YouTube videos on Facebook
+        if: always()
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          EN_FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
+          EN_FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
+        run: |
+          python scripts/promote_long.py
+          if [ -n "$(git status --porcelain promoted_long.json)" ]; then
+            git config user.name "quran-reels-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add promoted_long.json
+            git commit -q -m "shared long video on Facebook"
+            for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          fi
