@@ -1,11 +1,8 @@
-name: One-off catch-up (Oct 1, 2026)
+name: One-off catch-up (Oct 1, 2026) – done
 
-# Things that were missed on Sep 30, posted once in the gaps between the normal times.
-# Does nothing on any other date, so it is harmless if it stays in the repo.
+# Nothing left to do: the missed EN reel of Sep 30 was already posted by the watchdog (Oct 1, 01:15 UTC).
+# Kept only as a manual "re-enable the watchdog" button.
 on:
-  schedule:
-    - cron: "25 0 1 10 *"   # turn the watchdog back on (paused for its 00:10 check only)
-    - cron: "0 15 1 10 *"   # extra EN hadith/dua reel ≈ 6pm Cairo / 11am New York / 4pm London
   workflow_dispatch:
 
 permissions:
@@ -17,12 +14,4 @@ jobs:
     steps:
       - env:
           GH_TOKEN: ${{ github.token }}
-          R: ${{ github.repository }}
-        run: |
-          gh workflow enable watchdog.yml -R "$R" || true
-          [ "$(date -u +%F)" = "2026-10-01" ] || { echo "not Oct 1 – nothing to do"; exit 0; }
-          H=$((10#$(date -u +%H)))
-          if [ $H -ge 14 ]; then
-            gh workflow run serenity-reels.yml -R "$R" -f kind=sunnah -f publish=true
-            echo "extra EN reel started"
-          fi
+        run: gh workflow enable watchdog.yml -R "${{ github.repository }}"
