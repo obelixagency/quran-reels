@@ -111,6 +111,12 @@ jobs:
             gh issue create --repo "${{ github.repository }}" --label tiktok-short \
               --title "📱 انشر على تيك توك (عربي – دعاء/حديث) – $(TZ=Africa/Cairo date +'%Y-%m-%d %H:%M')" --body-file "$f"
             curl -s -m 20 -H "Title: TikTok - Arabic short" -H "Tags: iphone" --data-binary @"$f" "https://ntfy.sh/sakina-tiktok-oaalds6eun" >/dev/null || true
+            v=out_short/reel.mp4
+            if [ -f "$v" ]; then
+              # the video itself, so it can be saved on the phone and posted (ntfy limit 15 MB, kept ~3 h)
+              if [ "$(stat -c%s "$v")" -gt 14500000 ]; then ffmpeg -y -loglevel error -i "$v" -c:v libx264 -crf 27 -preset veryfast -c:a aac -b:a 96k -movflags +faststart /tmp/tt.mp4 && v=/tmp/tt.mp4; fi
+              curl -s -m 180 -T "$v" -H "Filename: sakina-short-$(TZ=Africa/Cairo date +%m%d-%H%M).mp4" -H "Title: Video - Arabic short" -H "Tags: movie_camera" "https://ntfy.sh/sakina-tiktok-oaalds6eun" >/dev/null || true
+            fi
           fi
 
       - name: Rotate TikTok refresh token (optional, needs GH_PAT secret)
