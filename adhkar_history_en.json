@@ -251,6 +251,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-01T13:11:55+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "tahlil-100",
+        "morning-2723"
+      ],
+      "background": "pexels:39837535",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2158019565151313"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18102026834347165"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2316147815797719"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18032128670855051"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2235925740673309"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "Meta API error 400: {'error': {'message': 'Media ID is not available', 'type': 'OAuthException', 'code': 9007, 'error_subcode': 2207027, 'is_transient': False, 'error_user_title': 'Cannot Publish', 'error_user_msg': 'The media is not ready for publishing, please wait for a moment', 'fbtrace_id': 'Ax"
+          }
+        }
+      ]
     }
   ]
 }
