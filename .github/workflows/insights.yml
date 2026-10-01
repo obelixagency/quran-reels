@@ -1,0 +1,28 @@
+name: Insights report (Facebook / Instagram, read-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          EN_FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
+          EN_FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
+          EN_IG_USER_ID: ${{ secrets.EN_IG_USER_ID }}
+          EN_IG_TOKEN: ${{ secrets.EN_IG_TOKEN }}
+        run: pip install -q requests && python scripts/insights.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: insights
+          path: insights.json
