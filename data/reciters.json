@@ -1,10 +1,12 @@
 {
-  "_note": "everyayah = اسم مجلد الشيخ على everyayah.com ، qurancom_id = رقم التلاوة في Quran.com (احتياطي). enabled=true يعني الشيخ ده بيدخل في التناوب.",
+  "_note": "everyayah = اسم مجلد الشيخ على everyayah.com ، qurancom_id = رقم التلاوة في Quran.com (للتوقيت كلمة بكلمة). enabled=true يعني الشيخ ده بيدخل في التناوب. مفعّل بس تسجيلات مجمع الملك فهد لطباعة المصحف الشريف (مسموح استخدامها مجانًا في القنوات والمواقع). تسجيلات الحصري والمنشاوي وعبد الباسط والطبلاوي عليها Content ID من شركات إنتاج مصرية (Sono Cairo / Star Toon / Digital Sound) فاتقفلت.",
   "reciters": [
-    {"key": "husary", "name": "محمود خليل الحصري", "hashtag": "#الحصري", "everyayah": "Husary_128kbps", "qurancom_id": 6, "enabled": true},
-    {"key": "minshawi", "name": "محمد صديق المنشاوي", "hashtag": "#المنشاوي", "everyayah": "Minshawy_Murattal_128kbps", "qurancom_id": 9, "enabled": true},
-    {"key": "abdulbasit", "name": "عبد الباسط عبد الصمد", "hashtag": "#عبد_الباسط", "everyayah": "Abdul_Basit_Murattal_192kbps", "qurancom_id": 2, "enabled": true},
-    {"key": "tablawi", "name": "محمد الطبلاوي", "hashtag": "#الطبلاوي", "everyayah": "Mohammad_al_Tablaway_128kbps", "qurancom_id": 11, "enabled": true},
+    {"key": "ayyoub", "name": "محمد أيوب", "hashtag": "#محمد_أيوب", "everyayah": "Muhammad_Ayyoub_128kbps", "qurancom_id": null, "enabled": true, "source": "King Fahd Glorious Quran Printing Complex"},
+    {"key": "hudhaify", "name": "علي الحذيفي", "hashtag": "#الحذيفي", "everyayah": "Hudhaify_128kbps", "qurancom_id": null, "enabled": true, "source": "King Fahd Glorious Quran Printing Complex"},
+    {"key": "husary", "name": "محمود خليل الحصري", "hashtag": "#الحصري", "everyayah": "Husary_128kbps", "qurancom_id": 6, "enabled": false, "copyright": "Content ID (Digital Sound / SonoCairoMusic / Injaz Teqani)"},
+    {"key": "minshawi", "name": "محمد صديق المنشاوي", "hashtag": "#المنشاوي", "everyayah": "Minshawy_Murattal_128kbps", "qurancom_id": 9, "enabled": false, "copyright": "Content ID (Egyptian labels)"},
+    {"key": "abdulbasit", "name": "عبد الباسط عبد الصمد", "hashtag": "#عبد_الباسط", "everyayah": "Abdul_Basit_Murattal_192kbps", "qurancom_id": 2, "enabled": false, "copyright": "Content ID (Egyptian labels)"},
+    {"key": "tablawi", "name": "محمد الطبلاوي", "hashtag": "#الطبلاوي", "everyayah": "Mohammad_al_Tablaway_128kbps", "qurancom_id": 11, "enabled": false, "copyright": "Content ID (Injaz Teqani / Star Toon)"},
     {"key": "alafasy", "name": "مشاري راشد العفاسي", "hashtag": "#العفاسي", "everyayah": "Alafasy_128kbps", "qurancom_id": 7, "enabled": false},
     {"key": "sudais", "name": "عبد الرحمن السديس", "hashtag": "#السديس", "everyayah": "Abdurrahmaan_As-Sudais_192kbps", "qurancom_id": 3, "enabled": false},
     {"key": "shuraim", "name": "سعود الشريم", "hashtag": "#الشريم", "everyayah": "Saood_ash-Shuraym_128kbps", "qurancom_id": 10, "enabled": false},
