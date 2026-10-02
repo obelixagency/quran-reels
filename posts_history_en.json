@@ -132,6 +132,41 @@
           "story_id": "18096308477562306"
         }
       }
+    },
+    {
+      "date": "2026-10-02T16:12:18+00:00",
+      "kind": "carousel",
+      "id": "q64-16",
+      "ids": [
+        "q64-16",
+        "q3-139",
+        "q7-199",
+        "q40-60"
+      ],
+      "type": "quran",
+      "set": "quran",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:9271485",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122108057997487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18088068941274566",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1757862758793968"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17925431838426688"
+        }
+      }
     }
   ]
 }
