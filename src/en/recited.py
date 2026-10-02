@@ -19,6 +19,8 @@ RECITERS_EN = {
     "minshawi": "Sheikh Mohamed Siddiq Al-Minshawi",
     "abdulbasit": "Sheikh Abdul Basit Abdus Samad",
     "tablawi": "Sheikh Mohamed Al-Tablawi",
+    "ayyoub": "Sheikh Muhammad Ayyub",
+    "hudhaify": "Sheikh Ali Al-Hudhaify",
     "alafasy": "Sheikh Mishary Rashid Alafasy",
     "sudais": "Sheikh Abdul Rahman Al-Sudais",
     "shuraim": "Sheikh Saud Al-Shuraim",
