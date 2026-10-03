@@ -741,6 +741,49 @@
           "story_id": "18441674974134936"
         }
       }
+    },
+    {
+      "date": "2026-10-03T22:15:05+00:00",
+      "id": "h14",
+      "kind": "hadith",
+      "hook": "Wisdom from the Prophet ﷺ",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:20100166",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1570518267697528",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18343440166271824"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7692567617253083157",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "9IyuSt6iFWI",
+          "url": "https://youtube.com/shorts/9IyuSt6iFWI",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1080469091361967"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18094096742663944"
+        }
+      }
     }
   ]
 }
