@@ -5,6 +5,7 @@
 الهاشتاجات = هاشتاج السورة + هاشتاجات الموضوع (من الموضوع المحدد + كلمات مفتاحية في نص الآيات)
              + هاشتاج الشيخ + هاشتاجات عامة. عددها مختلف لكل منصة (إنستجرام حدّه ٥).
 """
+import functools
 import random
 
 from .common import DATA, ar_num, load_json, skeleton
@@ -65,6 +66,38 @@ def _cut(text, n):
     return cut + " …"
 
 
+@functools.lru_cache(maxsize=64)
+def _tafsir_of(surah, ayah):
+    """التفسير الميسر لآية واحدة (Quran.com، واحتياطي alquran.cloud) – "" لو مش متاح."""
+    from .quran_source import QURANCOM, _strip_html, http_get
+    try:
+        return _strip_html(http_get(f"{QURANCOM}/tafsirs/16/by_ayah/{surah}:{ayah}").json()["tafsir"]["text"]).strip()
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        return http_get(f"https://api.alquran.cloud/v1/ayah/{surah}:{ayah}/ar.muyassar").json()["data"]["text"].strip()
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+def _same_text(a, b):
+    return bool(a and b) and (a in b or b in a or a[:40] == b[:40])
+
+
+def tafsir_spills(plan):
+    """True لو التفسير الميسر لأول/آخر آية في الريل بيشرح كمان آية برا الريل (التفسير بيجمع كذا آية في نص واحد)
+    – ساعتها الكلام هيبان مش متطابق مع الآية، فمنحطوش."""
+    s = plan.get("surah")
+    nums = [a["number"] for a in plan["ayahs"] if a["number"]]
+    if not s or not nums:
+        return False
+    by = {a["number"]: (a.get("tafsir") or "").strip() for a in plan["ayahs"] if a["number"]}
+    lo, hi = min(nums), max(nums)
+    if lo > 1 and _same_text(by[lo], _tafsir_of(s, lo - 1)):
+        return True
+    return _same_text(by[hi], _tafsir_of(s, hi + 1))
+
+
 def build_caption(plan, platform, n_hashtags, rng=random):
     themes = detect_themes(plan)
     t0 = THEMES["themes"].get(themes[0]) if themes else None
@@ -85,7 +118,7 @@ def build_caption(plan, platform, n_hashtags, rng=random):
             parts_t.append(t)
         elif len(t) > len(parts_t[dup]):
             parts_t[dup] = t
-    tafsir = " ".join(parts_t)
+    tafsir = "" if tafsir_spills(plan) else " ".join(parts_t)
     tags = " ".join(hashtags(plan, n_hashtags))
     cta = rng.choice(THEMES["ctas"])
 
