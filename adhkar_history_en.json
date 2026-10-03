@@ -419,6 +419,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-03T13:11:59+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "tahlil-100",
+        "sayyid-al-istighfar"
+      ],
+      "background": "pexels:28996324",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1589978135944535"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18093191489663209"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1422164543391167"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17865238473678613"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "856993277436612"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17911699839498809"
+          }
+        }
+      ]
     }
   ]
 }
