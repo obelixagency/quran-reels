@@ -545,6 +545,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-04T07:12:18+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "sayyid",
+        "subhan100"
+      ],
+      "background": "pexels:11975905",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "28547338534923600"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18627268189031207"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2569275650262335"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17909444223310538"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1562868618499377"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18118037137752856"
+          }
+        }
+      ]
     }
   ]
 }
