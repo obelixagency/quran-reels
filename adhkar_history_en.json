@@ -503,6 +503,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-04T13:12:02+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "morning-2723",
+        "subhanallah-100"
+      ],
+      "background": "pexels:31359410",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1747671609779652"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18127947640833828"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2647796745649027"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18120983426286201"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "3543219799179265"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "Meta API error 400: {'error': {'message': 'The requested resource does not exist', 'type': 'OAuthException', 'code': 24, 'error_subcode': 2207006, 'is_transient': False, 'error_user_title': 'Media Not Found', 'error_user_msg': 'The media with 18,118,401,361,870,898 cannot be found.', 'fbtrace_id': '"
+          }
+        }
+      ]
     }
   ]
 }
