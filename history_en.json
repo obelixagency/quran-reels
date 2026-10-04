@@ -784,6 +784,49 @@
           "story_id": "18094096742663944"
         }
       }
+    },
+    {
+      "date": "2026-10-04T13:16:49+00:00",
+      "id": "q65-7",
+      "kind": "recited",
+      "hook": "Today's verse",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:20175884",
+      "reciter": "hudhaify",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "28550051711322062",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18636587155007490"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7692800367802058772",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "BOGkuS1eJBM",
+          "url": "https://youtube.com/shorts/BOGkuS1eJBM",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1590681412787549"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17959466811244342"
+        }
+      }
     }
   ]
 }
