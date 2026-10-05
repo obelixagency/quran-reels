@@ -271,6 +271,40 @@
           "story_id": "18222494566340139"
         }
       }
+    },
+    {
+      "date": "2026-10-05T07:13:24+00:00",
+      "kind": "carousel",
+      "id": "q28-16",
+      "ids": [
+        "q28-16",
+        "q20-25",
+        "q27-19",
+        "q23-97"
+      ],
+      "type": "quran_dua",
+      "set": "quran_dua",
+      "occasion": null,
+      "background": "pexels:20121485",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122102906067496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18430607314198714",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1142257758221261"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18034173734665916"
+        }
+      }
     }
   ]
 }
