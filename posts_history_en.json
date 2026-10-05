@@ -234,6 +234,38 @@
           "story_id": "18211212529363856"
         }
       }
+    },
+    {
+      "date": "2026-10-05T16:11:54+00:00",
+      "kind": "post",
+      "id": "d1",
+      "ids": [
+        "d1"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Save this dua for when you need it",
+      "cta": "Send this to a friend 🤍",
+      "background": "pexels:28336757",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122110194465487311",
+          "post_id": "1361268837065768_122110194489487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18637965688015053"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1805611184008374"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18106750282954331"
+        }
+      }
     }
   ]
 }
