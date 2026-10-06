@@ -713,6 +713,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-06T07:12:20+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "tahlil100",
+        "afiya"
+      ],
+      "background": "pexels:13625439",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1102037285653491"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18427689352152165"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1095454923209328"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18178755367447865"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2858105381237807"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18106676594219047"
+          }
+        }
+      ]
     }
   ]
 }
