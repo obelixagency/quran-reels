@@ -301,6 +301,38 @@
           "story_id": "18098144897381970"
         }
       }
+    },
+    {
+      "date": "2026-10-07T16:11:42+00:00",
+      "kind": "post",
+      "id": "n16",
+      "ids": [
+        "n16"
+      ],
+      "type": "hadith",
+      "set": null,
+      "hook": "A timeless lesson from the Prophet ﷺ",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:12482188",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122111322489487311",
+          "post_id": "1361268837065768_122111322519487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18143269840592870"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1739223807303820"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17910021555488558"
+        }
+      }
     }
   ]
 }
