@@ -839,6 +839,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-08T13:12:12+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "morning-2723",
+        "subhanallah-100"
+      ],
+      "background": "pexels:14903491",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "954811633857051"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18024067358869066"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1465830548737179"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18073867907738070"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1382066303687423"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18123257320898879"
+          }
+        }
+      ]
     }
   ]
 }
