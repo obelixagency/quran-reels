@@ -881,6 +881,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-08T07:12:15+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "bismillah",
+        "afiya"
+      ],
+      "background": "pexels:37985011",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2293219757917960"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17943637971086927"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2130381048355769"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "Meta API error 400: {'error': {'message': 'The requested resource does not exist', 'type': 'OAuthException', 'code': 24, 'error_subcode': 2207006, 'is_transient': False, 'error_user_title': 'Media Not Found', 'error_user_msg': 'The media with 18,115,950,307,943,466 cannot be found.', 'fbtrace_id': '"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "939044535555742"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18179313841441291"
+          }
+        }
+      ]
     }
   ]
 }
