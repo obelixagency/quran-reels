@@ -333,6 +333,41 @@
           "story_id": "17910021555488558"
         }
       }
+    },
+    {
+      "date": "2026-10-08T16:13:09+00:00",
+      "kind": "carousel",
+      "id": "q13-28",
+      "ids": [
+        "q13-28",
+        "q3-8",
+        "q99-7",
+        "q17-82"
+      ],
+      "type": "quran",
+      "set": "quran",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:30580972",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122111794725487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18131107840773304",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "984344440620498"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18074202998679088"
+        }
+      }
     }
   ]
 }
