@@ -370,6 +370,37 @@
           "story_id": "18096572141117158"
         }
       }
+    },
+    {
+      "date": "2026-10-08T07:12:05+00:00",
+      "kind": "post",
+      "id": "q20-114",
+      "ids": [
+        "q20-114"
+      ],
+      "type": "quran_dua",
+      "set": null,
+      "occasion": null,
+      "background": "pexels:17589197",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122105679027496080",
+          "post_id": "1397548336772319_122105679057496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18005387000792657"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1627820332084374"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17971743543165064"
+        }
+      }
     }
   ]
 }
