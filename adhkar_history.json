@@ -965,6 +965,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-09T07:11:56+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "tahlil100",
+        "subhan100"
+      ],
+      "background": "pexels:37682745",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1608447964115407"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17945879562346896"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1925143248446805"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17884683054687476"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2960090431032270"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18149196457509228"
+          }
+        }
+      ]
     }
   ]
 }
