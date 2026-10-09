@@ -401,6 +401,40 @@
           "story_id": "17971743543165064"
         }
       }
+    },
+    {
+      "date": "2026-10-09T07:13:25+00:00",
+      "kind": "carousel",
+      "id": "kahf10",
+      "ids": [
+        "kahf10",
+        "jumua_hour",
+        "salawat",
+        "q62_9"
+      ],
+      "type": "hadith",
+      "set": null,
+      "occasion": "friday",
+      "background": "pexels:28965079",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122106762927496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17924141241430150",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1571728057510332"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18081890204378166"
+        }
+      }
     }
   ]
 }
