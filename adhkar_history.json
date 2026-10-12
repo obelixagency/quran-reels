@@ -1175,6 +1175,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-12T07:12:08+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "subhan100",
+        "tahlil100"
+      ],
+      "background": "pexels:16712177",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1081162094695301"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18093769598157781"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1007961562333949"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18107008624955879"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1085596890924358"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17962603799992561"
+          }
+        }
+      ]
     }
   ]
 }
