@@ -1165,6 +1165,32 @@
           "story_id": "17971248195156195"
         }
       }
+    },
+    {
+      "date": "2026-10-12T21:13:26+00:00",
+      "passage_id": "q12-87",
+      "surah": 12,
+      "ayahs": [
+        87
+      ],
+      "reciter": "ayyoub",
+      "background": "pexels:4536559",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7695892250015565844",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "CIOKYlpTACU",
+          "url": "https://youtube.com/shorts/CIOKYlpTACU",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
