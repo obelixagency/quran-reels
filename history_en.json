@@ -1851,6 +1851,49 @@
           "story_id": "17873509713650138"
         }
       }
+    },
+    {
+      "date": "2026-10-12T22:20:17+00:00",
+      "id": "y3",
+      "kind": "dua",
+      "hook": "A dua from the Prophet ﷺ",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:31942118",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1827664151583348",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18143597173611412"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7695907743487625217",
+          "status": "PROCESSING_UPLOAD",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "-SFmO2O1w0U",
+          "url": "https://youtube.com/shorts/-SFmO2O1w0U",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1484616383487613"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18088625087277548"
+        }
+      }
     }
   ]
 }
