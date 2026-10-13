@@ -307,6 +307,28 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-10-13T10:13:19+00:00",
+      "id": "h12",
+      "type": "hadith",
+      "background": "pexels:30048129",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7696093164553979922",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "2PxLQm_ULO8",
+          "url": "https://youtube.com/shorts/2PxLQm_ULO8",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
