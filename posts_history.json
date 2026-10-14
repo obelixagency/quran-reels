@@ -534,6 +534,37 @@
           "story_id": "18125838869490900"
         }
       }
+    },
+    {
+      "date": "2026-10-14T07:12:21+00:00",
+      "kind": "post",
+      "id": "h23",
+      "ids": [
+        "h23"
+      ],
+      "type": "hadith",
+      "set": null,
+      "occasion": null,
+      "background": "pexels:17210296",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122110644537496080",
+          "post_id": "1397548336772319_122110644561496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17907417678591335"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1653999056371469"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18145346881572538"
+        }
+      }
     }
   ]
 }
