@@ -2066,6 +2066,49 @@
           "story_id": "18124209931700672"
         }
       }
+    },
+    {
+      "date": "2026-10-16T19:14:59+00:00",
+      "id": "q57-4",
+      "kind": "quran",
+      "hook": "Read this slowly",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:27100098",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "2332461451014673",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18145464067575198"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7697345832806418448",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "wot5WGm2FfU",
+          "url": "https://youtube.com/shorts/wot5WGm2FfU",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "2389666918106558"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18081625124397352"
+        }
+      }
     }
   ]
 }
