@@ -1385,6 +1385,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-16T07:06:23+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "tahlil100",
+        "asbahna"
+      ],
+      "background": "pexels:4347773",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1858168905966249"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17877837786566832"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1440820711535082"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18017514482953482"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1670549941101385"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18269986174305948"
+          }
+        }
+      ]
     }
   ]
 }
