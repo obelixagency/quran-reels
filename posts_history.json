@@ -599,6 +599,39 @@
           "story_id": "18076971149448910"
         }
       }
+    },
+    {
+      "date": "2026-10-17T07:12:23+00:00",
+      "kind": "carousel",
+      "id": "ph20",
+      "ids": [
+        "ph20",
+        "ph167",
+        "ph182",
+        "ph87"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "occasion": null,
+      "background": "pexels:27552198",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122112031845496080"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 403: {'error': {'message': 'Application request limit reached', 'type': 'OAuthException', 'is_transient': False, 'code': 4, 'error_subcode': 2207051, 'error_user_title': 'action is blocked', 'error_user_msg': 'We restrict certain activity to protect our community. Tell us if you think we made a mistake.', 'fbtrace_id': 'APrW7psgRKT39eZcdtkcY7d'}}"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "2151773898753569"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18641635969047608"
+        }
+      }
     }
   ]
 }
