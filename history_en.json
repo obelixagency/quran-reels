@@ -2367,6 +2367,49 @@
           "story_id": "17883715398626593"
         }
       }
+    },
+    {
+      "date": "2026-10-18T22:15:29+00:00",
+      "id": "ph58",
+      "kind": "dua",
+      "hook": "Words to ask Allah with",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:34701346",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "3440781979434619",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18126197893928948"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7698134236766849040",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "N2EGeLDTjPk",
+          "url": "https://youtube.com/shorts/N2EGeLDTjPk",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1091572753509062"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18179923075439981"
+        }
+      }
     }
   ]
 }
