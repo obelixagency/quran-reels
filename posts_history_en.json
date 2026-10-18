@@ -598,6 +598,41 @@
           "story_id": "18119052185050228"
         }
       }
+    },
+    {
+      "date": "2026-10-18T16:12:29+00:00",
+      "kind": "carousel",
+      "id": "n39",
+      "ids": [
+        "n39",
+        "n40",
+        "n68",
+        "n45"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:36708441",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122115719937487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18118557172777464",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1431219182480114"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18019481402736314"
+        }
+      }
     }
   ]
 }
