@@ -1472,6 +1472,32 @@
           "story_id": "18148076413495259"
         }
       }
+    },
+    {
+      "date": "2026-10-19T21:12:48+00:00",
+      "passage_id": "shura-19",
+      "surah": 42,
+      "ayahs": [
+        19
+      ],
+      "reciter": "maher",
+      "background": "pexels:37097027",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7698489117977643014",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "tUsSG61bcYQ",
+          "url": "https://youtube.com/shorts/tUsSG61bcYQ",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
