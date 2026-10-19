@@ -633,6 +633,38 @@
           "story_id": "18019481402736314"
         }
       }
+    },
+    {
+      "date": "2026-10-19T16:11:41+00:00",
+      "kind": "post",
+      "id": "d4",
+      "ids": [
+        "d4"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Words to ask Allah with",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:10215606",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122116144137487311",
+          "post_id": "1361268837065768_122116144161487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17972767506156024"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "983137648166567"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18104552987324272"
+        }
+      }
     }
   ]
 }
