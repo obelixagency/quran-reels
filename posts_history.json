@@ -663,6 +663,39 @@
           "story_id": "18126584575860414"
         }
       }
+    },
+    {
+      "date": "2026-10-19T07:12:30+00:00",
+      "kind": "carousel",
+      "id": "h32",
+      "ids": [
+        "h32",
+        "h14",
+        "h17",
+        "h29"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "occasion": null,
+      "background": "pexels:27566893",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122112874629496080"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 403: {'error': {'message': 'Application request limit reached', 'type': 'OAuthException', 'is_transient': False, 'code': 4, 'error_subcode': 2207051, 'error_user_title': 'action is blocked', 'error_user_msg': 'We restrict certain activity to protect our community. Tell us if you think we made a mistake.', 'fbtrace_id': 'Ar2A_YEj2ZcnYp2GWKfcRx3'}}"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1674468164297698"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17975735232131729"
+        }
+      }
     }
   ]
 }
