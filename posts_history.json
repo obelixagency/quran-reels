@@ -696,6 +696,37 @@
           "story_id": "17975735232131729"
         }
       }
+    },
+    {
+      "date": "2026-10-21T07:12:01+00:00",
+      "kind": "post",
+      "id": "ph30",
+      "ids": [
+        "ph30"
+      ],
+      "type": "dua",
+      "set": null,
+      "occasion": null,
+      "background": "pexels:11377054",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122113642119496080",
+          "post_id": "1397548336772319_122113642143496080"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 403: {'error': {'message': 'Application request limit reached', 'type': 'OAuthException', 'is_transient': False, 'code': 4, 'error_subcode': 2207051, 'error_user_title': 'action is blocked', 'error_user_msg': 'We restrict certain activity to protect our community. Tell us if you think we made a mistake.', 'fbtrace_id': 'A2qNBbhag3lvANlxDmdsABn'}}"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1834020707591775"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18200284252380849"
+        }
+      }
     }
   ]
 }
