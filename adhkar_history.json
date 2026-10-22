@@ -1889,6 +1889,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-22T07:12:06+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "bismillah",
+        "afiya"
+      ],
+      "background": "pexels:38604684",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1681275663425086"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18125625259899337"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1425252499189751"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17962438020212012"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "954843333973682"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18192481960404286"
+          }
+        }
+      ]
     }
   ]
 }
