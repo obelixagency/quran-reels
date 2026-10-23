@@ -767,6 +767,37 @@
           "story_id": "18089824763252794"
         }
       }
+    },
+    {
+      "date": "2026-10-23T16:11:08+00:00",
+      "kind": "post",
+      "id": "q53-39",
+      "ids": [
+        "q53-39"
+      ],
+      "type": "quran",
+      "set": null,
+      "hook": "Take a breath before you scroll",
+      "cta": "Follow for a daily reminder 🌙",
+      "background": "pexels:34021094",
+      "results": {
+        "facebook": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'AlGuaHSi5ocTW7MVunl9Sz9'}}"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Aw0znB5q9Y4_9EgcKIpQbJU'}}"
+        },
+        "facebook_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'AFtbRg4EDbvZuPV"
+        },
+        "instagram_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Avn0wDStdrLhB-D"
+        }
+      }
     }
   ]
 }
