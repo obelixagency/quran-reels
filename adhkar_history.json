@@ -1973,6 +1973,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-23T07:12:13+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "bika_m",
+        "asbahna"
+      ],
+      "background": "pexels:14159401",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1369654291912281"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18114906938590952"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "887082267731825"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18109855418191568"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1621691049604192"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18131145515504689"
+          }
+        }
+      ]
     }
   ]
 }
