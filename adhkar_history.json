@@ -2015,6 +2015,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-23T14:12:09+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "kalimat",
+        "amsayna"
+      ],
+      "background": "pexels:38066775",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "3579908645522043"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17930354523419399"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1666754975009609"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18126831202879494"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1534486098440920"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17979760232920099"
+          }
+        }
+      ]
     }
   ]
 }
