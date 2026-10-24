@@ -798,6 +798,40 @@
           "error": "Meta API error 400: {'error': {'message': 'You cannot access the app till you log in to www.facebook.com and follow the instructions given.', 'type': 'OAuthException', 'code': 190, 'error_data': '{\"checkpoint_url\":\"https:\\\\/\\\\/www.facebook.com\"}', 'error_subcode': 459, 'fbtrace_id': 'Avn0wDStdrLhB-D"
         }
       }
+    },
+    {
+      "date": "2026-10-24T16:11:09+00:00",
+      "kind": "carousel",
+      "id": "h31",
+      "ids": [
+        "h31",
+        "n35",
+        "n69",
+        "n11"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:5820306",
+      "results": {
+        "facebook": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.', 'type': 'OAuthException', 'code': 190, 'error_subcode': 460, 'fbtrace_id': 'Akn43rR_Odw8ln07tPYA5_a'}}"
+        },
+        "instagram": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.', 'type': 'OAuthException', 'code': 190, 'error_subcode': 460, 'fbtrace_id': 'AaexN-QYpPTdaxx0UjmSuuZ'}}"
+        },
+        "facebook_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.', 'type': 'OAuthException', 'code': 190, 'error_subcode': 460, 'fbtrace_id': 'AVPSbC4XfiGOq9wvB"
+        },
+        "instagram_story": {
+          "ok": false,
+          "error": "Meta API error 400: {'error': {'message': 'Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.', 'type': 'OAuthException', 'code': 190, 'error_subcode': 460, 'fbtrace_id': 'AU6odAq8DgIZYPyIC"
+        }
+      }
     }
   ]
 }
