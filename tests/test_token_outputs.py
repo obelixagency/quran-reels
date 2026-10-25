@@ -55,6 +55,62 @@ class TokenOutputTests(unittest.TestCase):
             self.assertEqual(importlib.import_module('src.publish_youtube').access_token(), CANARY)
         self.assertNotIn(CANARY, output.getvalue())
 
+    def test_runner_handoff_replaces_permissive_file_and_symlink(self):
+        module = importlib.import_module('src.publish_tiktok')
+        with tempfile.TemporaryDirectory() as folder:
+            previous = os.getcwd()
+            try:
+                os.chdir(folder)
+                Path('out').mkdir()
+                target = Path('out/.tiktok_refresh_token')
+                target.write_text('old')
+                target.chmod(0o644)
+                module._write_refresh_handoff(CANARY)
+                self.assertEqual(stat.S_IMODE(target.stat().st_mode), 0o600)
+                self.assertEqual(target.read_text(), CANARY)
+                target.unlink()
+                unrelated = Path('unrelated').resolve()
+                unrelated.write_text('untouched')
+                target.symlink_to(unrelated)
+                module._write_refresh_handoff(CANARY)
+                self.assertFalse(target.is_symlink())
+                self.assertEqual(unrelated.read_text(), 'untouched')
+                self.assertEqual(stat.S_IMODE(target.stat().st_mode), 0o600)
+                self.assertEqual(target.read_text(), CANARY)
+                self.assertEqual(list(Path('out').glob('.tiktok-refresh-*')), [])
+            finally:
+                os.chdir(previous)
+
+    def test_signed_image_urls_removed_before_public_result_assignment(self):
+        # Exercise the existing pop-and-handoff statements without importing
+        # rendering dependencies or making provider calls.
+        import ast
+        for relative in ('src/posts.py', 'src/en/posts.py', 'src/adhkar.py', 'src/en/adhkar.py'):
+            tree = ast.parse((ROOT/relative).read_text())
+            found = 0
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Assign):
+                    continue
+                calls = [n for n in ast.walk(node.value) if isinstance(n, ast.Call)
+                         and isinstance(n.func, ast.Attribute) and n.func.attr == 'pop'
+                         and n.args and isinstance(n.args[0], ast.Constant)
+                         and n.args[0].value in ('image_url', 'image_urls')]
+                for call in calls:
+                    key = call.args[0].value
+                    source = call.func.value.id
+                    signed = 'https://cdn.example/image?signature=' + CANARY
+                    result = {'photo_id':'photo123', 'post_id':'post123', 'story_id':'story123',
+                              key: [signed] if key == 'image_urls' else signed}
+                    scope = {source: result}
+                    exec(compile(ast.Module(body=[node], type_ignores=[]), '<handoff>', 'exec'), scope)
+                    self.assertNotIn(key, result)
+                    self.assertNotIn(CANARY, json.dumps(result))
+                    self.assertEqual(result['post_id'], 'post123')
+                    handoff = scope[node.targets[0].id]
+                    self.assertIn(CANARY, str(handoff))
+                    found += 1
+            self.assertGreater(found, 0, relative)
+
     def test_private_handoff(self):
         import secure_handoff
         with tempfile.TemporaryDirectory() as folder:

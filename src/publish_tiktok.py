@@ -10,6 +10,7 @@
 """
 import os
 import time
+import tempfile
 from pathlib import Path
 
 import requests
@@ -29,6 +30,19 @@ def _env(name):
     return os.environ[name].strip()  # يتجاهل أي مسافة أو سطر زيادة اتلزق مع الـ secret
 
 
+def _write_refresh_handoff(value):
+    # A fresh 0600 inode replaces existing permissive files or symlinks; never
+    # truncate/follow the destination. Same-directory replace is atomic.
+    fd, temporary = tempfile.mkstemp(prefix=".tiktok-refresh-", dir="out")
+    try:
+        with os.fdopen(fd, "w") as handoff:
+            handoff.write(value)
+        os.replace(temporary, "out/.tiktok_refresh_token")
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
 def access_token():
     r = requests.post(f"{API}/oauth/token/", timeout=60, data={
         "client_key": _env("TIKTOK_CLIENT_KEY"),
@@ -42,9 +56,7 @@ def access_token():
     new_rt = data.get("refresh_token")
     if new_rt and new_rt != _env("TIKTOK_REFRESH_TOKEN"):
         # the workflow picks this file up and updates the GitHub secret (if GH_PAT is configured)
-        fd = os.open("out/.tiktok_refresh_token", os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-        with os.fdopen(fd, "w") as handoff:
-            handoff.write(new_rt)
+        _write_refresh_handoff(new_rt)
     return data["access_token"]
 
 
