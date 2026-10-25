@@ -38,7 +38,7 @@ def hijri(date=None, offset=0):
         h = http_get(f"https://api.aladhan.com/v1/gToH/{date:%d-%m-%Y}", timeout=20).json()["data"]["hijri"]
         return int(h["year"]), int(h["month"]["number"]), int(h["day"])
     except Exception as e:  # noqa: BLE001
-        print(f"  hijri api failed ({e}) – using tabular calendar")
+        print(f"  hijri api failed ({type(e).__name__}) – using tabular calendar")
         return _tabular(date)
 
 
@@ -72,3 +72,4 @@ def today(cfg, date=None):
 
 def item(key):
     return {"id": key, **data()["library"][key]}
+

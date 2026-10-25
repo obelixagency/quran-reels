@@ -1,3 +1,5 @@
+> Account connection security: follow [SECURITY.md](SECURITY.md). Never submit credentials to Actions inputs. Setup tools now use hidden local prompts and a private output file, not terminal token output.
+
 # 🎬 Quran Reels: أوتوميشن ريلز القرآن الكريم (مجاني بالكامل)
 
 كل يوم السيستم بيعمل الخطوات دي لوحده:
@@ -56,7 +58,7 @@
 4. على جهازك (لازم يكون عليه Python):
    ```bash
    pip install requests
-   python tools/setup_meta.py APP_ID APP_SECRET التوكن_اللي_نسخته
+   python tools/setup_meta.py
    ```
 5. هيطلعلك ٣ قيم، ضيفهم كـ Secrets في GitHub:
    - `FB_PAGE_ID`
@@ -71,7 +73,7 @@
 3. في Login Kit حط **Redirect URI** يكون أي رابط https بتاعك (مثلًا صفحة GitHub Pages)
 4. انسخ **Client key** و**Client secret**، وشغّل:
    ```bash
-   python tools/setup_tiktok.py CLIENT_KEY CLIENT_SECRET REDIRECT_URI
+   python tools/setup_tiktok.py
    ```
 5. ضيف الـ Secrets دي في GitHub: `TIKTOK_CLIENT_KEY` و`TIKTOK_CLIENT_SECRET` و`TIKTOK_REFRESH_TOKEN`
 
@@ -93,7 +95,7 @@
 4. **Credentials ← Create credentials ← OAuth client ID**، ونوعه **Desktop app**. انسخ **Client ID** و**Client secret**
 5. على جهازك شغّل:
    ```bash
-   python tools/setup_youtube.py CLIENT_ID CLIENT_SECRET
+   python tools/setup_youtube.py
    ```
    هيفتحلك المتصفح: سجّل دخول بحساب جوجل، و**اختار القناة اللي عايز تنشر عليها**، ووافق (لو ظهرت رسالة "Google hasn't verified this app" دوس Advanced ← Continue)
 6. ضيف الـ Secrets دي في GitHub: `YT_CLIENT_ID` و`YT_CLIENT_SECRET` و`YT_REFRESH_TOKEN` و`YT_CHANNEL_ID`. الأخير بيضمن إن النشر يروح للقناة الصح بس
@@ -188,3 +190,4 @@ python -m src.main --publish                         # يولّد وينشر
 - التلاوات وتوقيت الكلمات: [Quran.com](https://quran.com) و[EveryAyah.com](https://everyayah.com)
 - الخطوط: Amiri / Amiri Quran، رخصة SIL OFL (`assets/fonts/OFL.txt`)
 - الخلفيات: [Pexels License](https://www.pexels.com/license/)
+

@@ -89,9 +89,10 @@ def get_background(cfg, min_dur, used):
         try:
             res = fn()
         except Exception as e:  # noqa: BLE001
-            print(f"  background source failed: {e}")
+            print(f"  background source failed: {type(e).__name__}")
             res = None
         if res:
             return res
     print("  ⚠️  no background source configured – using generated gradient")
     return _generated(cfg, min_dur)
+

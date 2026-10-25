@@ -127,8 +127,8 @@ def check(wf, hour, minute):
     if r.status_code == 204:
         log(f"🔁 {label} {slot:%H:%M} UTC – GitHub skipped it, started it now")
     else:
-        log(f"❌ {label} – could not start it ({r.status_code}): {r.text[:200]}")
-        open_issue(f"⚠️ لم يُنشر: {label} – {slot:%Y-%m-%d}", f"الـ watchdog ما قدرش يشغّله: {r.status_code} {r.text[:300]}")
+        log(f"❌ {label} – could not start it ({r.status_code}):")
+        open_issue(f"⚠️ لم يُنشر: {label} – {slot:%Y-%m-%d}", f"الـ watchdog ما قدرش يشغّله: {r.status_code}")
 
 
 def main():
@@ -140,7 +140,7 @@ def main():
             try:
                 check(wf, hour, minute)
             except Exception as e:  # noqa: BLE001
-                log(f"⚠️ {wf} {hour:02d}:{minute:02d} – {e}")
+                log(f"⚠️ {wf} {hour:02d}:{minute:02d} – {type(e).__name__}")
     if not SUMMARY:
         SUMMARY.append("No time slot to check right now.")
     p = os.environ.get("GITHUB_STEP_SUMMARY")
@@ -149,4 +149,8 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception:
+        raise SystemExit("Watchdog failed; provider details withheld") from None
+

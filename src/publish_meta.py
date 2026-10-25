@@ -21,9 +21,9 @@ def _check(r):
     try:
         data = r.json()
     except ValueError:
-        data = {"raw": r.text}
+        raise RuntimeError("Meta API returned invalid JSON") from None
     if r.status_code >= 400 or (isinstance(data, dict) and data.get("error")):
-        raise RuntimeError(f"Meta API error {r.status_code}: {data}")
+        raise RuntimeError(f"Meta API error {r.status_code}")
     return data
 
 
@@ -54,7 +54,7 @@ def publish_facebook(cfg, video_path, caption, cover=None):
                 status.get("publishing_phase", {}).get("status") == "complete":
             break
         if status.get("video_status") == "error":
-            raise RuntimeError(f"Facebook processing error: {status}")
+            raise RuntimeError(f"Facebook processing error")
     thumb = None
     if cover and Path(cover["path"]).exists():  # الكوفر: آخر مشهد الآية كاملة
         try:
@@ -63,9 +63,9 @@ def publish_facebook(cfg, video_path, caption, cover=None):
                                       data={"access_token": token, "is_preferred": "true"},
                                       files={"source": ("cover.jpg", img, "image/jpeg")}).json()
         except Exception as e:  # noqa: BLE001
-            thumb = {"error": str(e)}
+            thumb = {"error": type(e).__name__}
     return {"video_id": video_id, "status": status.get("video_status"),
-            "cover": "ok" if thumb and not thumb.get("error") else thumb}
+            "cover": "ok" if thumb and not thumb.get("error") else "unavailable"}
 
 
 def publish_instagram(cfg, video_path, caption, cover=None):
@@ -93,7 +93,7 @@ def publish_instagram(cfg, video_path, caption, cover=None):
         if st.get("status_code") == "FINISHED":
             break
         if st.get("status_code") in ("ERROR", "EXPIRED"):
-            raise RuntimeError(f"Instagram processing error: {st}")
+            raise RuntimeError(f"Instagram processing error")
     else:
         raise RuntimeError("Instagram processing timed out")
 
@@ -135,7 +135,7 @@ def publish_instagram_image(cfg, image_path, caption, image_url=None):
         if st.get("status_code") in (None, "FINISHED"):
             break
         if st.get("status_code") in ("ERROR", "EXPIRED"):
-            raise RuntimeError(f"Instagram image error: {st}")
+            raise RuntimeError(f"Instagram image error")
         time.sleep(5)
     pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
                                data={"creation_id": cid, "access_token": token}))
@@ -183,7 +183,7 @@ def _wait_ig(g, cid, token, tries=40):
         if st.get("status_code") in (None, "FINISHED"):
             return
         if st.get("status_code") in ("ERROR", "EXPIRED"):
-            raise RuntimeError(f"Instagram story error: {st}")
+            raise RuntimeError(f"Instagram story error")
         time.sleep(8)
     raise RuntimeError("Instagram story processing timed out")
 
@@ -238,3 +238,4 @@ def story_instagram_photo(cfg, image_url):
     pub = _check(requests.post(f"{g}/{ig_id}/media_publish", timeout=60,
                                data={"creation_id": cid, "access_token": token}))
     return {"story_id": pub.get("id")}
+

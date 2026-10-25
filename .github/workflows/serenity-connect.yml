@@ -1,92 +1,15 @@
-name: Daily Serenity – connect accounts
+name: serenity-connect - local account connection instructions
 
-# Step 1: run with action = links      → prints the YouTube / TikTok sign-in links in the run summary.
-# Step 2: run with the code / token you got back → prints the values to save as GitHub Secrets.
-#         (Delete the run afterwards: the summary contains the tokens.)
 on:
   workflow_dispatch:
-    inputs:
-      action:
-        description: "links / youtube / tiktok / meta"
-        default: "links"
-      value:
-        description: "The code (YouTube / TikTok) or the Graph API Explorer user token (Meta)"
-        default: ""
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
-  connect:
+  instructions:
     runs-on: ubuntu-latest
     steps:
-      - name: Sign-in links
-        if: inputs.action == 'links'
-        env:
-          YT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
-          TT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+      - name: Keep credentials off public Actions
         run: |
-          # percent-encode every character so GitHub's secret masking doesn't hide the (non-secret) client ids
-          enc() { printf '%s' "$1" | od -An -tx1 | tr -d ' \n' | sed 's/\(..\)/%\1/g'; }
-          YT_ID=$(enc "$YT_ID"); TT_KEY=$(enc "$TT_KEY")
-          YT="https://accounts.google.com/o/oauth2/v2/auth?client_id=${YT_ID}&redirect_uri=https%3A%2F%2Fobelixagency.github.io%2Fdaily-sakina%2Fcallback.html&response_type=code&access_type=offline&prompt=consent%20select_account&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.upload%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly"
-          TT="https://www.tiktok.com/v2/auth/authorize/?client_key=${TT_KEY}&scope=user.info.basic,video.upload&response_type=code&redirect_uri=https%3A%2F%2Fobelixagency.github.io%2Fdaily-sakina%2Fcallback.html&state=serenity"
-          {
-            echo "## Daily Serenity – sign-in links"
-            echo "**YouTube** (choose the Daily Serenity channel; then copy the code shown on the Daily Sakina page):"
-            echo "$YT"
-            echo
-            echo "**TikTok** (sign in with @dailyserenityQSD):"
-            echo "$TT"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: YouTube code → refresh token
-        if: inputs.action == 'youtube'
-        env:
-          YT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
-          YT_SECRET: ${{ secrets.EN_YT_CLIENT_SECRET || secrets.YT_CLIENT_SECRET }}
-          CODE: ${{ inputs.value }}
-        run: |
-          RES=$(curl -s -X POST https://oauth2.googleapis.com/token \
-            --data-urlencode "code=$CODE" --data-urlencode "client_id=$YT_ID" --data-urlencode "client_secret=$YT_SECRET" \
-            --data-urlencode "redirect_uri=https://obelixagency.github.io/daily-sakina/callback.html" --data-urlencode "grant_type=authorization_code")
-          RT=$(echo "$RES" | jq -r '.refresh_token // empty'); AT=$(echo "$RES" | jq -r '.access_token // empty')
-          [ -n "$RT" ] || { echo "$RES" | jq 'del(.access_token)'; exit 1; }
-          CH=$(curl -s -H "Authorization: Bearer $AT" "https://www.googleapis.com/youtube/v3/channels?part=id,snippet&mine=true")
-          {
-            echo "## ✅ YouTube – $(echo "$CH" | jq -r '.items[0].snippet.title')"
-            echo "Secret **EN_YT_CHANNEL_ID**:"; echo '```'; echo "$CH" | jq -r '.items[0].id'; echo '```'
-            echo "Secret **EN_YT_REFRESH_TOKEN**:"; echo '```'; echo "$RT"; echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: TikTok code → refresh token
-        if: inputs.action == 'tiktok'
-        env:
-          KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
-          SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
-          CODE: ${{ inputs.value }}
-        run: |
-          RES=$(curl -s -X POST https://open.tiktokapis.com/v2/oauth/token/ \
-            -H "Content-Type: application/x-www-form-urlencoded" \
-            --data-urlencode "client_key=$KEY" --data-urlencode "client_secret=$SECRET" \
-            --data-urlencode "code=$CODE" --data-urlencode "grant_type=authorization_code" \
-            --data-urlencode "redirect_uri=https://obelixagency.github.io/daily-sakina/callback.html")
-          RT=$(echo "$RES" | jq -r '.refresh_token // empty')
-          [ -n "$RT" ] || { echo "$RES" | jq 'del(.access_token)'; exit 1; }
-          { echo "## ✅ TikTok"; echo "Secret **EN_TIKTOK_REFRESH_TOKEN**:"; echo '```'; echo "$RT"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Meta user token → permanent page token
-        if: inputs.action == 'meta'
-        env:
-          APP_ID: ${{ secrets.META_APP_ID }}
-          APP_SECRET: ${{ secrets.META_APP_SECRET }}
-          SHORT: ${{ inputs.value }}
-        run: |
-          [ -n "$APP_ID" ] && [ -n "$APP_SECRET" ] || { echo "Add META_APP_ID and META_APP_SECRET secrets first"; exit 1; }
-          LONG=$(curl -s "https://graph.facebook.com/v23.0/oauth/access_token?grant_type=fb_exchange_token&client_id=$APP_ID&client_secret=$APP_SECRET&fb_exchange_token=$SHORT" | jq -r '.access_token // empty')
-          [ -n "$LONG" ] || { echo "token exchange failed"; exit 1; }
-          PAGES=$(curl -s "https://graph.facebook.com/v23.0/me/accounts?fields=id,name,access_token,instagram_business_account%7Bid,username%7D&access_token=$LONG")
-          {
-            echo "## ✅ Meta pages"
-            echo "$PAGES" | jq -r '.data[] | "### \(.name)\nSecret **EN_FB_PAGE_ID**:\n```\n\(.id)\n```\nSecret **EN_FB_PAGE_TOKEN**:\n```\n\(.access_token)\n```\nSecret **EN_IG_USER_ID** (@\(.instagram_business_account.username // "no Instagram linked")):\n```\n\(.instagram_business_account.id // "-")\n```\n"'
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo 'Account connection is local only. See SECURITY.md.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Never paste authorization codes or tokens into workflow inputs, issues, or logs.' >> "$GITHUB_STEP_SUMMARY"

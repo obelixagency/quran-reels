@@ -53,7 +53,7 @@ def main():
         url = f"https://youtu.be/{newest['video_id']}"
         r = requests.post(f"{GRAPH}/{pid}/feed", timeout=60, data={
             "message": TEXT[ch].format(title=title, url=url), "link": url, "access_token": tok})
-        print(f"{ch}: shared {url} on Facebook -> {r.status_code} {r.text[:200]}")
+        print(f"{ch}: shared {url} on Facebook -> {r.status_code}")
         if r.ok:
             done.add(newest["video_id"])
             changed = True
@@ -64,4 +64,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        raise SystemExit("Operation failed; provider details withheld") from None
+

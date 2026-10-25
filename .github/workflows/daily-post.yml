@@ -83,6 +83,8 @@ jobs:
             out_post/story.jpg
             out_post/slide_*.jpg
             out_post/caption_*.txt
+            !out/.tiktok_refresh_token
+            !**/.credentials/**
           retention-days: 14
 
       - name: Save history
@@ -96,3 +98,4 @@ jobs:
             git pull --rebase
             git push
           fi
+

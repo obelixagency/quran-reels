@@ -105,7 +105,7 @@ def generate(cfg, args, history):
         occ = ctx["occasion"] if ctx["occasion"] and ctx["occasion"].get("reels") else None
         print(f"📅 {ctx['hijri_text']} | occasion: {occ['id'] if occ else '-'}")
     except Exception as e:  # noqa: BLE001
-        print(f"  occasion check failed: {e}")
+        print(f"  occasion check failed: {type(e).__name__}")
 
     plan = None
     for p in candidate_passages(cfg, passages, surahs, history, args.passage, occ)[:12]:
@@ -113,7 +113,7 @@ def generate(cfg, args, history):
         try:
             plan = build_plan(cfg, p, reciter, surahs)
         except Exception as e:  # noqa: BLE001
-            print(f"   failed: {e}")
+            print(f"   failed: {type(e).__name__}")
             plan = None
         if plan:
             if occ and p["id"] in occ.get("reels", []):
@@ -199,9 +199,9 @@ def publish(cfg, reel, caps, platforms):
                 results[name] = {"ok": True, **publish_tiktok(cfg, reel, caps[name], cover=caps["_cover"])}
             print(f"   ✅ {results[name]}")
         except Exception as e:  # noqa: BLE001
-            traceback.print_exc()
-            results[name] = {"ok": False, "error": str(e)[:500]}
-            print(f"   ❌ {name}: {e}")
+            print("Publishing failed; provider details withheld")
+            results[name] = {"ok": False, "error": type(e).__name__}
+            print(f"   ❌ {name}: {type(e).__name__}")
     # ستوري: نفس الريل بيتنشر ستوري على فيسبوك وإنستجرام (تيك توك مفيهوش API للستوري)
     st = cfg.get("stories", {})
     for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):
@@ -210,7 +210,7 @@ def publish(cfg, reel, caps, platforms):
                 from . import publish_meta
                 results[f"{name}_story"] = {"ok": True, **getattr(publish_meta, fn)(cfg, reel)}
             except Exception as e:  # noqa: BLE001
-                results[f"{name}_story"] = {"ok": False, "error": str(e)[:300]}
+                results[f"{name}_story"] = {"ok": False, "error": type(e).__name__}
             print(f"   📲 {name} story: {results[f'{name}_story']}")
     return results
 
@@ -251,3 +251,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

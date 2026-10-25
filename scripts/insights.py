@@ -26,9 +26,9 @@ def get(path, tok, **params):
     try:
         r = requests.get(f"{G}/{path}", params={**params, "access_token": tok}, timeout=30)
         j = r.json()
-        return (j, None) if r.ok else (None, (j.get("error") or {}).get("message", str(r.status_code))[:80])
+        return (j, None) if r.ok else (None, f"HTTP {r.status_code}")
     except Exception as e:  # noqa: BLE001
-        return None, str(e)[:80]
+        return None, type(e).__name__
 
 
 def metrics(j):
@@ -78,10 +78,10 @@ def main():
             print(f"{ch}: no token – skipped")
             continue
         j, err = get(c["page"], c["tok"], fields="name,followers_count,fan_count")
-        accounts[f"{ch}-facebook"] = j or err
+        accounts[f"{ch}-facebook"] = ({k: j[k] for k in ("id", "name", "followers_count", "fan_count") if k in j} if j else err)
         if c["ig"]:
             j, err = get(c["ig"], c["igtok"], fields="username,followers_count,media_count")
-            accounts[f"{ch}-instagram"] = j or err
+            accounts[f"{ch}-instagram"] = ({k: j[k] for k in ("id", "username", "followers_count", "media_count") if k in j} if j else err)
         for fname in c["files"]:
             p = ROOT / fname
             if not p.exists():
@@ -119,4 +119,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        raise SystemExit("Operation failed; provider details withheld") from None
+

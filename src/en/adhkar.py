@@ -114,14 +114,14 @@ def main():
                 url = x.pop("image_url", None)
                 r["facebook"] = {"ok": True, **x}
             except Exception as e:  # noqa: BLE001
-                r["facebook"] = {"ok": False, "error": str(e)[:300]}
+                r["facebook"] = {"ok": False, "error": type(e).__name__}
         if st.get("instagram"):
             try:
                 if not url:
                     url = publish_facebook_photo(cfg, fr, "", published=False)["image_url"]
                 r["instagram"] = {"ok": True, **story_instagram_photo(cfg, url)}
             except Exception as e:  # noqa: BLE001
-                r["instagram"] = {"ok": False, "error": str(e)[:300]}
+                r["instagram"] = {"ok": False, "error": type(e).__name__}
         print(f"   📲 {fr.name}: {r}")
         results.append(r)
 
@@ -137,3 +137,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

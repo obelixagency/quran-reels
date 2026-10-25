@@ -160,8 +160,8 @@ def publish(cfg_en, reel, caps, cover, platforms):
                 results[name] = {"ok": True, **publish_tiktok(cfg_en, reel, caps[name], cover=cover)}
             print("   ✅", results[name])
         except Exception as e:  # noqa: BLE001
-            traceback.print_exc()
-            results[name] = {"ok": False, "error": str(e)[:500]}
+            print("Publishing failed; provider details withheld")
+            results[name] = {"ok": False, "error": type(e).__name__}
     # the same reel is also shared as a Facebook / Instagram story (like the Arabic channels)
     st = cfg_en.get("stories", {"facebook": True, "instagram": True})
     for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):
@@ -170,7 +170,7 @@ def publish(cfg_en, reel, caps, cover, platforms):
                 from .. import publish_meta
                 results[f"{name}_story"] = {"ok": True, **getattr(publish_meta, fn)(cfg_en, reel)}
             except Exception as e:  # noqa: BLE001
-                results[f"{name}_story"] = {"ok": False, "error": str(e)[:300]}
+                results[f"{name}_story"] = {"ok": False, "error": type(e).__name__}
             print(f"   📲 {name} story: {results[f'{name}_story']}")
     return results
 
@@ -233,3 +233,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

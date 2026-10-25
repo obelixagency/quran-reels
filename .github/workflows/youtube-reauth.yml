@@ -1,85 +1,15 @@
-name: YouTube – re-connect with playlist permission
+name: youtube-reauth - local account connection instructions
 
-# Gives the YouTube tokens the full "youtube" scope (upload + playlists) and saves them as secrets
-# in BOTH repos (quran-reels and quran-long-videos). Token values are never printed.
-#   Step 1: run with step = link   → open the link in the run summary, choose the channel, allow.
-#   Step 2: copy the code shown on the Daily Sakina page and run again with step = save, code = <that code>.
 on:
   workflow_dispatch:
-    inputs:
-      channel:
-        description: "ar (سكينة يومية) / en (Daily Serenity)"
-        type: choice
-        options: [ar, en]
-        default: ar
-      step:
-        description: "link / save"
-        type: choice
-        options: [link, save]
-        default: link
-      code:
-        description: "Only for step = save: the code from the Daily Sakina page"
-        default: ""
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
-  reauth:
+  instructions:
     runs-on: ubuntu-latest
-    env:
-      REDIRECT: https://obelixagency.github.io/daily-sakina/callback.html
-      YT_ID: ${{ inputs.channel == 'en' && (secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID) || secrets.YT_CLIENT_ID }}
-      YT_SECRET: ${{ inputs.channel == 'en' && (secrets.EN_YT_CLIENT_SECRET || secrets.YT_CLIENT_SECRET) || secrets.YT_CLIENT_SECRET }}
-      WANT_CH: ${{ inputs.channel == 'en' && secrets.EN_YT_CHANNEL_ID || secrets.YT_CHANNEL_ID }}
     steps:
-      - name: Sign-in link
-        if: inputs.step == 'link'
+      - name: Keep credentials off public Actions
         run: |
-          # percent-encode so GitHub's secret masking doesn't hide the (non-secret) client id
-          enc() { printf '%s' "$1" | od -An -tx1 | tr -d ' \n' | sed 's/\(..\)/%\1/g'; }
-          ID=$(enc "$YT_ID")
-          URL="https://accounts.google.com/o/oauth2/v2/auth?client_id=${ID}&redirect_uri=https%3A%2F%2Fobelixagency.github.io%2Fdaily-sakina%2Fcallback.html&response_type=code&access_type=offline&prompt=consent%20select_account&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube"
-          if [ "${{ inputs.channel }}" = "en" ]; then NAME="Daily Serenity"; else NAME="سَكينة يومية"; fi
-          {
-            echo "## YouTube – $NAME"
-            echo "1. Open this link, choose the **$NAME** channel and allow:"
-            echo
-            echo "$URL"
-            echo
-            echo "2. Copy the code shown on the page, then run this workflow again with **step = save** and paste it in **code**."
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Code → refresh token → secrets in both repos
-        if: inputs.step == 'save'
-        env:
-          CODE: ${{ inputs.code }}
-          GH_TOKEN: ${{ secrets.COPY_PAT }}
-        run: |
-          [ -n "$CODE" ] || { echo "❌ code is empty"; exit 1; }
-          [ -n "$GH_TOKEN" ] || { echo "❌ COPY_PAT secret is missing"; exit 1; }
-          RES=$(curl -s -X POST https://oauth2.googleapis.com/token \
-            --data-urlencode "code=$CODE" --data-urlencode "client_id=$YT_ID" --data-urlencode "client_secret=$YT_SECRET" \
-            --data-urlencode "redirect_uri=$REDIRECT" --data-urlencode "grant_type=authorization_code")
-          RT=$(echo "$RES" | jq -r '.refresh_token // empty'); AT=$(echo "$RES" | jq -r '.access_token // empty')
-          [ -n "$RT" ] && echo "::add-mask::$RT"; [ -n "$AT" ] && echo "::add-mask::$AT"
-          [ -n "$RT" ] || { echo "❌ Google refused the code:"; echo "$RES" | jq '{error, error_description}'; exit 1; }
-          SCOPE=$(echo "$RES" | jq -r '.scope')
-          echo "scope: $SCOPE"
-          echo "$SCOPE" | tr ' ' '\n' | grep -qx 'https://www.googleapis.com/auth/youtube' \
-            || { echo "❌ the playlist permission (youtube) was not granted – tick every box on the Google page"; exit 1; }
-          CH=$(curl -s -H "Authorization: Bearer $AT" "https://www.googleapis.com/youtube/v3/channels?part=id,snippet&mine=true")
-          GOT=$(echo "$CH" | jq -r '.items[0].id // empty'); TITLE=$(echo "$CH" | jq -r '.items[0].snippet.title // empty')
-          echo "channel: $TITLE"
-          if [ -n "$WANT_CH" ] && [ "$GOT" != "$WANT_CH" ]; then
-            echo "❌ This is the channel \"$TITLE\", not the expected one. Run step = link again and choose the right channel."; exit 1
-          fi
-          if [ "${{ inputs.channel }}" = "en" ]; then REELS=EN_YT_REFRESH_TOKEN; LONG=EN_YT_REFRESH_TOKEN; else REELS=YT_REFRESH_TOKEN; LONG=AR_YT_REFRESH_TOKEN; fi
-          ok=0
-          printf '%s' "$RT" | gh secret set "$LONG" --repo obelixagency/quran-long-videos && { echo "✅ quran-long-videos / $LONG"; ok=$((ok+1)); } || echo "⚠️ could not write quran-long-videos / $LONG"
-          printf '%s' "$RT" | gh secret set "$REELS" --repo obelixagency/quran-reels && { echo "✅ quran-reels / $REELS"; ok=$((ok+1)); } || echo "⚠️ could not write quran-reels / $REELS"
-          {
-            echo "## YouTube – $TITLE"
-            echo "Playlist permission: ✅ · secrets updated: $ok of 2 (token values are not shown)"
-          } >> "$GITHUB_STEP_SUMMARY"
-          [ "$ok" -ge 1 ] || exit 1
+          echo 'Account connection is local only. See SECURITY.md.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Never paste authorization codes or tokens into workflow inputs, issues, or logs.' >> "$GITHUB_STEP_SUMMARY"
