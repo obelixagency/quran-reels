@@ -1819,6 +1819,38 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-10-25T11:05:27+00:00",
+      "passage_id": "q93-3",
+      "surah": 93,
+      "ayahs": [
+        3,
+        4,
+        5
+      ],
+      "reciter": "tablawi",
+      "background": "pexels:31077653",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1674732517545906",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18207112747373184"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "4635258776712676"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18090094730267075"
+        }
+      }
     }
   ]
 }
