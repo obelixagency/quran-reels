@@ -3217,6 +3217,35 @@
           "story_id": "17977082208134954"
         }
       }
+    },
+    {
+      "date": "2026-10-25T15:15:04+00:00",
+      "id": "q3-92",
+      "kind": "quran",
+      "hook": "A verse to calm your heart today",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:5492238",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1146775298004507",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18084366776359507"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1054638594287522"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18118502711054392"
+        }
+      }
     }
   ]
 }
