@@ -832,6 +832,38 @@
           "error": "Meta API error 400: {'error': {'message': 'Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.', 'type': 'OAuthException', 'code': 190, 'error_subcode': 460, 'fbtrace_id': 'AU6odAq8DgIZYPyIC"
         }
       }
+    },
+    {
+      "date": "2026-10-25T09:48:12+00:00",
+      "kind": "post",
+      "id": "x5",
+      "ids": [
+        "x5"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Say this today",
+      "cta": "Save it for the day you need it 🤍",
+      "background": "pexels:35400949",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122117727189487311",
+          "post_id": "1361268837065768_122117727219487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17908506237580423"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1892258485129769"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18414015499093176"
+        }
+      }
     }
   ]
 }
