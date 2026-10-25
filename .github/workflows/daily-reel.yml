@@ -110,6 +110,8 @@ jobs:
             out/reel.mp4
             out/caption_*.txt
             out/plan.json
+            !out/.tiktok_refresh_token
+            !**/.credentials/**
           retention-days: 14
 
       - name: TikTok caption (summary + GitHub notification)
@@ -137,7 +139,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           if [ -f out/.tiktok_refresh_token ] && [ -n "$GH_TOKEN" ]; then
-            gh secret set TIKTOK_REFRESH_TOKEN --body "$(cat out/.tiktok_refresh_token)" --repo "${{ github.repository }}"
+            gh secret set TIKTOK_REFRESH_TOKEN --repo "${{ github.repository }}" < out/.tiktok_refresh_token
             echo "TikTok refresh token updated"
           fi
 
@@ -152,3 +154,4 @@ jobs:
             git pull --rebase
             git push
           fi
+

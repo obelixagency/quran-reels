@@ -110,7 +110,7 @@ def make(cfg_en, history, recent_ids, force=None, reciter_key=None, out=None):
         try:
             plan = build_plan(cfg_plan, p, reciter, surahs)
         except Exception as e:  # noqa: BLE001
-            print(f"  {p['id']} failed: {e}")
+            print(f"  {p['id']} failed: {type(e).__name__}")
             continue
         if not plan:
             continue
@@ -144,3 +144,4 @@ def make(cfg_en, history, recent_ids, force=None, reciter_key=None, out=None):
                        f"Translation: Marmaduke Pickthall (public domain)"}
         return p["id"], v, Timeline(cards, "write", total), audio, total, reciter["key"]
     raise RuntimeError("no recited passage fits")
+

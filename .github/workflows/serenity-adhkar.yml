@@ -88,7 +88,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: serenity-adhkar-${{ github.run_number }}
-          path: out_en_adhkar/*.jpg
+          path: |
+            out_en_adhkar/*.jpg
+            !out/.tiktok_refresh_token
+            !**/.credentials/**
           retention-days: 7
 
       - name: Save history
@@ -102,3 +105,4 @@ jobs:
             git pull --rebase
             git push
           fi
+

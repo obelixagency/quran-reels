@@ -10,6 +10,7 @@
 """
 import os
 import time
+import tempfile
 from pathlib import Path
 
 import requests
@@ -21,12 +22,25 @@ def _check(r):
     data = r.json()
     err = data.get("error", {})
     if r.status_code >= 400 or (err and err.get("code") not in (None, "ok")):
-        raise RuntimeError(f"TikTok API error {r.status_code}: {data}")
+        raise RuntimeError(f"TikTok API error {r.status_code}")
     return data
 
 
 def _env(name):
     return os.environ[name].strip()  # يتجاهل أي مسافة أو سطر زيادة اتلزق مع الـ secret
+
+
+def _write_refresh_handoff(value):
+    # A fresh 0600 inode replaces existing permissive files or symlinks; never
+    # truncate/follow the destination. Same-directory replace is atomic.
+    fd, temporary = tempfile.mkstemp(prefix=".tiktok-refresh-", dir="out")
+    try:
+        with os.fdopen(fd, "w") as handoff:
+            handoff.write(value)
+        os.replace(temporary, "out/.tiktok_refresh_token")
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def access_token():
@@ -38,11 +52,11 @@ def access_token():
     }, headers={"Content-Type": "application/x-www-form-urlencoded"})
     data = r.json()
     if "access_token" not in data:
-        raise RuntimeError(f"TikTok token refresh failed: {data}")
+        raise RuntimeError(f"TikTok token refresh failed")
     new_rt = data.get("refresh_token")
     if new_rt and new_rt != _env("TIKTOK_REFRESH_TOKEN"):
         # the workflow picks this file up and updates the GitHub secret (if GH_PAT is configured)
-        Path("out/.tiktok_refresh_token").write_text(new_rt)
+        _write_refresh_handoff(new_rt)
     return data["access_token"]
 
 
@@ -72,7 +86,7 @@ def publish_tiktok(cfg, video_path, caption, cover=None):
             "Content-Type": "video/mp4", "Content-Length": str(size),
             "Content-Range": f"bytes 0-{size - 1}/{size}"})
         if r.status_code >= 400:
-            raise RuntimeError(f"TikTok upload failed {r.status_code}: {r.text[:500]}")
+            raise RuntimeError(f"TikTok upload failed {r.status_code}")
 
     status = None
     for _ in range(30):
@@ -83,5 +97,6 @@ def publish_tiktok(cfg, video_path, caption, cover=None):
         if status in ("PUBLISH_COMPLETE", "SEND_TO_USER_INBOX"):
             break
         if status == "FAILED":
-            raise RuntimeError(f"TikTok publish failed: {st}")
+            raise RuntimeError(f"TikTok publish failed")
     return {"publish_id": init["publish_id"], "status": status, "mode": tcfg.get("mode", "draft")}
+

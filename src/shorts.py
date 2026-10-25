@@ -202,7 +202,7 @@ def main():
                 from .publish_tiktok import publish_tiktok
                 results[name] = {"ok": True, **publish_tiktok(cfg, reel, caps["tiktok"])}
         except Exception as e:  # noqa: BLE001
-            results[name] = {"ok": False, "error": str(e)[:500]}
+            results[name] = {"ok": False, "error": type(e).__name__}
         print(f"   {name}: {results[name]}")
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                              "id": item["id"], "type": item["type"], "background": bg_id, "results": results})
@@ -213,3 +213,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

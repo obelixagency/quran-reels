@@ -120,7 +120,7 @@ def background_photo(used):
                     url = f"{p['src']['original']}?auto=compress&cs=tinysrgb&w=1440"
                     return download(url, CACHE / "photos" / f"pexels_{p['id']}.jpg"), f"pexels:{p['id']}"
             except Exception as e:  # noqa: BLE001
-                print(f"  pexels photo failed: {e}")
+                print(f"  pexels photo failed: {type(e).__name__}")
     if local:
         p = random.choice(local)
         return p, f"local:{p.name}"
@@ -434,7 +434,7 @@ def main():
                 fb_urls = [r.pop("image_url", None)]
             results["facebook"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
-            results["facebook"] = {"ok": False, "error": str(e)[:400]}
+            results["facebook"] = {"ok": False, "error": type(e).__name__}
     if pc.get("instagram", {}).get("enabled"):
         try:
             if plan["kind"] == "carousel":
@@ -443,7 +443,7 @@ def main():
                 results["instagram"] = {"ok": True, **publish_instagram_image(cfg, image, caps["instagram"],
                                                                              (fb_urls or [None])[0])}
         except Exception as e:  # noqa: BLE001
-            results["instagram"] = {"ok": False, "error": str(e)[:400]}
+            results["instagram"] = {"ok": False, "error": type(e).__name__}
     # ستوري للمنشور على فيسبوك وإنستجرام (١٠٨٠×١٩٢٠)
     st = cfg.get("stories", {})
     story_url = None
@@ -453,14 +453,14 @@ def main():
             story_url = r.pop("image_url", None)
             results["facebook_story"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
-            results["facebook_story"] = {"ok": False, "error": str(e)[:300]}
+            results["facebook_story"] = {"ok": False, "error": type(e).__name__}
     if st.get("instagram") and pc.get("instagram", {}).get("enabled"):
         try:
             if not story_url:
                 story_url = publish_facebook_photo(cfg, story_img, "", published=False)["image_url"]
             results["instagram_story"] = {"ok": True, **story_instagram_photo(cfg, story_url)}
         except Exception as e:  # noqa: BLE001
-            results["instagram_story"] = {"ok": False, "error": str(e)[:300]}
+            results["instagram_story"] = {"ok": False, "error": type(e).__name__}
     print(results)
     ids = [it["id"] for it, _, _ in slides]
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
@@ -475,3 +475,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

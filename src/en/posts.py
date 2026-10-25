@@ -319,7 +319,7 @@ def main():
                 urls = [r.pop("image_url", None)]
             results["facebook"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
-            results["facebook"] = {"ok": False, "error": str(e)[:400]}
+            results["facebook"] = {"ok": False, "error": type(e).__name__}
     if pc.get("instagram", {}).get("enabled", True):
         try:
             if plan["kind"] == "carousel":
@@ -327,7 +327,7 @@ def main():
             else:
                 results["instagram"] = {"ok": True, **publish_instagram_image(cfg, images[0], cap, (urls or [None])[0])}
         except Exception as e:  # noqa: BLE001
-            results["instagram"] = {"ok": False, "error": str(e)[:400]}
+            results["instagram"] = {"ok": False, "error": type(e).__name__}
     st = en.get("stories", {"facebook": True, "instagram": True})
     story_url = None
     if st.get("facebook"):
@@ -336,14 +336,14 @@ def main():
             story_url = r.pop("image_url", None)
             results["facebook_story"] = {"ok": True, **r}
         except Exception as e:  # noqa: BLE001
-            results["facebook_story"] = {"ok": False, "error": str(e)[:300]}
+            results["facebook_story"] = {"ok": False, "error": type(e).__name__}
     if st.get("instagram"):
         try:
             if not story_url:
                 story_url = publish_facebook_photo(cfg, story, "", published=False)["image_url"]
             results["instagram_story"] = {"ok": True, **story_instagram_photo(cfg, story_url)}
         except Exception as e:  # noqa: BLE001
-            results["instagram_story"] = {"ok": False, "error": str(e)[:300]}
+            results["instagram_story"] = {"ok": False, "error": type(e).__name__}
     print(results)
     ids = [it["id"] for it in plan["items"]]
     history["posts"].append({"date": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
@@ -359,3 +359,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

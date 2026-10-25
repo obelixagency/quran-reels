@@ -158,7 +158,7 @@ def fetch_verse(reciter, surah, ayah):
             try:
                 meta = _from_qurancom(reciter, surah, ayah)
             except Exception as e:  # noqa: BLE001
-                print(f"  quran.com failed ({e}); using fallback sources")
+                print(f"  quran.com failed ({type(e).__name__}); using fallback sources")
         if not meta or not meta.get("audio_url"):
             fb = _from_fallback(reciter, surah, ayah)
             if meta:  # نص quran.com + صوت everyayah → التوقيت هيتحسب تقديريًا
@@ -181,3 +181,4 @@ def fetch_verse(reciter, surah, ayah):
     timings = [(max(0.0, min(s, duration)), max(0.0, min(e, duration))) for s, e in timings]
     return {"text": text, "tafsir": (meta.get("tafsir") or "").strip(), "audio": audio,
             "words": words, "timings": timings, "timing_source": source, "duration": duration}
+

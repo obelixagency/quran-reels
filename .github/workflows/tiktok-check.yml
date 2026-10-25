@@ -16,11 +16,8 @@ jobs:
           KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
         run: |
-          fp() { printf '%s' "$1" | sha256sum | cut -c1-10; }
-          echo "refresh len=${#RT} fp=$(fp "$RT")"
-          echo "key len=${#KEY}  secret len=${#SECRET}"
           RES=$(curl -s -X POST https://open.tiktokapis.com/v2/oauth/token/ \
             -H "Content-Type: application/x-www-form-urlencoded" \
             --data-urlencode "client_key=$KEY" --data-urlencode "client_secret=$SECRET" \
             --data-urlencode "grant_type=refresh_token" --data-urlencode "refresh_token=$RT")
-          echo "$RES" | jq '{error, error_description, scope, open_id: (.open_id|tostring|.[0:6]), has_access: (.access_token != null), same_refresh: (.refresh_token == env.RT)}'
+          echo "$RES" | jq '{has_access: (.access_token != null), same_refresh: (.refresh_token == env.RT)}'
