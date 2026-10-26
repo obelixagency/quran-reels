@@ -899,6 +899,38 @@
           "story_id": "17986687458088532"
         }
       }
+    },
+    {
+      "date": "2026-10-26T16:11:52+00:00",
+      "kind": "post",
+      "id": "h24",
+      "ids": [
+        "h24"
+      ],
+      "type": "hadith",
+      "set": null,
+      "hook": "Words of the Prophet ﷺ for your day",
+      "cta": "Save it for the day you need it 🤍",
+      "background": "pexels:39837574",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122118051585487311",
+          "post_id": "1361268837065768_122118051609487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18132306553758539"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "3449852321861967"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18125255437928403"
+        }
+      }
     }
   ]
 }
