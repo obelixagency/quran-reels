@@ -1955,6 +1955,32 @@
           "story_id": "17897709105674934"
         }
       }
+    },
+    {
+      "date": "2026-10-26T21:12:16+00:00",
+      "passage_id": "q84-6",
+      "surah": 84,
+      "ayahs": [
+        6
+      ],
+      "reciter": "maher",
+      "background": "pexels:33112664",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7701086987423598598",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "QdGF6hPpmeo",
+          "url": "https://youtube.com/shorts/QdGF6hPpmeo",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
