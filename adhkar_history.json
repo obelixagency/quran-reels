@@ -2225,6 +2225,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-26T07:12:08+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "asbahna",
+        "bika_m"
+      ],
+      "background": "pexels:17906663",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2226634114916365"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18024303407718206"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "4588974714582283"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18229565833329578"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1459147859692046"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17906846796605690"
+          }
+        }
+      ]
     }
   ]
 }
