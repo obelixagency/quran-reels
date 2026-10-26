@@ -1922,6 +1922,39 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-10-26T08:35:09+00:00",
+      "passage_id": "ikhlas",
+      "surah": 112,
+      "ayahs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "reciter": "hudhaify",
+      "background": "pexels:15006952",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "28446108961758077",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18111560756264259"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "943187148642415"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17897709105674934"
+        }
+      }
     }
   ]
 }
