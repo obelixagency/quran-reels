@@ -3533,6 +3533,49 @@
           "story_id": "17974155252176829"
         }
       }
+    },
+    {
+      "date": "2026-10-27T19:14:25+00:00",
+      "id": "q3-185",
+      "kind": "quran",
+      "hook": "Let this one sink in",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:36654153",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1098042473120325",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18631421362037071"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7701427611234289665",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "Tft26cp_CDw",
+          "url": "https://youtube.com/shorts/Tft26cp_CDw",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1381626417117835"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18437481217194083"
+        }
+      }
     }
   ]
 }
