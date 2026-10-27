@@ -2351,6 +2351,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-27T14:11:50+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "sayyid",
+        "subhan100"
+      ],
+      "background": "pexels:10380676",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "29199927096298074"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18150502594522569"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1423794432629113"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18181095271449164"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1104364242232852"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18115608983612970"
+          }
+        }
+      ]
     }
   ]
 }
