@@ -966,6 +966,38 @@
           "story_id": "18118857740007427"
         }
       }
+    },
+    {
+      "date": "2026-10-28T16:12:00+00:00",
+      "kind": "post",
+      "id": "q7-56",
+      "ids": [
+        "q7-56"
+      ],
+      "type": "quran",
+      "set": null,
+      "hook": "Words that have brought peace for centuries",
+      "cta": "Follow for a daily reminder 🌙",
+      "background": "pexels:7301573",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122118595239487311",
+          "post_id": "1361268837065768_122118595263487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18109247771221585"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1632154628709593"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18181567135439971"
+        }
+      }
     }
   ]
 }
