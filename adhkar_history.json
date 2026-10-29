@@ -2519,6 +2519,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-10-29T14:11:59+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "bika_e",
+        "sayyid"
+      ],
+      "background": "pexels:5015037",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1773964317192283"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17956206306282807"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1699428654934764"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18035568638670511"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1841504190218256"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18421612159152218"
+          }
+        }
+      ]
     }
   ]
 }
