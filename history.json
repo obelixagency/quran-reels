@@ -2128,6 +2128,50 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-10-29T16:14:40+00:00",
+      "passage_id": "q7-56",
+      "surah": 7,
+      "ayahs": [
+        56
+      ],
+      "reciter": "ayyoub",
+      "background": "pexels:29462573",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1807997256986323",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18155200522549643"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7702123433114994706",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "YHawWeE2OPE",
+          "url": "https://youtube.com/shorts/YHawWeE2OPE",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1170941392453465"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18118045988586181"
+        }
+      }
     }
   ]
 }
