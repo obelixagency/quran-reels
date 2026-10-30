@@ -3963,6 +3963,49 @@
           "story_id": "18145691137599876"
         }
       }
+    },
+    {
+      "date": "2026-10-30T22:15:22+00:00",
+      "id": "n63",
+      "kind": "hadith",
+      "hook": "A reminder your heart needed",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:28074549",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1145039774706986",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17972018502178195"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7702586885469866005",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "ed8DLgpHwmQ",
+          "url": "https://youtube.com/shorts/ed8DLgpHwmQ",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1162430162802753"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18115720760036470"
+        }
+      }
     }
   ]
 }
