@@ -1033,6 +1033,37 @@
           "story_id": "18133996582813768"
         }
       }
+    },
+    {
+      "date": "2026-10-30T16:12:51+00:00",
+      "kind": "post",
+      "id": "ph181",
+      "ids": [
+        "ph181"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Say this today",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:38312507",
+      "results": {
+        "facebook": {
+          "ok": false,
+          "error": "RuntimeError"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17997761156862513"
+        },
+        "facebook_story": {
+          "ok": false,
+          "error": "RuntimeError"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18115699409011763"
+        }
+      }
     }
   ]
 }
