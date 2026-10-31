@@ -1049,6 +1049,40 @@
           "story_id": "17949053586348209"
         }
       }
+    },
+    {
+      "date": "2026-10-31T07:12:47+00:00",
+      "kind": "carousel",
+      "id": "h40",
+      "ids": [
+        "h40",
+        "h7",
+        "h34",
+        "h10"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "occasion": null,
+      "background": "pexels:17906663",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122117424477496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18494392807106635",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1891201778912378"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17952822840324878"
+        }
+      }
     }
   ]
 }
