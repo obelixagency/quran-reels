@@ -1064,6 +1064,41 @@
           "story_id": "18115699409011763"
         }
       }
+    },
+    {
+      "date": "2026-10-31T16:12:48+00:00",
+      "kind": "carousel",
+      "id": "ph111",
+      "ids": [
+        "ph111",
+        "d6",
+        "y4",
+        "ph243"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:1884460",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122119407441487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17918881488462319",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1083906947799026"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17977692311937503"
+        }
+      }
     }
   ]
 }
