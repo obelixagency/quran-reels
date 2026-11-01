@@ -2771,6 +2771,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-01T14:11:47+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "bika_e",
+        "amsayna"
+      ],
+      "background": "pexels:30629679",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2601636960279102"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18098746475550982"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "29288824714138102"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18122154421948958"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1163738606006603"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18129210508892002"
+          }
+        }
+      ]
     }
   ]
 }
