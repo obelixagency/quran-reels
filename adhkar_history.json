@@ -2855,6 +2855,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-02T14:12:09+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "kalimat",
+        "bismillah"
+      ],
+      "background": "pexels:27328174",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1123651763703819"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18290193283288789"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1815563739489790"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18154460569519259"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "869173559585948"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17913873522552784"
+          }
+        }
+      ]
     }
   ]
 }
