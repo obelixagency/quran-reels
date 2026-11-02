@@ -2813,6 +2813,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-02T07:12:17+00:00",
+      "session": "morning",
+      "ids": [
+        "quls",
+        "tahlil100",
+        "asbahna"
+      ],
+      "background": "pexels:35738232",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1142100741501155"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18350760979270214"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1152284754029330"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18039050858853044"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1103676228949769"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18118104863089531"
+          }
+        }
+      ]
     }
   ]
 }
