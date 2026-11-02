@@ -1114,6 +1114,40 @@
           "story_id": "18417326755085579"
         }
       }
+    },
+    {
+      "date": "2026-11-02T07:13:01+00:00",
+      "kind": "carousel",
+      "id": "ph201",
+      "ids": [
+        "ph201",
+        "ph16",
+        "ph23",
+        "ph215"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "occasion": null,
+      "background": "pexels:31904921",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122118074403496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18436517143151118",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "4683406411891918"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18006477080794227"
+        }
+      }
     }
   ]
 }
