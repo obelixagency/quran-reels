@@ -2523,6 +2523,32 @@
           "story_id": "17950497000350802"
         }
       }
+    },
+    {
+      "date": "2026-11-03T21:13:00+00:00",
+      "passage_id": "q49-10",
+      "surah": 49,
+      "ayahs": [
+        10
+      ],
+      "reciter": "minshawi",
+      "background": "pexels:11466077",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7704055436932253717",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "plkY7UGNyns",
+          "url": "https://youtube.com/shorts/plkY7UGNyns",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
