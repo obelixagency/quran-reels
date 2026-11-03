@@ -2813,6 +2813,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-03T13:12:03+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "tahlil-100",
+        "morning-2723"
+      ],
+      "background": "pexels:36708441",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1653720913025848"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18640887301039633"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1132977009601374"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18132787954704120"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1892272648622460"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18647987146040936"
+          }
+        }
+      ]
     }
   ]
 }
