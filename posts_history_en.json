@@ -1233,6 +1233,38 @@
           "story_id": "17907257985670070"
         }
       }
+    },
+    {
+      "date": "2026-11-05T16:12:38+00:00",
+      "kind": "post",
+      "id": "d12",
+      "ids": [
+        "d12"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "Say this today",
+      "cta": "Save it for the day you need it 🤍",
+      "background": "pexels:16433633",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122120873949487311",
+          "post_id": "1361268837065768_122120873973487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17914988091471975"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "2101228327185074"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18033077198910278"
+        }
+      }
     }
   ]
 }
