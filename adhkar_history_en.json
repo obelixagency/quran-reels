@@ -2981,6 +2981,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-05T13:11:51+00:00",
+      "session": "morning",
+      "ids": [
+        "ayat-al-kursi",
+        "tahlil-100",
+        "subhanallah-100"
+      ],
+      "background": "pexels:40294991",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1826626218529247"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17912920497485003"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1276726311303999"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18357484144170179"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1929648401737445"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "RuntimeError"
+          }
+        }
+      ]
     }
   ]
 }
