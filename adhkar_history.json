@@ -3275,6 +3275,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-07T14:11:47+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "bismillah",
+        "afiya"
+      ],
+      "background": "pexels:39518389",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1659863445628000"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18098195642648027"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2402558850479816"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18083538035350587"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2381413972657195"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18133856152777046"
+          }
+        }
+      ]
     }
   ]
 }
