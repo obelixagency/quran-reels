@@ -1213,6 +1213,37 @@
           "story_id": "18043157531639436"
         }
       }
+    },
+    {
+      "date": "2026-11-07T07:11:47+00:00",
+      "kind": "post",
+      "id": "h24",
+      "ids": [
+        "h24"
+      ],
+      "type": "hadith",
+      "set": null,
+      "occasion": null,
+      "background": "pexels:10380676",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122119657083496080",
+          "post_id": "1397548336772319_122119657125496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17960517315260450"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1157756883463790"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18096881858446759"
+        }
+      }
     }
   ]
 }
