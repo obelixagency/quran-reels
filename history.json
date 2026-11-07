@@ -2760,6 +2760,32 @@
           "story_id": "18653159197034443"
         }
       }
+    },
+    {
+      "date": "2026-11-07T21:12:54+00:00",
+      "passage_id": "q3-92",
+      "surah": 3,
+      "ayahs": [
+        92
+      ],
+      "reciter": "minshawi",
+      "background": "pexels:32486334",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7705540127669422098",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "fvYzbl6kXiU",
+          "url": "https://youtube.com/shorts/fvYzbl6kXiU",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
