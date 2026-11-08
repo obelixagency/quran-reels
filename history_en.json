@@ -5124,6 +5124,49 @@
           "story_id": "18079402562738778"
         }
       }
+    },
+    {
+      "date": "2026-11-08T22:14:18+00:00",
+      "id": "ph181",
+      "kind": "dua",
+      "hook": "Save this dua for when you need it",
+      "cta": "Follow for a daily reminder 🌙",
+      "background": "local:waterfall_forest_pexels.mp4",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1111708784793703",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17991425031095640"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7705926607190607879",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "1eZJlcKyxmM",
+          "url": "https://youtube.com/shorts/1eZJlcKyxmM",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1124562386823884"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18000272382044632"
+        }
+      }
     }
   ]
 }
