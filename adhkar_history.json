@@ -3359,6 +3359,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-08T14:11:38+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "kalimat",
+        "subhan100"
+      ],
+      "background": "pexels:37265730",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1168156632303198"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18000475238825455"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1739040790524690"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18578191957072729"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1137944125896992"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18223866532352745"
+          }
+        }
+      ]
     }
   ]
 }
