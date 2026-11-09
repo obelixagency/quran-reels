@@ -3443,6 +3443,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-09T14:12:19+00:00",
+      "session": "evening",
+      "ids": [
+        "kursi",
+        "amsayna",
+        "bika_e"
+      ],
+      "background": "pexels:37042007",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1794117184974707"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17914480263510273"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1495424899301916"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18217004638363351"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1702752931353651"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18111572795225728"
+          }
+        }
+      ]
     }
   ]
 }
