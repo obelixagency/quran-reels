@@ -5253,6 +5253,49 @@
           "story_id": "18088216550316559"
         }
       }
+    },
+    {
+      "date": "2026-11-09T22:15:07+00:00",
+      "id": "n32",
+      "kind": "hadith",
+      "hook": "Words of the Prophet ﷺ for your day",
+      "cta": "Which word stood out to you? Tell us below 👇",
+      "background": "pexels:24801119",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "2222985215287817",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18105526178555302"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7706297967069906965",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "LcPSJUiYhsE",
+          "url": "https://youtube.com/shorts/LcPSJUiYhsE",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1023569154100072"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17974739574178265"
+        }
+      }
     }
   ]
 }
