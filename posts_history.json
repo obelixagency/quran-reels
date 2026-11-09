@@ -1278,6 +1278,37 @@
           "story_id": "18133115320741665"
         }
       }
+    },
+    {
+      "date": "2026-11-09T07:12:16+00:00",
+      "kind": "post",
+      "id": "ph85",
+      "ids": [
+        "ph85"
+      ],
+      "type": "dua",
+      "set": null,
+      "occasion": null,
+      "background": "pexels:16472007",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122120213973496080",
+          "post_id": "1397548336772319_122120214003496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18115461857034955"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1601487225352821"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18086600555334558"
+        }
+      }
     }
   ]
 }
