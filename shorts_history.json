@@ -857,6 +857,28 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-11-09T10:12:34+00:00",
+      "id": "q7-151",
+      "type": "quran_dua",
+      "background": "pexels:14906702",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7706112142522157077",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "AEt-mZK8k84",
+          "url": "https://youtube.com/shorts/AEt-mZK8k84",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
