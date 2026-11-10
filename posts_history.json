@@ -1309,6 +1309,40 @@
           "story_id": "18086600555334558"
         }
       }
+    },
+    {
+      "date": "2026-11-10T07:12:11+00:00",
+      "kind": "carousel",
+      "id": "d12",
+      "ids": [
+        "d12",
+        "ph52",
+        "ph17",
+        "d6"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "occasion": null,
+      "background": "pexels:37628522",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122120536863496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18120634684772265",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1878645377107286"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17999128767029229"
+        }
+      }
     }
   ]
 }
