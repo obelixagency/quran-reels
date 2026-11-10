@@ -2971,6 +2971,32 @@
           "story_id": "18030010973697429"
         }
       }
+    },
+    {
+      "date": "2026-11-10T21:12:37+00:00",
+      "passage_id": "q16-18",
+      "surah": 16,
+      "ayahs": [
+        18
+      ],
+      "reciter": "abdulbasit",
+      "background": "pexels:30400239",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7706653303693674516",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "TsfgZoeHfm8",
+          "url": "https://youtube.com/shorts/TsfgZoeHfm8",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
