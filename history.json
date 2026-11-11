@@ -2997,6 +2997,33 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-11-11T21:12:30+00:00",
+      "passage_id": "qadr",
+      "surah": 97,
+      "ayahs": [
+        1,
+        2
+      ],
+      "reciter": "minshawi",
+      "background": "pexels:29476348",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7707024414637918214",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "H43_Hl9AUTQ",
+          "url": "https://youtube.com/shorts/H43_Hl9AUTQ",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
