@@ -1434,6 +1434,38 @@
           "story_id": "18637176508000920"
         }
       }
+    },
+    {
+      "date": "2026-11-11T16:11:33+00:00",
+      "kind": "post",
+      "id": "y5",
+      "ids": [
+        "y5"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "A dua to keep close to your heart",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:13988120",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122122435233487311",
+          "post_id": "1361268837065768_122122435257487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18118952957039495"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1158928740006439"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17929909722575026"
+        }
+      }
     }
   ]
 }
