@@ -3611,6 +3611,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-12T22:12:01+00:00",
+      "session": "evening",
+      "ids": [
+        "ayat-al-kursi",
+        "evening-2709",
+        "evening-2723"
+      ],
+      "background": "pexels:17906663",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1403604004881227"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18003144404812952"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1405062608076070"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18100298267643629"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1003381449489597"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17874782439645578"
+          }
+        }
+      ]
     }
   ]
 }
