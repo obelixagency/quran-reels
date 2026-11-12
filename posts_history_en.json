@@ -1466,6 +1466,41 @@
           "story_id": "17929909722575026"
         }
       }
+    },
+    {
+      "date": "2026-11-12T16:12:46+00:00",
+      "kind": "carousel",
+      "id": "ph147",
+      "ids": [
+        "ph147",
+        "ph13",
+        "d13",
+        "ph53"
+      ],
+      "type": "dua",
+      "set": "dua",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:34789093",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122122669371487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17925764589221787",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1852477779286489"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18134288612503101"
+        }
+      }
     }
   ]
 }
