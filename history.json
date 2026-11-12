@@ -3068,6 +3068,35 @@
           "story_id": "18640959133006653"
         }
       }
+    },
+    {
+      "date": "2026-11-12T21:13:19+00:00",
+      "passage_id": "fatiha",
+      "surah": 1,
+      "ayahs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "reciter": "husary",
+      "background": "pexels:7681522",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7707395538924242962",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "Cbfpe_Cl3i4",
+          "url": "https://youtube.com/shorts/Cbfpe_Cl3i4",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
