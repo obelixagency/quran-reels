@@ -3863,6 +3863,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-15T07:12:34+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "tahlil100",
+        "sayyid"
+      ],
+      "background": "pexels:25381300",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1823532798852317"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18030786239697273"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1484995796840946"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18080504600427473"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1472533611637133"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18141453517677992"
+          }
+        }
+      ]
     }
   ]
 }
