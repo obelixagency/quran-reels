@@ -3312,6 +3312,50 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-11-16T16:14:51+00:00",
+      "passage_id": "q7-199",
+      "surah": 7,
+      "ayahs": [
+        199
+      ],
+      "reciter": "husary",
+      "background": "pexels:4536383",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "2068946453807212",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18103943120065895"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7708802902277654546",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "uQTtaDebLBE",
+          "url": "https://youtube.com/shorts/uQTtaDebLBE",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1497339335541563"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17961125934017783"
+        }
+      }
     }
   ]
 }
