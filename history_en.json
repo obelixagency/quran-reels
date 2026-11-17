@@ -6199,6 +6199,49 @@
           "story_id": "18027767303866384"
         }
       }
+    },
+    {
+      "date": "2026-11-17T13:15:21+00:00",
+      "id": "q25-63",
+      "kind": "recited",
+      "hook": "A verse to calm your heart today",
+      "cta": "Save it for the day you need it 🤍",
+      "background": "pexels:12639703",
+      "reciter": "hudhaify",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1178824151761873",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18161714893511570"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7709127865387993140",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "HbYcvCtVSqw",
+          "url": "https://youtube.com/shorts/HbYcvCtVSqw",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "2215554878999267"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17919780951493842"
+        }
+      }
     }
   ]
 }
