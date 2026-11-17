@@ -3,11 +3,11 @@ name: Daily Serenity – English reels
 on:
   schedule:
     # Arabic recitation + English translation reel ≈ 3:37pm Cairo / 6pm India / 8:37am New York
-    - cron: "37 12 * * *"
+    - cron: "37 13 * * *"
     # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 5pm New York / 10pm London
     # (moved from 23:37 – the late-night posts got almost no views)
-    - cron: "7 17 * * *"
-    - cron: "7 21 * * *"
+    - cron: "7 18 * * *"
+    - cron: "7 22 * * *"
   workflow_dispatch:
     inputs:
       kind:

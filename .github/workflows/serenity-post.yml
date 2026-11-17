@@ -3,7 +3,7 @@ name: Daily Serenity – daily post / carousel
 on:
   schedule:
     # 15:07 UTC ≈ 11am New York / 4pm London / 8:30pm India. Alternates: image post <-> carousel.
-    - cron: "7 15 * * *"
+    - cron: "7 16 * * *"
   workflow_dispatch:
     inputs:
       publish:

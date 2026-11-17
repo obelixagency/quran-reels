@@ -3,7 +3,7 @@ name: Daily Short – dua / hadith video (TikTok + YouTube)
 on:
   schedule:
     # 09:37 UTC ≈ 12:37 Cairo (summer)
-    - cron: "37 9 * * *"
+    - cron: "37 10 * * *"
   workflow_dispatch:
     inputs:
       publish:

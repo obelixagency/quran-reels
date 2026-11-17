@@ -3,8 +3,8 @@ name: Daily Serenity – adhkar stories
 on:
   schedule:
     # UTC. Morning ≈ 6am New York / 11am London; evening ≈ 5pm New York / 10pm London.
-    - cron: "13 10 * * *"
-    - cron: "13 21 * * *"
+    - cron: "13 11 * * *"
+    - cron: "13 22 * * *"
   workflow_dispatch:
     inputs:
       session:

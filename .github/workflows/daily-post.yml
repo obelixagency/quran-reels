@@ -3,7 +3,7 @@ name: Daily Post – dua / hadith
 on:
   schedule:
     # 07:00 UTC = 10 صباحًا بتوقيت القاهرة (صيفي)
-    - cron: "47 6 * * *"   # ~09:47–10:15 Cairo
+    - cron: "47 7 * * *"   # ~09:47–10:15 Cairo (UTC+2 شتاءً؛ ارجع 6 لو مصر رجعت صيفي)
   workflow_dispatch:
     inputs:
       publish:
