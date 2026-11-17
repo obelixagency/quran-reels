@@ -3426,6 +3426,50 @@
           "story_id": "17894396679459221"
         }
       }
+    },
+    {
+      "date": "2026-11-17T21:14:39+00:00",
+      "passage_id": "imran-139",
+      "surah": 3,
+      "ayahs": [
+        139
+      ],
+      "reciter": "maher",
+      "background": "pexels:4536565",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "1787995019156143",
+          "status": "ready",
+          "cover": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17914121721482448"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7709251082983147526",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "838JVdlUKq4",
+          "url": "https://youtube.com/shorts/838JVdlUKq4",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1161423796818731"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17956176354314716"
+        }
+      }
     }
   ]
 }
