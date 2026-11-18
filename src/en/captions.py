@@ -2,6 +2,8 @@
 import datetime as dt
 import random
 
+from ..engage import en_ask, en_first_comment
+
 HOOKS = {
     "quran": ["A verse to calm your heart today", "Pause for a minute and reflect", "Read this slowly",
               "Words that have brought peace for centuries", "Take a breath before you scroll", "Today's verse",
@@ -11,8 +13,9 @@ HOOKS = {
     "dua": ["A dua to keep close to your heart", "Say this today", "A dua from the Prophet ﷺ",
             "Save this dua for when you need it", "Words to ask Allah with"],
 }
-CTAS = ["Share it with someone who needs it 🌿", "Save it for the day you need it 🤍", "Follow for a daily reminder 🌙",
-        "Which word stood out to you? Tell us below 👇", "Send this to a friend 🤍"]
+# second line of every caption (the first line is the easy question from engage.en_ask)
+CTAS = ["Share it with someone who needs it 🌿", "Save it for the day you need it 🤍", "Send this to a friend 🤍",
+        "Save this and come back to it tonight 🌙", "Send this to someone you love 🌿"]
 HASHTAGS = {
     "quran": ["#DailySerenity", "#QuranInEnglish", "#QuranVerse", "#QuranQuotes", "#IslamicReminders", "#Islam", "#Muslim", "#Faith"],
     "hadith": ["#DailySerenity", "#Hadith", "#Sunnah", "#ProphetMuhammad", "#IslamicReminders", "#Islam", "#Muslim", "#Faith"],
@@ -76,12 +79,13 @@ def build(kind, v, hook, cta):
         yt_title = f"{hook} | Dua from the Sunnah #shorts"
     if len(yt_title) > 100:  # hook + reference only, never over 100 characters
         yt_title = yt_title[:100]
-    yt_desc = (f"{b}\n\nA new reminder every day. Subscribe to Daily Serenity for your daily moment of peace 🌿\n\n"
+    ask = en_ask(kind)
+    yt_desc = (f"{ask}\n\n{b}\n\nA new reminder every day. Subscribe to Daily Serenity for your daily moment of peace 🌿\n\n"
                f"{credit}\n\n{' '.join(tags[:4] + ['#shorts'])}")
-    meta = f"{hook} 🤍\n\n{b}\n\n{cta}\n\n{credit}\n\n{' '.join(tags)}"
+    meta = f"{ask}\n{cta}\n\n{hook} 🤍\n\n{b}\n\n{credit}\n\n{' '.join(tags)}"
     tiktok = f"{hook} 🌿 {b} {cta}\n{' '.join(tags[:4] + ['#fyp'])}"
     yt_tags = [t.format(surah_name=v.get("surah_name", ""), collection=v.get("collection", "")) for t in YT_TAGS[kind]]
     if recited:
         yt_tags.insert(1, "Quran Recitation")
     return {"facebook": meta, "instagram": meta, "tiktok": tiktok[:2200], "youtube": yt_desc,
-            "_yt_title": yt_title, "_yt_tags": yt_tags}
+            "_yt_title": yt_title, "_yt_tags": yt_tags, "_first_comment": en_first_comment(kind, v)}

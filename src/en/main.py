@@ -162,6 +162,10 @@ def publish(cfg_en, reel, caps, cover, platforms):
         except Exception as e:  # noqa: BLE001
             print("Publishing failed; provider details withheld")
             results[name] = {"ok": False, "error": type(e).__name__}
+        if name in ("facebook", "instagram") and results[name].get("ok") and caps.get("_first_comment"):
+            from ..publish_meta import first_comment
+            results[name]["first_comment"] = first_comment(cfg_en, name, results[name], caps["_first_comment"])
+            print(f"   💬 {name} first comment: {results[name]['first_comment']}")
     # the same reel is also shared as a Facebook / Instagram story (like the Arabic channels)
     st = cfg_en.get("stories", {"facebook": True, "instagram": True})
     for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):

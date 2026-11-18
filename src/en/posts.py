@@ -247,7 +247,7 @@ def caption_single(it, history):
     b = captions.body(kind, it["v"])
     credit = captions.CREDIT[kind]
     tags = " ".join(captions.HASHTAGS[kind][:6])
-    return f"{hook} 🤍\n\n{b}\n\n{cta}\n\n{credit}\n\n{tags}", hook, cta
+    return f"{captions.en_ask(kind)}\n{cta}\n\n{hook} 🤍\n\n{b}\n\n{credit}\n\n{tags}", hook, cta
 
 
 def caption_carousel(plan):
