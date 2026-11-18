@@ -2,8 +2,11 @@ name: Daily Serenity – English reels
 
 on:
   schedule:
-    # Arabic recitation + English translation reel ≈ 3:37pm Cairo / 6pm India / 8:37am New York
-    - cron: "37 13 * * *"
+    # Arabic recitation + English translation reel ≈ 8:07pm New York (EST; 9:07pm in summer) / 3:07am Cairo.
+    # Moved 2026-11-18 from 13:37 UTC (8:37am NY): YouTube views of the reels published 29 Sep–31 Oct
+    # (same period for every slot, 20–50 days old): this morning slot median 250 views (29 videos) vs
+    # 1pm-ish quran reel 273 (28) and 5pm hadith/dua reel 747 (29) – the weakest slot, moved to early night.
+    - cron: "7 1 * * *"
     # UTC. Quran verse daily ≈ 1pm New York / 6pm London; hadith-or-dua ≈ 5pm New York / 10pm London
     # (moved from 23:37 – the late-night posts got almost no views)
     - cron: "7 18 * * *"
@@ -66,7 +69,7 @@ jobs:
           EN_ON=$(python3 -c "import json;print(str(json.load(open('config.json')).get('en',{}).get('enabled',False)).lower())")
           if [ "${{ github.event_name }}" = "schedule" ]; then
             if [ "$EN_ON" != "true" ]; then echo "Daily Serenity not enabled yet (config.json → en.enabled)"; echo "skip=1" >> $GITHUB_OUTPUT; exit 0; fi
-            H=$((10#$(date -u +%H))); if [ $H -ge 12 ] && [ $H -le 14 ]; then K=recited; elif [ $H -ge 15 ] && [ $H -le 20 ]; then K=quran; else K=sunnah; fi
+            H=$((10#$(date -u +%H))); if [ $H -le 3 ]; then K=recited; elif [ $H -ge 15 ] && [ $H -le 20 ]; then K=quran; else K=sunnah; fi
             echo "args=--kind $K --publish" >> $GITHUB_OUTPUT
           else
             A="--kind ${{ inputs.kind }}"
