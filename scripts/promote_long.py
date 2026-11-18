@@ -51,6 +51,11 @@ def main():
             print(f"{ch}: Facebook secrets missing – skipped")
             continue
         url = f"https://youtu.be/{newest['video_id']}"
+        try:  # a System-User token is exchanged for the Page token (page endpoints need a Page token)
+            x = requests.get(f"{GRAPH}/{pid}", params={"fields": "access_token", "access_token": tok}, timeout=30)
+            tok = (x.json().get("access_token") if x.ok else None) or tok
+        except Exception as e:  # noqa: BLE001
+            print(f"{ch}: page token exchange failed: {type(e).__name__}")
         r = requests.post(f"{GRAPH}/{pid}/feed", timeout=60, data={
             "message": TEXT[ch].format(title=title, url=url), "link": url, "access_token": tok})
         print(f"{ch}: shared {url} on Facebook -> {r.status_code}")

@@ -157,6 +157,14 @@ def collect(ch, c, long_hist):
     return items
 
 
+def page_token(page, tok):
+    """System-User token → the Page token it controls (page endpoints need a Page token)."""
+    if not (page and tok):
+        return tok, None
+    j, e = get(page, tok, fields="access_token")
+    return ((j or {}).get("access_token") or tok), (None if j and j.get("access_token") else e or "no page token")
+
+
 def checks(ch, c):
     """Read-only capability check. Returns [(name, ok, detail)]."""
     tok, page, ig = os.getenv(c["tok"]), os.getenv(c["page"]), os.getenv(c["ig"])
@@ -164,6 +172,8 @@ def checks(ch, c):
     out = []
     if not tok:
         return [("page token", False, "secret missing")]
+    tok, e = page_token(page, tok)
+    out.append(("Page token from the System-User token", e is None, e or "ok"))
     j, e = get(page, tok, fields="name,followers_count,fan_count")
     out.append(("page info", bool(j), j and f"{j.get('name')} – {j.get('followers_count')} followers" or e))
     j, e = get(f"{page}/published_posts", tok, limit=1)
@@ -240,8 +250,8 @@ def main():
     check_res, problems = {}, []
     for ch, c in CH.items():
         check_res[ch] = checks(ch, c)
-        tok = os.getenv(c["tok"])
-        igtok = os.getenv(c["igtok"]) or tok
+        igtok = os.getenv(c["igtok"]) or os.getenv(c["tok"])
+        tok, _ = page_token(os.getenv(c["page"]), os.getenv(c["tok"]))
         tz = ZoneInfo(c["tz"])
         items = collect(ch, c, long_hist)
         at, yerr = yt_token(c["yt"])
