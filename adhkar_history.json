@@ -4115,6 +4115,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-18T07:11:51+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "tahlil100",
+        "asbahna"
+      ],
+      "background": "pexels:12570588",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1147064791356483"
+          },
+          "instagram": {
+            "ok": false,
+            "error": "RuntimeError"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1703137688194860"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17871883113661369"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2173038920000717"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17912644995664098"
+          }
+        }
+      ]
     }
   ]
 }
