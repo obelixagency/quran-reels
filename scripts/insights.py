@@ -195,7 +195,7 @@ def checks(ch, c):
 def slot_of(local):
     """Round to the nearest half hour: posts land 10–50 min after the cron time."""
     m = local.hour * 60 + local.minute
-    m = int(round(m / 30.0) * 30) % 1440
+    m = int(m / 30.0 + 0.5) * 30 % 1440  # 19:15 → 19:30 (no banker's rounding)
     return f"{m // 60:02d}:{m % 60:02d}"
 
 
