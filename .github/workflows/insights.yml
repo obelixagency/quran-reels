@@ -1,18 +1,30 @@
-name: Insights report (Facebook / Instagram, read-only)
+name: Insights report (Facebook / Instagram / YouTube, read-only)
 
+# Reads the numbers of every published post (nothing is posted) and keeps stats.json +
+# insights_report.md up to date in the repo. Runs every day and can be started by hand.
 on:
+  schedule:
+    - cron: "41 3 * * *"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: insights
+  cancel-in-progress: false
 
 jobs:
   report:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - env:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read insights + capability check
+        env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
@@ -21,8 +33,23 @@ jobs:
           EN_FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
           EN_IG_USER_ID: ${{ secrets.EN_IG_USER_ID }}
           EN_IG_TOKEN: ${{ secrets.EN_IG_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          EN_YT_CLIENT_ID: ${{ secrets.EN_YT_CLIENT_ID || secrets.YT_CLIENT_ID }}
+          EN_YT_CLIENT_SECRET: ${{ secrets.EN_YT_CLIENT_SECRET || secrets.YT_CLIENT_SECRET }}
+          EN_YT_REFRESH_TOKEN: ${{ secrets.EN_YT_REFRESH_TOKEN }}
         run: pip install -q requests && python scripts/insights.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: insights
-          path: insights.json
+      - name: Save stats.json + insights_report.md
+        run: |
+          git config user.name "quran-reels-bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p /tmp/keep && cp stats.json insights_report.md /tmp/keep/
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            cp /tmp/keep/stats.json /tmp/keep/insights_report.md .
+            git add stats.json insights_report.md
+            if git diff --cached --quiet; then echo "nothing to save"; break; fi
+            if git commit -q -m "insights: update report" && git push -q; then echo "saved"; break; fi
+            echo "push failed (try $i) - retrying"; sleep $((i * 5))
+          done
