@@ -27,8 +27,29 @@ def _check(r):
     return data
 
 
+_PAGE_TOKENS = {}
+
+
+def page_token():
+    """FB_PAGE_TOKEN may be a Page token or a System-User token (Business settings → System users →
+    Generate token, never expires). Page endpoints (video_reels, photos, feed, page insights) need a
+    *Page* token, so a System-User token is exchanged once per run for the Page token it controls.
+    If the exchange fails the secret is used as it is (that is what happened before)."""
+    tok, pid = os.environ["FB_PAGE_TOKEN"], os.environ.get("FB_PAGE_ID", "")
+    if tok not in _PAGE_TOKENS:
+        pt = None
+        try:
+            r = requests.get(f"https://graph.facebook.com/v23.0/{pid}", timeout=30,
+                             params={"fields": "access_token", "access_token": tok})
+            pt = r.json().get("access_token") if r.ok else None
+        except Exception as e:  # noqa: BLE001
+            print(f"   page token exchange failed: {type(e).__name__}")
+        _PAGE_TOKENS[tok] = pt or tok
+    return _PAGE_TOKENS[tok]
+
+
 def publish_facebook(cfg, video_path, caption, cover=None):
-    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page_id, token = os.environ["FB_PAGE_ID"], page_token()
     g = _graph(cfg)
     size = Path(video_path).stat().st_size
 
@@ -110,7 +131,7 @@ def _photo_url(g, photo_id, token):
 
 
 def publish_facebook_photo(cfg, image_path, caption, published=True):
-    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page_id, token = os.environ["FB_PAGE_ID"], page_token()
     g = _graph(cfg)
     with open(image_path, "rb") as img:
         r = _check(requests.post(f"{g}/{page_id}/photos", timeout=120,
@@ -145,7 +166,7 @@ def publish_instagram_image(cfg, image_path, caption, image_url=None):
 # ------------------------------------------------------------------ carousel (عدة صور في منشور واحد)
 def publish_facebook_carousel(cfg, image_paths, caption):
     """فيسبوك: بنرفع الصور غير منشورة وبعدين منشور واحد فيه كلهم (attached_media)."""
-    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page_id, token = os.environ["FB_PAGE_ID"], page_token()
     g = _graph(cfg)
     photos = [publish_facebook_photo(cfg, pth, "", published=False) for pth in image_paths]
     data = {"message": caption, "access_token": token}
@@ -189,7 +210,7 @@ def _wait_ig(g, cid, token, tries=40):
 
 
 def story_facebook_video(cfg, video_path):
-    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page_id, token = os.environ["FB_PAGE_ID"], page_token()
     g = _graph(cfg)
     size = Path(video_path).stat().st_size
     start = _check(requests.post(f"{g}/{page_id}/video_stories", timeout=60,
@@ -204,7 +225,7 @@ def story_facebook_video(cfg, video_path):
 
 
 def story_facebook_photo(cfg, image_path):
-    page_id, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    page_id, token = os.environ["FB_PAGE_ID"], page_token()
     g = _graph(cfg)
     photo = publish_facebook_photo(cfg, image_path, "", published=False)
     done = _check(requests.post(f"{g}/{page_id}/photo_stories", timeout=60,
@@ -247,7 +268,7 @@ def first_comment(cfg, platform, result, text):
     try:
         g = _graph(cfg)
         if platform == "facebook":
-            obj, token = result.get("video_id") or result.get("post_id"), os.environ["FB_PAGE_TOKEN"]
+            obj, token = result.get("video_id") or result.get("post_id"), page_token()
         else:
             obj = result.get("media_id")
             token = os.environ.get("IG_TOKEN") or os.environ["FB_PAGE_TOKEN"]
