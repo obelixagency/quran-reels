@@ -107,3 +107,42 @@ def test_ar_post_and_short_captions_start_with_question():
     caps = shorts.captions({"type": "dua", "id": "d1"}, "نص", "مسلم")
     assert caps["youtube"].split("\n")[0] == engage.ar_ask("dua")
     assert "آمين" not in "".join(posts.DUA_CTAS)
+
+
+def test_page_token_exchanges_system_user_token(monkeypatch):
+    from src import publish_meta
+
+    class R:
+        ok = True
+
+        def __init__(self, j):
+            self._j = j
+
+        def json(self):
+            return self._j
+
+    calls = []
+
+    def fake_get(url, params=None, timeout=None):
+        calls.append(url)
+        return R({"access_token": "PAGE-" + params["access_token"], "id": "1"})
+
+    monkeypatch.setattr(publish_meta.requests, "get", fake_get)
+    monkeypatch.setenv("FB_PAGE_TOKEN", "SYS")
+    monkeypatch.setenv("FB_PAGE_ID", "123")
+    publish_meta._PAGE_TOKENS.clear()
+    assert publish_meta.page_token() == "PAGE-SYS"
+    assert publish_meta.page_token() == "PAGE-SYS" and len(calls) == 1  # cached per run
+
+
+def test_page_token_falls_back_to_secret(monkeypatch):
+    from src import publish_meta
+
+    def boom(*a, **k):
+        raise OSError("offline")
+
+    monkeypatch.setattr(publish_meta.requests, "get", boom)
+    monkeypatch.setenv("FB_PAGE_TOKEN", "OLD-PAGE-TOKEN")
+    monkeypatch.setenv("FB_PAGE_ID", "123")
+    publish_meta._PAGE_TOKENS.clear()
+    assert publish_meta.page_token() == "OLD-PAGE-TOKEN"
