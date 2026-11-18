@@ -48,9 +48,10 @@ WORKFLOWS = {
     "serenity-adhkar.yml": lambda h: ({"session": "morning" if h < 16 else "evening", "publish": "true"},
                                       "Adhkar " + ("morning" if h < 16 else "evening") + " (EN)"),
     "serenity-post.yml": lambda h: ({"publish": "true"}, "Daily post / carousel (EN)"),
-    "serenity-reels.yml": lambda h: ({"kind": "recited" if 12 <= h <= 14 else "quran" if 15 <= h <= 20 else "sunnah",
+    # recited reel moved to 01:07 UTC (8:07pm New York) on 2026-11-18 – see serenity-reels.yml
+    "serenity-reels.yml": lambda h: ({"kind": "recited" if h <= 3 else "quran" if 15 <= h <= 20 else "sunnah",
                                       "publish": "true"},
-                                     ("Recited Quran reel" if 12 <= h <= 14 else "Quran reel" if 15 <= h <= 20
+                                     ("Recited Quran reel" if h <= 3 else "Quran reel" if 15 <= h <= 20
                                       else "Hadith/dua reel") + " (EN)"),
 }
 
