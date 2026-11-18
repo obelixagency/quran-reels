@@ -35,7 +35,7 @@ OPENERS = {
 }
 CTAS = ["شاركها… لعلها تكون صدقة جارية لك 🤍", "انشرها فالدال على الخير كفاعله 🤍",
         "لا تمرّ دون أن تصلي على النبي ﷺ"]
-DUA_CTAS = ["اكتب «آمين» 🤲", "شاركها لعل دعوة تصيب قلبًا محتاجًا 🤍", "ادعُ بها لنفسك ولمن تحب 🤲"]
+DUA_CTAS = ["ادعُ بها لمن تحب 🤲", "شاركها لعل دعوة تصيب قلبًا محتاجًا 🤍", "ادعُ بها لنفسك ولمن تحب 🤲"]
 HASHTAGS = {
     "hadith": ["#حديث_شريف", "#السنة_النبوية", "#سكينة_يومية", "#اسلاميات", "#حديث_صحيح"],
     "dua": ["#دعاء", "#أدعية", "#سكينة_يومية", "#أذكار", "#اسلاميات"],
@@ -305,16 +305,16 @@ def build_caption(item, text, src, n_tags=5, occ=None):
     opener = occ["opener"] if occ else random.choice(OPENERS[item["type"]])
     cta = random.choice(CTAS if item["type"] in ("hadith", "athar") else DUA_CTAS)
     tags = _tags([item["type"]], [item], occ.get("hashtags") if occ else None, n_tags)
-    return "\n\n".join([opener, _body(item, text, src), cta, tags])
+    from .engage import ar_ask  # أول سطر: سؤال سهل، وبعده دعوة للمشاركة
+    return "\n\n".join([f"{ar_ask(item['type'])}\n{cta}", opener, _body(item, text, src), tags])
 
 
 def build_carousel_caption(slides, n_tags=5, occ=None, title=""):
+    from .engage import ar_ask
     opener = occ["opener"] if occ else f"{title} 🤍 اسحب للنهاية"
-    parts = [opener]
+    parts = [f"{ar_ask('carousel')}\nاحفظها وشاركها مع حد بتحبه 🤍", opener]
     for it, text, src in slides:
         parts.append(_body(it, text, src))
-    parts.append(random.choice(["احفظها وشاركها… لعلها تكون صدقة جارية لك 🤍", "شاركها مع من تحب 🤍",
-                                "اكتب «آمين» وشاركها 🤲"]))
     parts.append(_tags(list(dict.fromkeys(i["type"] for i, _, _ in slides)), [i for i, _, _ in slides],
                        occ.get("hashtags") if occ else None, n_tags))
     cap = "\n\n".join(parts)

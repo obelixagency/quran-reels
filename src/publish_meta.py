@@ -239,3 +239,28 @@ def story_instagram_photo(cfg, image_url):
                                data={"creation_id": cid, "access_token": token}))
     return {"story_id": pub.get("id")}
 
+
+
+def first_comment(cfg, platform, result, text):
+    """أول كومنت من الصفحة/الحساب على الريل. مبيرميش exception: بيرجّع "ok" أو سبب الفشل،
+    وده بيتسجّل جنب المنصة في الـ history (مش بيعدّي في السكوت)."""
+    try:
+        g = _graph(cfg)
+        if platform == "facebook":
+            obj, token = result.get("video_id") or result.get("post_id"), os.environ["FB_PAGE_TOKEN"]
+        else:
+            obj = result.get("media_id")
+            token = os.environ.get("IG_TOKEN") or os.environ["FB_PAGE_TOKEN"]
+        if not obj:
+            return "skipped: no id"
+        r = requests.post(f"{g}/{obj}/comments", data={"message": text, "access_token": token}, timeout=60)
+        try:
+            data = r.json()
+        except ValueError:
+            data = {}
+        if r.status_code >= 400 or data.get("error"):
+            err = data.get("error") or {}
+            return f"failed: HTTP {r.status_code} code {err.get('code')}"
+        return "ok"
+    except Exception as e:  # noqa: BLE001
+        return f"failed: {type(e).__name__}"

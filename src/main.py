@@ -14,7 +14,7 @@ import shutil
 import sys
 import traceback
 
-from . import captions
+from . import captions, engage
 from .backgrounds import get_background
 from .common import DATA, OUT, ROOT, load_json, media_duration, run, save_json
 from .quran_source import fetch_verse
@@ -166,6 +166,7 @@ def generate(cfg, args, history):
     for platform, pcfg in cfg["platforms"].items():
         caps[platform] = captions.build_caption(plan, platform, pcfg["hashtags"])
         (OUT / f"caption_{platform}.txt").write_text(caps[platform], encoding="utf-8")
+    caps["_first_comment"] = engage.ar_first_comment(plan)
     caps["_yt_title"] = captions.youtube_title(plan)
     caps["_yt_tags"] = captions.youtube_tags(plan)
     caps["_cover"] = {"path": str(OUT / "cover.jpg"), "ms": int(cover_t * 1000)}
@@ -202,6 +203,10 @@ def publish(cfg, reel, caps, platforms):
             print("Publishing failed; provider details withheld")
             results[name] = {"ok": False, "error": type(e).__name__}
             print(f"   ❌ {name}: {type(e).__name__}")
+        if name in ("facebook", "instagram") and results[name].get("ok") and caps.get("_first_comment"):
+            from .publish_meta import first_comment
+            results[name]["first_comment"] = first_comment(cfg, name, results[name], caps["_first_comment"])
+            print(f"   💬 {name} first comment: {results[name]['first_comment']}")
     # ستوري: نفس الريل بيتنشر ستوري على فيسبوك وإنستجرام (تيك توك مفيهوش API للستوري)
     st = cfg.get("stories", {})
     for name, fn in (("facebook", "story_facebook_video"), ("instagram", "story_instagram_video")):

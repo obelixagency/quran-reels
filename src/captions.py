@@ -9,6 +9,7 @@ import functools
 import random
 
 from .common import DATA, ar_num, load_json, skeleton
+from .engage import first_lines
 
 THEMES = load_json(DATA / "themes.json")
 
@@ -120,17 +121,19 @@ def build_caption(plan, platform, n_hashtags, rng=random):
             parts_t[dup] = t
     tafsir = "" if tafsir_spills(plan) else " ".join(parts_t)
     tags = " ".join(hashtags(plan, n_hashtags))
-    cta = rng.choice(THEMES["ctas"])
+    n_ayahs = sum(1 for a in plan["ayahs"] if a["number"])
+    lead = first_lines("ar", "quran", n_ayahs, rng)  # أول سطرين: سؤال سهل + احفظ/شارك
 
     def assemble(taf_len):
         parts = [
+            lead,
             opener,
             (f"{basmala}\n" if basmala else "") + f"﴿ {ayat} ﴾",
             f"📖 سورة {plan['surah_name']} | {_ayah_range(plan)}\n🎙️ بصوت الشيخ {plan['reciter']['name']}",
         ]
         if tafsir and taf_len > 0:
             parts.append(f"💡 التفسير الميسر:\n{_cut(tafsir, taf_len)}")
-        parts += [cta, tags]
+        parts.append(tags)
         return "\n\n".join(parts)
 
     taf_len = TAFSIR_MAX[platform]

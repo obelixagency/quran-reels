@@ -151,7 +151,8 @@ def captions(item, text, src):
     cta = random.choice(posts.DUA_CTAS if t in ("dua", "quran_dua") else posts.CTAS)
     tags = posts.HASHTAGS[t]
     pre = item.get("pre") or ("قال رسول الله ﷺ:" if t == "hadith" else "")
-    body = f"{opener}\n\n{pre + chr(10) if pre else ''}{text}\n\n📚 {src}\n\n{cta}"
+    from .engage import ar_ask  # أول سطر في الوصف: سؤال سهل + دعوة للمشاركة
+    body = f"{ar_ask(t)}\n{cta}\n\n{opener}\n\n{pre + chr(10) if pre else ''}{text}\n\n📚 {src}"
     title = f"{opener.rstrip(' 🤍🤲')} | {posts.TITLES[t]} #shorts"
     return {"tiktok": f"{body}\n{' '.join(tags + ['#fyp'])}"[:2200],
             "youtube": f"{body}\n\nتابع سَكينة يومية لتذكير يومي 🤍\n\n{' '.join(tags[:4] + ['#shorts'])}",
