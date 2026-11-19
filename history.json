@@ -3589,6 +3589,32 @@
           "story_id": "18148611187592294"
         }
       }
+    },
+    {
+      "date": "2026-11-19T22:19:50+00:00",
+      "passage_id": "kahf-10",
+      "surah": 18,
+      "ayahs": [
+        10
+      ],
+      "reciter": "husary",
+      "background": "pexels:40922715",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7710010395553826837",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "_P1ilne3cNQ",
+          "url": "https://youtube.com/shorts/_P1ilne3cNQ",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
