@@ -4115,6 +4115,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-19T00:11:35+00:00",
+      "session": "evening",
+      "ids": [
+        "ayat-al-kursi",
+        "evening-2709",
+        "sayyid-al-istighfar"
+      ],
+      "background": "pexels:8063541",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1022389900903717"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18637608145001370"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1674519810753404"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17957722518036598"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1667623248187663"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18121936619283638"
+          }
+        }
+      ]
     }
   ]
 }
