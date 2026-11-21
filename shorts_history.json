@@ -1121,6 +1121,28 @@
           "channel": "سَكينة يومية Daily Sakina"
         }
       }
+    },
+    {
+      "date": "2026-11-21T13:12:35+00:00",
+      "id": "ph185",
+      "type": "dua",
+      "background": "pexels:7297870",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7710611580265711636",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "KmRmeRGJ-xc",
+          "url": "https://youtube.com/shorts/KmRmeRGJ-xc",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
