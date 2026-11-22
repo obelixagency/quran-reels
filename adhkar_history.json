@@ -4493,6 +4493,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-22T16:12:07+00:00",
+      "session": "evening",
+      "ids": [
+        "quls",
+        "bika_e",
+        "afiya"
+      ],
+      "background": "pexels:29536431",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1144623277956472"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18114045761225573"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1092557983840062"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18107437775531405"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2421406462009263"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17953760931056453"
+          }
+        }
+      ]
     }
   ]
 }
