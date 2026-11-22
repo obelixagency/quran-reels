@@ -1702,6 +1702,37 @@
           "story_id": "18121406524984207"
         }
       }
+    },
+    {
+      "date": "2026-11-22T10:11:45+00:00",
+      "kind": "post",
+      "id": "white",
+      "ids": [
+        "white"
+      ],
+      "type": "athar",
+      "set": null,
+      "occasion": "three_days",
+      "background": "pexels:37652817",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122124055149496080",
+          "post_id": "1397548336772319_122124055173496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17922431154529766"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "2094543164552265"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17968725045203433"
+        }
+      }
     }
   ]
 }
