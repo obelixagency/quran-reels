@@ -1800,6 +1800,41 @@
           "error": "RuntimeError"
         }
       }
+    },
+    {
+      "date": "2026-11-22T17:12:32+00:00",
+      "kind": "carousel",
+      "id": "h26",
+      "ids": [
+        "h26",
+        "n28",
+        "n5",
+        "n6"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:38706280",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122124832671487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18122466634785550",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1418172187184829"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18357205696266969"
+        }
+      }
     }
   ]
 }
