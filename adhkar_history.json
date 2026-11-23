@@ -4577,6 +4577,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-23T16:12:45+00:00",
+      "session": "evening",
+      "ids": [
+        "quls",
+        "kalimat",
+        "amsayna"
+      ],
+      "background": "pexels:2990107",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1592535846243245"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18019378598966976"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1654630176450165"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18115769762592927"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1152152803854887"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18115946582142467"
+          }
+        }
+      ]
     }
   ]
 }
