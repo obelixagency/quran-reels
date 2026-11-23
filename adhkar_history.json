@@ -4535,6 +4535,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-23T07:12:14+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "subhan100",
+        "asbahna"
+      ],
+      "background": "pexels:40593039",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "906448889157374"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18120560908803732"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1607393577735873"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18167356900496297"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "3390139984513054"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18580531570074026"
+          }
+        }
+      ]
     }
   ]
 }
