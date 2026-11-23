@@ -1835,6 +1835,38 @@
           "story_id": "18357205696266969"
         }
       }
+    },
+    {
+      "date": "2026-11-23T17:11:47+00:00",
+      "kind": "post",
+      "id": "y8",
+      "ids": [
+        "y8"
+      ],
+      "type": "dua",
+      "set": null,
+      "hook": "A dua from the Prophet ﷺ",
+      "cta": "Save it for the day you need it 🤍",
+      "background": "pexels:22634983",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122125060869487311",
+          "post_id": "1361268837065768_122125060893487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17920215555541720"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1628450951621275"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18118866047151588"
+        }
+      }
     }
   ]
 }
