@@ -1733,6 +1733,40 @@
           "story_id": "17968725045203433"
         }
       }
+    },
+    {
+      "date": "2026-11-23T10:12:10+00:00",
+      "kind": "carousel",
+      "id": "h38",
+      "ids": [
+        "h38",
+        "h21",
+        "h1",
+        "h13"
+      ],
+      "type": "hadith",
+      "set": "hadith",
+      "occasion": null,
+      "background": "pexels:17847634",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1397548336772319_122124307311496080"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "17966242326079312",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "4505727329741623"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18439875589194069"
+        }
+      }
     }
   ]
 }
