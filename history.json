@@ -3955,6 +3955,32 @@
           "story_id": "18147272722590368"
         }
       }
+    },
+    {
+      "date": "2026-11-24T22:12:23+00:00",
+      "passage_id": "ghafir-60",
+      "surah": 40,
+      "ayahs": [
+        60
+      ],
+      "reciter": "maher",
+      "background": "pexels:11189371",
+      "results": {
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7711863947040770054",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "inpsj6bIRNU",
+          "url": "https://youtube.com/shorts/inpsj6bIRNU",
+          "privacy": "public",
+          "channel": "سَكينة يومية Daily Sakina"
+        }
+      }
     }
   ]
 }
