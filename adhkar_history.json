@@ -4619,6 +4619,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-24T07:11:39+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "tahlil100",
+        "bismillah"
+      ],
+      "background": "pexels:39662241",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2373425483508114"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18488833432112985"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1461231539545207"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18106697156356774"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "29887609947592239"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17901303666405136"
+          }
+        }
+      ]
     }
   ]
 }
