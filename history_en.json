@@ -7088,6 +7088,51 @@
           "story_id": "18092939219251157"
         }
       }
+    },
+    {
+      "date": "2026-11-24T00:22:20+00:00",
+      "id": "n30",
+      "kind": "hadith",
+      "hook": "Words of the Prophet ﷺ for your day",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:28462206",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "29355897177360762",
+          "status": "ready",
+          "cover": "ok",
+          "first_comment": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18170602336422104",
+          "first_comment": "ok"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7711526140531378196",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "R7iPJq3TwJY",
+          "url": "https://youtube.com/shorts/R7iPJq3TwJY",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "978145308462787"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18001434423012562"
+        }
+      }
     }
   ]
 }
