@@ -7223,6 +7223,51 @@
           "story_id": "18133114349478328"
         }
       }
+    },
+    {
+      "date": "2026-11-25T00:14:53+00:00",
+      "id": "ph108",
+      "kind": "dua",
+      "hook": "Say this today",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:34770524",
+      "reciter": null,
+      "results": {
+        "facebook": {
+          "ok": true,
+          "video_id": "993309200030992",
+          "status": "ready",
+          "cover": "ok",
+          "first_comment": "ok"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18110393606370219",
+          "first_comment": "ok"
+        },
+        "tiktok": {
+          "ok": true,
+          "publish_id": "v_inbox_file~v2.7711895379272288274",
+          "status": "SEND_TO_USER_INBOX",
+          "mode": "draft"
+        },
+        "youtube": {
+          "ok": true,
+          "cover": null,
+          "video_id": "-c_1nocLg0g",
+          "url": "https://youtube.com/shorts/-c_1nocLg0g",
+          "privacy": "public",
+          "channel": "Daily Serenity"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1889599692485321"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18120310115122873"
+        }
+      }
     }
   ]
 }
