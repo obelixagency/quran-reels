@@ -1902,6 +1902,38 @@
           "story_id": "18119258672110480"
         }
       }
+    },
+    {
+      "date": "2026-11-25T17:11:56+00:00",
+      "kind": "post",
+      "id": "h3",
+      "ids": [
+        "h3"
+      ],
+      "type": "hadith",
+      "set": null,
+      "hook": "A reminder your heart needed",
+      "cta": "Share it with someone who needs it 🌿",
+      "background": "pexels:15774137",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "photo_id": "122125468527487311",
+          "post_id": "1361268837065768_122125468551487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18501296467105405"
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1034100499726438"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "17879321397650497"
+        }
+      }
     }
   ]
 }
