@@ -4703,6 +4703,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-25T07:11:59+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "bika_m",
+        "afiya"
+      ],
+      "background": "pexels:5572032",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1006092501960284"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17866995045696097"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2393255751431604"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18105408548352479"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2632161113878678"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18105418760644701"
+          }
+        }
+      ]
     }
   ]
 }
