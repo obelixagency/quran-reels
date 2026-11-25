@@ -4745,6 +4745,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-25T17:12:33+00:00",
+      "session": "evening",
+      "ids": [
+        "quls",
+        "subhan100",
+        "amsayna"
+      ],
+      "background": "pexels:31026803",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1135746032432595"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18379192807214460"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2742533502831136"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18475670761141711"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1443119380788855"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17953344573084613"
+          }
+        }
+      ]
     }
   ]
 }
