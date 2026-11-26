@@ -16,7 +16,7 @@ on:
 
 permissions:
   actions: read
-  contents: write
+  contents: read   # state lives in Cloudflare KV; this job never pushes to git
 
 concurrency:
   group: serenity-adhkar
@@ -49,7 +49,7 @@ jobs:
       - uses: actions/checkout@v4
         if: steps.guard.outputs.skip != '1'
 
-      - name: Load history from Cloudflare KV (falls back to the repo copy)
+      - name: Load history from Cloudflare KV
         if: steps.guard.outputs.skip != '1'
         env:
           CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
@@ -57,8 +57,7 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
           pip install -q requests >/dev/null 2>&1 || true
-          rc=0; python scripts/state.py pull || rc=$?
-          if [ $rc -ne 0 ] && [ $rc -ne 3 ]; then exit $rc; fi
+          python scripts/state.py pull
 
       - name: Decide what to run
         if: steps.guard.outputs.skip != '1'
@@ -111,16 +110,5 @@ jobs:
           CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
           CF_KV_NAMESPACE_ID: ${{ vars.CF_KV_NAMESPACE_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: |
-          # saved to Cloudflare KV; git is only the fallback while KV is not configured (exit code 3)
-          rc=0; python scripts/state.py push adhkar_history_en.json || rc=$?
-          if [ $rc -ne 0 ] && [ $rc -ne 3 ]; then exit $rc; fi
-          if [ $rc -eq 3 ] && [ -n "$(git status --porcelain adhkar_history_en.json)" ]; then
-            git config user.name "quran-reels-bot"
-            git config user.email "actions@users.noreply.github.com"
-            git add adhkar_history_en.json
-            git commit -m "serenity adhkar history: ${{ github.run_number }}"
-            git pull --rebase
-            git push
-          fi
+        run: python scripts/state.py push adhkar_history_en.json   # Cloudflare KV – nothing is committed to git
 
