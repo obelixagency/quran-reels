@@ -96,7 +96,8 @@ jobs:
           retention-days: 7
 
       - name: TikTok reminder (GitHub notification with the caption)
-        if: steps.guard.outputs.skip != '1' && (always())
+        # off while TikTok is paused: set the repo variable TIKTOK_ON=true to turn it back on
+        if: vars.TIKTOK_ON == 'true' && steps.guard.outputs.skip != '1' && (always())
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

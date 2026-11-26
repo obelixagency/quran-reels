@@ -122,7 +122,8 @@ jobs:
           retention-days: 14
 
       - name: TikTok caption (summary + GitHub notification)
-        if: steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
+        # off while TikTok is paused: set the repo variable TIKTOK_ON=true to turn it back on
+        if: vars.TIKTOK_ON == 'true' && steps.guard.outputs.skip != '1' && (always() && steps.plan.outputs.skip != '1')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
