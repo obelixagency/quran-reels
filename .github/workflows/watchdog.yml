@@ -18,9 +18,22 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      - name: Load history from Cloudflare KV (falls back to the repo copy)
+        env:
+          CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ vars.CF_KV_NAMESPACE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          pip install -q requests >/dev/null 2>&1 || true
+          rc=0; python scripts/state.py pull || rc=$?
+          if [ $rc -ne 0 ] && [ $rc -ne 3 ]; then exit $rc; fi
+
       - name: Check every time slot
         env:
           GH_TOKEN: ${{ github.token }}
+          CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ vars.CF_KV_NAMESPACE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: pip install requests >/dev/null && python scripts/watchdog.py
 
       - name: Share new long YouTube videos on Facebook
@@ -30,9 +43,15 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           EN_FB_PAGE_ID: ${{ secrets.EN_FB_PAGE_ID }}
           EN_FB_PAGE_TOKEN: ${{ secrets.EN_FB_PAGE_TOKEN }}
+          CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ vars.CF_KV_NAMESPACE_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
           python scripts/promote_long.py
-          if [ -n "$(git status --porcelain promoted_long.json)" ]; then
+          # saved to Cloudflare KV; git is only the fallback while KV is not configured (exit code 3)
+          rc=0; python scripts/state.py push promoted_long.json || rc=$?
+          if [ $rc -ne 0 ] && [ $rc -ne 3 ]; then exit $rc; fi
+          if [ $rc -eq 3 ] && [ -n "$(git status --porcelain promoted_long.json)" ]; then
             git config user.name "quran-reels-bot"
             git config user.email "actions@users.noreply.github.com"
             git add promoted_long.json
