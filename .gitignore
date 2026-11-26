@@ -3,3 +3,4 @@ out_post/
 .cache/
 __pycache__/
 *.pyc
+.state_pulled.json
