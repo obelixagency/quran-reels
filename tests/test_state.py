@@ -60,19 +60,23 @@ def kv(monkeypatch, tmp_path):
 KEY = "quran-reels%2Fhistory.json"
 
 
-def test_not_configured_means_git_fallback(monkeypatch):
+def test_not_configured_fails(monkeypatch, capsys):
     monkeypatch.delenv("CF_API_TOKEN", raising=False)
     assert state.main(["pull"]) == state.NOT_CONFIGURED
     assert state.main(["push", "history.json"]) == state.NOT_CONFIGURED
+    assert "::error::" in capsys.readouterr().out
 
 
-def test_first_run_keeps_repo_copy_then_saves_it_to_kv(kv):
+def test_first_run_copies_repo_file_to_kv_without_counting_as_a_post(kv):
     fake, root = kv
     (root / "history.json").write_text('{"posts": [1]}')
     assert state.main(["pull", "history.json"]) == 0
-    assert (root / "history.json").read_text() == '{"posts": [1]}'      # 404 -> repo copy kept
+    assert (root / "history.json").read_text() == '{"posts": [1]}'      # repo copy kept locally
+    assert fake.values[KEY] == b'{"posts": [1]}'                        # ... and copied to KV
+    assert state.saved_at("history.json") is None                       # not a post
+    puts = len([c for c in fake.calls if c[0] == "PUT"])
     assert state.main(["push", "history.json"]) == 0
-    assert KEY not in fake.values                                       # unchanged -> no write
+    assert len([c for c in fake.calls if c[0] == "PUT"]) == puts        # unchanged -> no write
     (root / "history.json").write_text('{"posts": [1, 2]}')
     assert state.main(["push", "history.json"]) == 0
     assert fake.values[KEY] == b'{"posts": [1, 2]}'
