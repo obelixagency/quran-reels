@@ -4829,6 +4829,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-26T16:12:06+00:00",
+      "session": "evening",
+      "ids": [
+        "quls",
+        "kalimat",
+        "sayyid"
+      ],
+      "background": "pexels:28143150",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2230974714428749"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18122176034281285"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1487941859880357"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18147325873609998"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "2573612466451630"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18377752513246669"
+          }
+        }
+      ]
     }
   ]
 }
