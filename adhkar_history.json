@@ -4787,6 +4787,48 @@
           }
         }
       ]
+    },
+    {
+      "date": "2026-11-26T07:12:47+00:00",
+      "session": "morning",
+      "ids": [
+        "kursi",
+        "asbahna",
+        "bismillah"
+      ],
+      "background": "pexels:39708803",
+      "results": [
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1478511887547207"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18139285234733045"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1678329753685443"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "17867836599692460"
+          }
+        },
+        {
+          "facebook": {
+            "ok": true,
+            "story_id": "1167480965773265"
+          },
+          "instagram": {
+            "ok": true,
+            "story_id": "18152576797483385"
+          }
+        }
+      ]
     }
   ]
 }
