@@ -34,7 +34,7 @@
       "hashtags": 5
     },
     "tiktok": {
-      "enabled": true,
+      "enabled": false,
       "hashtags": 6,
       "mode": "draft",
       "privacy_level": "PUBLIC_TO_EVERYONE"
@@ -78,7 +78,7 @@
         "enabled": true
       },
       "tiktok": {
-        "enabled": true,
+        "enabled": false,
         "mode": "draft",
         "privacy_level": "PUBLIC_TO_EVERYONE"
       },
