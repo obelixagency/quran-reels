@@ -1934,6 +1934,41 @@
           "story_id": "17879321397650497"
         }
       }
+    },
+    {
+      "date": "2026-11-26T17:11:56+00:00",
+      "kind": "carousel",
+      "id": "q2-45",
+      "ids": [
+        "q2-45",
+        "q21-87",
+        "q23-1",
+        "q3-134"
+      ],
+      "type": "quran",
+      "set": "quran",
+      "hook": null,
+      "cta": null,
+      "background": "pexels:41247280",
+      "results": {
+        "facebook": {
+          "ok": true,
+          "post_id": "1361268837065768_122125672683487311"
+        },
+        "instagram": {
+          "ok": true,
+          "media_id": "18132379024930902",
+          "slides": 5
+        },
+        "facebook_story": {
+          "ok": true,
+          "story_id": "1828157565167626"
+        },
+        "instagram_story": {
+          "ok": true,
+          "story_id": "18113512286258981"
+        }
+      }
     }
   ]
 }
