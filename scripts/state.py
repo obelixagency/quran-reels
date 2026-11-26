@@ -3,11 +3,12 @@
     python scripts/state.py pull            # at the start of a job: KV → working tree
     python scripts/state.py push FILE...    # at the end: changed files → KV
 
-Every key is "quran-reels/<path>". A file that is not in KV yet keeps the copy from the repo, and the
-first save puts it in KV, so the move needs no separate seeding step. Each save also stores
+Every key is "quran-reels/<path>". A file that is not in KV yet is copied there from the repo the first
+time any job runs (with an empty saved_at, so it never counts as a post). Each save stores
 {"saved_at": <UTC time>} as the key's metadata; the watchdog uses it to see whether a slot was posted.
+Nothing is committed to git any more: a job whose state cannot be loaded or saved fails loudly.
 
-Exit codes: 0 ok · 3 KV not configured (the workflow then saves to git as before) · 1 KV error.
+Exit codes: 0 ok · 3 KV not configured · 1 KV error.
 Needs CF_ACCOUNT_ID, CF_KV_NAMESPACE_ID (repo variables) and CF_API_TOKEN (secret). The token is
 never printed.
 """
@@ -69,7 +70,7 @@ def sha1(b):
 def pull(files=FILES):
     cfg = config()
     if not cfg:
-        print("KV not configured – using the files from the repo")
+        print("::error::Cloudflare KV is not configured (CF_ACCOUNT_ID / CF_KV_NAMESPACE_ID / CF_API_TOKEN)")
         return NOT_CONFIGURED
     base, h = cfg
     baseline = {}
@@ -77,7 +78,13 @@ def pull(files=FILES):
         p = ROOT / f
         r = call("GET", key_url(base, "values", f), h)
         if r.status_code == 404:
-            src = "repo (not in KV yet)"
+            if not p.exists():
+                src = "not in KV, not in the repo"
+            else:   # first time: copy the repo file to KV (empty saved_at = not a post)
+                call("PUT", key_url(base, "values", f), h,
+                     files={"value": (f, p.read_bytes(), "application/octet-stream"),
+                            "metadata": (None, json.dumps({"saved_at": "", "seeded": "repo"}))})
+                src = "copied from the repo to KV"
         else:
             p.write_bytes(r.content)
             src = "KV"
@@ -90,7 +97,7 @@ def pull(files=FILES):
 def push(files):
     cfg = config()
     if not cfg:
-        print("KV not configured – saving to git instead")
+        print("::error::Cloudflare KV is not configured (CF_ACCOUNT_ID / CF_KV_NAMESPACE_ID / CF_API_TOKEN)")
         return NOT_CONFIGURED
     base, h = cfg
     baseline = json.loads(BASELINE.read_text()) if BASELINE.exists() else {}
