@@ -95,6 +95,15 @@ HIST = {"daily-adhkar.yml": "adhkar_history.json", "daily-post.yml": "posts_hist
 
 
 def posted_since(path, since):
+    """Posted = the history file was saved after the slot: in Cloudflare KV (now) or as a git commit (before)."""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import state
+        saved = state.saved_at(path)
+        if saved is not None and saved >= since:
+            return True
+    except Exception as e:  # noqa: BLE001 – KV unreachable: fall back to the git check below
+        log(f"⚠️ KV check for {path} failed ({type(e).__name__}) – checking git instead")
     r = requests.get(f"{API}/commits", headers=H, timeout=30,
                      params={"path": path, "since": since.strftime("%Y-%m-%dT%H:%M:%SZ"), "per_page": 5})
     r.raise_for_status()
@@ -115,6 +124,12 @@ def check(wf, hour, minute):
     active = [r for r in runs if r["status"] in ("queued", "in_progress", "waiting", "pending", "requested")]
     if active:
         log(f"⏳ {label} {slot:%H:%M} UTC – running now")
+        return
+    # KV reads can lag a few seconds behind a save: a run that finished just now gets one more round
+    just_done = [r for r in runs if r["status"] == "completed"
+                 and dt.datetime.fromisoformat(r["updated_at"].replace("Z", "+00:00")) > NOW - dt.timedelta(minutes=5)]
+    if just_done:
+        log(f"⏳ {label} {slot:%H:%M} UTC – a run finished just now, checking again next round")
         return
     mine = [r for r in runs if r["event"] == "workflow_dispatch" and r["status"] == "completed"
             and (r.get("triggering_actor") or {}).get("login") == "github-actions[bot]"]
