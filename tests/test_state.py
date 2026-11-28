@@ -117,3 +117,15 @@ def test_watchdog_counts_a_kv_save_as_posted(kv, monkeypatch):
     since = dt.datetime(2026, 11, 27, 16, 32, tzinfo=dt.timezone.utc)
     monkeypatch.setattr(wd.requests, "get", lambda *a, **k: pytest.fail("git check not needed"))
     assert wd.posted_since("history.json", since) is True
+
+
+def test_watchdog_ignores_git_commits(kv, monkeypatch):
+    """A commit touching history.json (e.g. deleting it) must not hide a missed slot."""
+    fake, root = kv
+    monkeypatch.setenv("GITHUB_REPOSITORY", "o/r")
+    monkeypatch.setenv("GH_TOKEN", "x")
+    wd = importlib.import_module("watchdog")
+    fake.values[KEY], fake.meta[KEY] = b"{}", {"saved_at": "2026-11-26T17:14:00Z"}
+    since = dt.datetime(2026, 11, 26, 21, 2, tzinfo=dt.timezone.utc)
+    monkeypatch.setattr(wd.requests, "get", lambda *a, **k: pytest.fail("git is not consulted any more"))
+    assert wd.posted_since("history.json", since) is False
