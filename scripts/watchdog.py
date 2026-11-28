@@ -95,19 +95,15 @@ HIST = {"daily-adhkar.yml": "adhkar_history.json", "daily-post.yml": "posts_hist
 
 
 def posted_since(path, since):
-    """Posted = the history file was saved after the slot: in Cloudflare KV (now) or as a git commit (before)."""
+    """Posted = the history file was saved to Cloudflare KV after the slot (nothing is committed to git any more)."""
     try:
         sys.path.insert(0, str(ROOT / "scripts"))
         import state
         saved = state.saved_at(path)
-        if saved is not None and saved >= since:
-            return True
-    except Exception as e:  # noqa: BLE001 – KV unreachable: fall back to the git check below
-        log(f"⚠️ KV check for {path} failed ({type(e).__name__}) – checking git instead")
-    r = requests.get(f"{API}/commits", headers=H, timeout=30,
-                     params={"path": path, "since": since.strftime("%Y-%m-%dT%H:%M:%SZ"), "per_page": 5})
-    r.raise_for_status()
-    return len(r.json()) > 0
+    except Exception as e:  # noqa: BLE001 – KV unreachable: the retry will fail loudly and open an issue
+        log(f"⚠️ KV check for {path} failed ({type(e).__name__})")
+        return False
+    return saved is not None and saved >= since
 
 
 def check(wf, hour, minute):
